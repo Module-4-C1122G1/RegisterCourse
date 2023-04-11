@@ -15,15 +15,18 @@ public class Curriculum {
     private String curriculumDescription;
     @Column(name = "curriculum_status")
     private String curriculumStatus;
+    @Column(name = "curriculum_img")
+    private String curriculumImg;
 
     public Curriculum() {
     }
 
-    public Curriculum(Integer curriculumID, String curriculumName, String curriculumDescription, String curriculumStatus) {
+    public Curriculum(Integer curriculumID, String curriculumName, String curriculumDescription, String curriculumStatus, String curriculumImg) {
         this.curriculumID = curriculumID;
         this.curriculumName = curriculumName;
         this.curriculumDescription = curriculumDescription;
         this.curriculumStatus = curriculumStatus;
+        this.curriculumImg = curriculumImg;
     }
 
     public Integer getCurriculumID() {
@@ -56,5 +59,13 @@ public class Curriculum {
 
     public void setCurriculumStatus(String curriculumStatus) {
         this.curriculumStatus = curriculumStatus;
+    }
+
+    public String getCurriculumImg() {
+        return curriculumImg;
+    }
+
+    public void setCurriculumImg(String curriculumImg) {
+        this.curriculumImg = curriculumImg;
     }
 }

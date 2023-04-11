@@ -15,15 +15,18 @@ public class Lecturer {
     private String lecturerEmail;
     @Column(name = "lecturer_phone")
     private String lecturerPhone;
+    @Column(name = "lecturer_img")
+    private String lecturerImg;
 
     public Lecturer() {
     }
 
-    public Lecturer(Integer lecturerID, String lecturerName, String lecturerEmail, String lecturerPhone) {
+    public Lecturer(Integer lecturerID, String lecturerName, String lecturerEmail, String lecturerPhone, String lecturerImg) {
         this.lecturerID = lecturerID;
         this.lecturerName = lecturerName;
         this.lecturerEmail = lecturerEmail;
         this.lecturerPhone = lecturerPhone;
+        this.lecturerImg = lecturerImg;
     }
 
     public Integer getLecturerID() {
@@ -56,5 +59,13 @@ public class Lecturer {
 
     public void setLecturerPhone(String lecturerPhone) {
         this.lecturerPhone = lecturerPhone;
+    }
+
+    public String getLecturerImg() {
+        return lecturerImg;
+    }
+
+    public void setLecturerImg(String lecturerImg) {
+        this.lecturerImg = lecturerImg;
     }
 }

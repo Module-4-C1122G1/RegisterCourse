@@ -15,6 +15,8 @@ public class CourseContent {
     private String contentDescription;
     @Column(name = "content_order")
     private Integer contentOrder;
+    @Column(name = "content_img")
+    private String contentImg;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "course_id")
     private Course course;
@@ -22,11 +24,12 @@ public class CourseContent {
     public CourseContent() {
     }
 
-    public CourseContent(Integer contentID, String contentTitle, String contentDescription, Integer contentOrder, Course course) {
+    public CourseContent(Integer contentID, String contentTitle, String contentDescription, Integer contentOrder, String contentImg, Course course) {
         this.contentID = contentID;
         this.contentTitle = contentTitle;
         this.contentDescription = contentDescription;
         this.contentOrder = contentOrder;
+        this.contentImg = contentImg;
         this.course = course;
     }
 
@@ -60,6 +63,14 @@ public class CourseContent {
 
     public void setContentOrder(Integer contentOrder) {
         this.contentOrder = contentOrder;
+    }
+
+    public String getContentImg() {
+        return contentImg;
+    }
+
+    public void setContentImg(String contentImg) {
+        this.contentImg = contentImg;
     }
 
     public Course getCourse() {

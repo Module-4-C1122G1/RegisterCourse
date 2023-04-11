@@ -25,6 +25,8 @@ public class Course {
     private Integer studentMax;
     @Column(name = "course_status")
     private String courseStatus;
+    @Column(name = "course_img")
+    private String courseImg;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "lecturer_id")
     private Lecturer lecturer;
@@ -32,7 +34,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(Integer courseID, String courseName, String courseDescription, String startDate, String endDate, String courseLocation, double coursePrice, Integer studentMax, String courseStatus, Lecturer lecturer) {
+    public Course(Integer courseID, String courseName, String courseDescription, String startDate, String endDate, String courseLocation, double coursePrice, Integer studentMax, String courseStatus, String courseImg, Lecturer lecturer) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.courseDescription = courseDescription;
@@ -42,6 +44,7 @@ public class Course {
         this.coursePrice = coursePrice;
         this.studentMax = studentMax;
         this.courseStatus = courseStatus;
+        this.courseImg = courseImg;
         this.lecturer = lecturer;
     }
 
@@ -115,6 +118,14 @@ public class Course {
 
     public void setCourseStatus(String courseStatus) {
         this.courseStatus = courseStatus;
+    }
+
+    public String getCourseImg() {
+        return courseImg;
+    }
+
+    public void setCourseImg(String courseImg) {
+        this.courseImg = courseImg;
     }
 
     public Lecturer getLecturer() {
