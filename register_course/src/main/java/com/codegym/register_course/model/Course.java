@@ -9,32 +9,35 @@ public class Course {
     @Column(name = "course_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer courseID;
-    @Column(name = "course_name")
+    @Column(name = "course_name", columnDefinition = "varchar(45)")
     private String courseName;
-    @Column(name = "course_description")
+    @Column(name = "course_description", columnDefinition = "text)")
     private String courseDescription;
-    @Column(name = "start_date")
+    @Column(name = "start_date", columnDefinition = "varchar(45)")
     private String startDate;
-    @Column(name = "end_date")
+    @Column(name = "end_date", columnDefinition = "varchar(45)")
     private String endDate;
-    @Column(name = "course_location")
+    @Column(name = "course_location", columnDefinition = "varchar(255)")
     private String courseLocation;
     @Column(name = "course_price")
     private double coursePrice;
     @Column(name = "student_max")
     private Integer studentMax;
-    @Column(name = "course_status")
+    @Column(name = "course_status", columnDefinition = "varchar(45)")
     private String courseStatus;
-    @Column(name = "course_img")
+    @Column(name = "course_img", columnDefinition = "varchar(255)")
     private String courseImg;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "lecturer_id")
     private Lecturer lecturer;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
     public Course() {
     }
 
-    public Course(Integer courseID, String courseName, String courseDescription, String startDate, String endDate, String courseLocation, double coursePrice, Integer studentMax, String courseStatus, String courseImg, Lecturer lecturer) {
+    public Course(Integer courseID, String courseName, String courseDescription, String startDate, String endDate, String courseLocation, double coursePrice, Integer studentMax, String courseStatus, String courseImg, Lecturer lecturer, Employee employee) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.courseDescription = courseDescription;
@@ -46,6 +49,7 @@ public class Course {
         this.courseStatus = courseStatus;
         this.courseImg = courseImg;
         this.lecturer = lecturer;
+        this.employee = employee;
     }
 
     public Integer getCourseID() {
@@ -134,5 +138,13 @@ public class Course {
 
     public void setLecturer(Lecturer lecturer) {
         this.lecturer = lecturer;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

@@ -9,13 +9,13 @@ public class Curriculum {
     @Column(name = "curriculum_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer curriculumID;
-    @Column(name = "curriculum_name")
+    @Column(name = "curriculum_name", columnDefinition = "varchar(45)")
     private String curriculumName;
-    @Column(name = "curriculum_description")
+    @Column(name = "curriculum_description", columnDefinition = "text")
     private String curriculumDescription;
-    @Column(name = "curriculum_status")
+    @Column(name = "curriculum_status", columnDefinition = "varchar(45)")
     private String curriculumStatus;
-    @Column(name = "curriculum_img")
+    @Column(name = "curriculum_img", columnDefinition = "varchar(255)")
     private String curriculumImg;
 
     public Curriculum() {

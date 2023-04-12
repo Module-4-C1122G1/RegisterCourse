@@ -9,13 +9,13 @@ public class Lecturer {
     @Column(name = "lecturer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer lecturerID;
-    @Column(name = "lecturer_name")
+    @Column(name = "lecturer_name", columnDefinition = "varchar(45)")
     private String lecturerName;
-    @Column(name = "lecturer_email")
+    @Column(name = "lecturer_email", columnDefinition = "varchar(255)")
     private String lecturerEmail;
-    @Column(name = "lecturer_phone")
+    @Column(name = "lecturer_phone", columnDefinition = "varchar(45)")
     private String lecturerPhone;
-    @Column(name = "lecturer_img")
+    @Column(name = "lecturer_img", columnDefinition = "varchar(255)")
     private String lecturerImg;
 
     public Lecturer() {

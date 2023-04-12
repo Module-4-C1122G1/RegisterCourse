@@ -9,11 +9,11 @@ public class CourseReview {
     @Column(name = "review_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reviewID;
-    @Column(name = "review_content")
+    @Column(name = "review_content", columnDefinition = "varchar(255)")
     private String reviewContent;
     @Column(name = "review_rating")
     private double reviewRating;
-    @Column(name = "review_date")
+    @Column(name = "review_date", columnDefinition = "varchar(45)")
     private String reviewDate;
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "student_id")

@@ -9,13 +9,13 @@ public class CourseContent {
     @Column(name = "content_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer contentID;
-    @Column(name = "content_title")
+    @Column(name = "content_title", columnDefinition = "varchar(255)")
     private String contentTitle;
-    @Column(name = "content_description")
+    @Column(name = "content_description", columnDefinition = "text")
     private String contentDescription;
     @Column(name = "content_order")
     private Integer contentOrder;
-    @Column(name = "content_img")
+    @Column(name = "content_img", columnDefinition = "varchar(255)")
     private String contentImg;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "course_id")

@@ -9,15 +9,15 @@ public class Student {
     @Column(name = "student_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer studentID;
-    @Column(name = "student_name")
+    @Column(name = "student_name", columnDefinition = "varchar(45)")
     private String studentName;
-    @Column(name = "student_email")
+    @Column(name = "student_email", columnDefinition = "varchar(255)")
     private String studentEmail;
-    @Column(name = "student_phone")
+    @Column(name = "student_phone", columnDefinition = "varchar(45)")
     private String studentPhone;
-    @Column(name = "student_address")
+    @Column(name = "student_address", columnDefinition = "varchar(255)")
     private String studentAddress;
-    @Column(name = "student_img")
+    @Column(name = "student_img", columnDefinition = "varchar(255)")
     private String studentImg;
 
     public Student() {
