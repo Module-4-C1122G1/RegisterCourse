@@ -11,7 +11,7 @@ public class Course {
     private Integer courseID;
     @Column(name = "course_name", columnDefinition = "varchar(45)")
     private String courseName;
-    @Column(name = "course_description", columnDefinition = "text)")
+    @Column(name = "course_description", columnDefinition = "text")
     private String courseDescription;
     @Column(name = "start_date", columnDefinition = "varchar(45)")
     private String startDate;
