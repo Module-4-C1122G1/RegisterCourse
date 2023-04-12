@@ -1,6 +1,7 @@
 package com.codegym.register_course.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name = "student")
