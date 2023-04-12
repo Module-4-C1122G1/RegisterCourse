@@ -9,9 +9,9 @@ public class Enrollment {
     @Column(name = "enrollment_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer enrollmentID;
-    @Column(name = "enrollment_date")
+    @Column(name = "enrollment_date", columnDefinition = "varchar(45)")
     private String enrollmentDate;
-    @Column(name = "enrollment_status")
+    @Column(name = "enrollment_status", columnDefinition = "varchar(45)")
     private String enrollmentStatus;
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "course_id")
