@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class demo {
     @GetMapping()
     public String list(){
-        return "/index";
+        return "/admin/lecturer";
     }
 }

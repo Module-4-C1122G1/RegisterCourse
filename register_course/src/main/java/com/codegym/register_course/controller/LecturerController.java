@@ -23,4 +23,11 @@ public class LecturerController {
         model.addAttribute("lecturer", service.findAllLecturer());
         return "/teacher";
     }
+    @GetMapping("admin")
+    public String showListAdmin(
+            Model model
+    ){
+        model.addAttribute("lecturer1", service.findAllLecturer());
+        return "/admin/lecturer";
+    }
 }
