@@ -17,16 +17,26 @@ public class Lecturer {
     private String lecturerPhone;
     @Column(name = "lecturer_img", columnDefinition = "varchar(255)")
     private String lecturerImg;
-
+    @Column(name = "lecturer_position",columnDefinition = "varchar(255)")
+    private String lecturerPosition;
     public Lecturer() {
     }
 
-    public Lecturer(Integer lecturerID, String lecturerName, String lecturerEmail, String lecturerPhone, String lecturerImg) {
+    public Lecturer(Integer lecturerID, String lecturerName, String lecturerEmail, String lecturerPhone, String lecturerImg, String lecturerPosition) {
         this.lecturerID = lecturerID;
         this.lecturerName = lecturerName;
         this.lecturerEmail = lecturerEmail;
         this.lecturerPhone = lecturerPhone;
         this.lecturerImg = lecturerImg;
+        this.lecturerPosition = lecturerPosition;
+    }
+
+    public String getLecturerPosition() {
+        return lecturerPosition;
+    }
+
+    public void setLecturerPosition(String lecturerPosition) {
+        this.lecturerPosition = lecturerPosition;
     }
 
     public Integer getLecturerID() {
