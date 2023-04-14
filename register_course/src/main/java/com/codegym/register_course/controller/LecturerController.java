@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("lecturer")
+@RequestMapping("/admin/lecturer")
 public class LecturerController {
     private final ILecturerService service;
 
@@ -23,7 +23,7 @@ public class LecturerController {
         model.addAttribute("lecturer", service.findAllLecturer());
         return "/teacher";
     }
-    @GetMapping("admin")
+    @GetMapping("admin/lecturer")
     public String showListAdmin(
             Model model
     ){
