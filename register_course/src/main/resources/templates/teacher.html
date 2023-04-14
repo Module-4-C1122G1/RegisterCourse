@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>ECOURSES - Online Courses HTML Template</title>
@@ -127,11 +126,11 @@
             <h1>Giáo viên của chúng tôi</h1>
         </div>
         <div class="row">
-            <div class="col-md-6 col-lg-3 text-center team mb-4">
+            <div class="col-md-6 col-lg-3 text-center team mb-4" th:each="lecturer: ${lecturer}">
                 <div class="team-item rounded overflow-hidden mb-2">
                     <div class="team-img position-relative">
                         <img class="img-fluid"
-                             src="https://andy.codegym.vn/storage/images/avatars/b1ce25698feb386d70c5ebe3c29439ee.jpg"
+                             th:src="${lecturer.lecturerImg}"
                              alt="">
                         <div class="team-social">
                             <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
@@ -140,134 +139,8 @@
                         </div>
                     </div>
                     <div class="bg-secondary p-4">
-                        <h5>Nguyễn Văn Minh</h5>
-                        <p class="m-0">Team Leader , NTT Data VDS</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center team mb-4">
-                <div class="team-item rounded overflow-hidden mb-2">
-                    <div class="team-img position-relative">
-                        <img class="img-fluid"
-                             src="https://andy.codegym.vn/storage/images/avatars/b0a5602dcc1704dceea096c2e6c0fcd8.jpg"
-                             alt="">
-                        <div class="team-social">
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary p-4">
-                        <h5>Nguyễn Quốc Anh</h5>
-                        <p class="m-0">PO/Technical Leader, BiPlus</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center team mb-4">
-                <div class="team-item rounded overflow-hidden mb-2">
-                    <div class="team-img position-relative">
-                        <img class="img-fluid"
-                             src="https://andy.codegym.vn/storage/images/avatars/b2b569dbd27aace0cd8318903389cb89.jpg"
-                             alt="">
-                        <div class="team-social">
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary p-4">
-                        <h5>Phan Văn Đồng</h5>
-                        <p class="m-0">Team Leader , NTT Data VDS</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center team mb-4">
-                <div class="team-item rounded overflow-hidden mb-2">
-                    <div class="team-img position-relative">
-                        <img class="img-fluid"
-                             src="https://andy.codegym.vn/storage/images/avatars/c20efd8f8714c05a6ae3eff1064d6814.jpg"
-                             alt="">
-                        <div class="team-social">
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary p-4">
-                        <h5>Lê Văn Chính</h5>
-                        <p class="m-0">Sub Leader, Misumi Group VietNam</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center team mb-4">
-                <div class="team-item rounded overflow-hidden mb-2">
-                    <div class="team-img position-relative">
-                        <img class="img-fluid"
-                             src="https://andy.codegym.vn/storage/images/avatars/b1ce25698feb386d70c5ebe3c29439ee.jpg"
-                             alt="">
-                        <div class="team-social">
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary p-4">
-                        <h5>Nguyễn Văn Minh</h5>
-                        <p class="m-0">Team Leader , NTT Data VDS</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center team mb-4">
-                <div class="team-item rounded overflow-hidden mb-2">
-                    <div class="team-img position-relative">
-                        <img class="img-fluid"
-                             src="https://andy.codegym.vn/storage/images/avatars/b0a5602dcc1704dceea096c2e6c0fcd8.jpg"
-                             alt="">
-                        <div class="team-social">
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary p-4">
-                        <h5>Nguyễn Quốc Anh</h5>
-                        <p class="m-0">PO/Technical Leader, BiPlus</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center team mb-4">
-                <div class="team-item rounded overflow-hidden mb-2">
-                    <div class="team-img position-relative">
-                        <img class="img-fluid"
-                             src="https://andy.codegym.vn/storage/images/avatars/b2b569dbd27aace0cd8318903389cb89.jpg"
-                             alt="">
-                        <div class="team-social">
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary p-4">
-                        <h5>Phan Văn Đồng</h5>
-                        <p class="m-0">Team Leader , NTT Data VDS</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center team mb-4">
-                <div class="team-item rounded overflow-hidden mb-2">
-                    <div class="team-img position-relative">
-                        <img class="img-fluid"
-                             src="https://andy.codegym.vn/storage/images/avatars/c20efd8f8714c05a6ae3eff1064d6814.jpg"
-                             alt="">
-                        <div class="team-social">
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary p-4">
-                        <h5>Lê Văn Chính</h5>
-                        <p class="m-0">Sub Leader, Misumi Group VietNam</p>
+                        <h5 th:text="${lecturer.lecturerName}"></h5>
+                        <p class="m-0" th:text="${lecturer.lecturerPosition}"></p>
                     </div>
                 </div>
             </div>
