@@ -119,7 +119,7 @@
         </a>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" href="admin/student">
+        <a class="nav-link" th:href="@{/admin/student}">
               <span class="menu-icon">
                 <i class="mdi mdi-account-badge"></i>
               </span>
@@ -386,12 +386,12 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone</th>
-                      <th>Position</th>
+                      <th>Address</th>
                       <th>Image</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="lecturer1 : ${lecturer1}">
+                    <tr th:each="student1 : ${student}">
                       <td>
                         <div class="form-check form-check-muted m-0">
                           <label class="form-check-label">
@@ -399,13 +399,13 @@
                           </label>
                         </div>
                       </td>
-                      <td th:text="${lecturer1.lecturerID}"></td>
-                      <td th:text="${lecturer1.lecturerName}"></td>
-                      <td th:text="${lecturer1.lecturerEmail}"></td>
-                      <td th:text="${lecturer1.lecturerPhone}"></td>
-                      <td th:text="${lecturer1.lecturerPosition}"></td>
+                      <td th:text="${student1.studentID}"></td>
+                      <td th:text="${student1.studentName}"></td>
+                      <td th:text="${student1.studentEmail}"></td>
+                      <td th:text="${student1.studentPhone}"></td>
+                      <td th:text="${student1.studentAddress}"></td>
                       <td>
-                        <img th:src="${lecturer1.lecturerImg}" alt="image" />
+                        <img th:src="${student1.studentImg}" alt="image" />
                       </td>
                       <td>
                         <div class="badge badge-outline-success">Approved</div>
