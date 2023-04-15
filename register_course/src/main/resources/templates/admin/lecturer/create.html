@@ -14,33 +14,198 @@
     <link rel="shortcut icon" th:href="@{/admin/assets/images/favicon.png}"/>
     <style>
         * {
-            font-family: Roboto
+            font-family: Roboto;
+            font-size: 18px
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: rgba(24, 23, 23, 0)
+        }
+
+        .card {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            color: white;
+        }
+
+        .card .h-1 {
+            font-size: 24px;
+            font-weight: 600
+        }
+
+        .card .bar {
+            border-top: 1px solid white
+        }
+
+        .card .bar2 {
+            border-top: 1px dashed white
+        }
+
+        .card .form-control {
+            background-color: #252525;
+            border: none;
+            box-shadow: none;
+            color: white;
+            height: 40px;
+            padding: 3px;
+            padding-left: 10px
+        }
+
+        .box {
+            position: relative
+        }
+
+        .btn {
+            position: absolute;
+            top: 50%;
+            right: 4px;
+            transform: translateY(-50%);
+            height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            background-color: #2e2e2e;
+            color: #fff
+        }
+
+        .fas.fa-plus {
+            font-size: 12px
+        }
+
+        .add.btn {
+            position: absolute;
+            top: 50%;
+            right: 0px;
+            height: 100%;
+            transform: translateY(-50%);
+            border-radius: 5px
+        }
+
+        span.fas.fa-stopwatch,
+        span.fas.fa-calendar-alt,
+        .arrow {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: #8f8d8d
+        }
+
+        .fas.fa-check-circle {
+            color: green
+        }
+
+        .dis {
+            font-size: 12px
+        }
+
+        .pic {
+            position: relative;
+            margin-right: 8px
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover
+        }
+
+        .pic .fas.fa-times {
+            position: absolute;
+            top: 0px;
+            right: 3px;
+            font-size: 10px;
+            height: 18px;
+            width: 18px;
+            border: 2px solid black;
+            background-color: #8f8d8d;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%
+        }
+
+        .rounded-circle {
+            height: 30px;
+            width: 30px;
+            background-color: #252525;
+            color: #8f8d8d;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .rounded-circle .fas {
+            font-size: 10px
+        }
+
+        .rounded-circle .number {
+            font-size: 14px;
+            font-weight: 800
+        }
+
+        .Radio.form-control {
+            padding: 3px;
+            width: 140px
+        }
+
+        label.radio {
+            cursor: pointer
+        }
+
+        label.radio input {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            visibility: hidden;
+            pointer-events: none
+        }
+
+        label.radio span {
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 34px;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 3px;
+            text-transform: uppercase
+        }
+
+        label.radio input:checked + span {
+            background-color: #2e2e2e
+        }
+
+        ::placeholder {
+            font-size: 14px
         }
     </style>
 </head>
 <body>
 <div class="container-scroller">
-    <div class="row p-0 m-0 proBanner" id="proBanner">
-        <div class="col-md-12 p-0 m-0">
-            <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
-                <div class="ps-lg-1">
-                </div>
-                <div class="d-flex align-items-center justify-content-between">
-                    <a href="https://www.bootstrapdash.com/product/corona-free/"><i
-                            class="mdi mdi-home me-3 text-white"></i></a>
-                    <button id="bannerClose" class="btn border-0 p-0">
-                        <i class="mdi mdi-close text-white me-0"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <a class="sidebar-brand brand-logo" href="index.html"><img th:src="@{/admin/assets/images/logo2.png}"
-                                                                       style="height: 75px" alt="logo"/></a>
-            <a class="sidebar-brand brand-logo-mini" href="index.html"><img th:src="@{/admin/assets/images/logo2.png}"
-                                                                            alt="logo"/></a>
+            <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo3.png}"
+                                                                          style="height: 75px" alt="logo"/></a>
+            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img
+                    th:src="@{/admin/assets/images/logo3.png}"
+                    alt="logo"/></a>
         </div>
         <ul class="nav">
             <li class="nav-item profile">
@@ -96,7 +261,7 @@
                 </div>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="../index.html">
               <span class="menu-icon">
                 <i class="mdi mdi-book-open"></i>
               </span>
@@ -104,7 +269,7 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" th:href="@{/admin/lecturer}">
+                <a class="nav-link" onclick="location.href = '/admin/lecturer' ">
               <span class="menu-icon">
                 <i class="mdi mdi-account-multiple"></i>
               </span>
@@ -128,19 +293,11 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" th:href="@{/admin/student}">
+                <a class="nav-link" href="admin/student">
               <span class="menu-icon">
                 <i class="mdi mdi-account-badge"></i>
               </span>
                     <span class="menu-title">Học viên</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" th:href="@{/admin/curriculum}">
-              <span class="menu-icon">
-                <i class="mdi mdi-account-badge"></i>
-              </span>
-                    <span class="menu-title">Chương trình học</span>
                 </a>
             </li>
         </ul>
@@ -150,8 +307,8 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
-                                                                               alt="logo"/></a>
+                <a class="navbar-brand brand-logo-mini" href="../index.html"><img src="assets/images/logo-mini.svg"
+                                                                                  alt="logo"/></a>
             </div>
             <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -165,47 +322,6 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item dropdown d-none d-lg-block">
-                        <!--            <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false"  href="/templates/admin/login.html">Login</a>-->
-                        <!--            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">-->
-                        <!--              <h6 class="p-3 mb-0">Projects</h6>-->
-                        <!--              <div class="dropdown-divider"></div>-->
-                        <!--              <a class="dropdown-item preview-item">-->
-                        <!--                <div class="preview-thumbnail">-->
-                        <!--                  <div class="preview-icon bg-dark rounded-circle">-->
-                        <!--                    <i class="mdi mdi-file-outline text-primary"></i>-->
-                        <!--                  </div>-->
-                        <!--                </div>-->
-                        <!--                <div class="preview-item-content">-->
-                        <!--                  <p class="preview-subject ellipsis mb-1">Software Development</p>-->
-                        <!--                </div>-->
-                        <!--              </a>-->
-                        <!--              <div class="dropdown-divider"></div>-->
-                        <!--              <a class="dropdown-item preview-item">-->
-                        <!--                <div class="preview-thumbnail">-->
-                        <!--                  <div class="preview-icon bg-dark rounded-circle">-->
-                        <!--                    <i class="mdi mdi-web text-info"></i>-->
-                        <!--                  </div>-->
-                        <!--                </div>-->
-                        <!--                <div class="preview-item-content">-->
-                        <!--                  <p class="preview-subject ellipsis mb-1">UI Development</p>-->
-                        <!--                </div>-->
-                        <!--              </a>-->
-                        <!--              <div class="dropdown-divider"></div>-->
-                        <!--              <a class="dropdown-item preview-item">-->
-                        <!--                <div class="preview-thumbnail">-->
-                        <!--                  <div class="preview-icon bg-dark rounded-circle">-->
-                        <!--                    <i class="mdi mdi-layers text-danger"></i>-->
-                        <!--                  </div>-->
-                        <!--                </div>-->
-                        <!--                <div class="preview-item-content">-->
-                        <!--                  <p class="preview-subject ellipsis mb-1">Software Testing</p>-->
-                        <!--                </div>-->
-                        <!--              </a>-->
-                        <!--              <div class="dropdown-divider"></div>-->
-                        <!--              <p class="p-3 mb-0 text-center">See all projects</p>-->
-                        <!--            </div>-->
-                    </li>
                     <li class="nav-item nav-settings d-none d-lg-block">
                         <a class="nav-link" href="#">
                             <i class="mdi mdi-view-grid"></i>
@@ -310,23 +426,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                             <div class="navbar-profile">
-                                <!--                <img class="img-xs rounded-circle" src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg" alt="">-->
-                                <!--                <p class="mb-0 d-none d-sm-block navbar-profile-name">Khải Nguyễn</p>-->
-                                <!--                <i class="mdi mdi-menu-down d-none d-sm-block"></i>-->
-                                <!--                -->
-                                <form class="d-flex" role="search">
-                                    <div class="user-info">
-                                        <img class="img-xs rounded-circle"
-                                             src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
-                                             alt="">
-                                        <span class="mb-0 font-weight-normal text-light m-2" th:utext="${#request.userPrincipal.getName()}"></span>
-                                    </div>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
-                                            data-bs-target="#logoutModal">
-                                        Tuỳ chọn
-                                    </button>
-                                </form>
+                                <img class="img-xs rounded-circle"
+                                     src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
+                                     alt="">
+                                <p class="mb-0 d-none d-sm-block navbar-profile-name">Khải Nguyễn</p>
+                                <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
@@ -365,132 +469,62 @@
                 </button>
             </div>
         </nav>
-        <!-- partial -->
-        <div class="main-panel">
-            <div class="content-wrapper">
+      <form style="margin: 0 auto" action="/admin/lecturer/create" method="post" th:object="${lecturerCreate}">
+        <div class="container">
+            <div class="card"><p class="h-1">Create Event</p>
+                <div class="bar mb-3"></div>
                 <div class="row">
-                    <div class="col-sm-4 grid-margin">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5>Số lượng giảng viên</h5>
-                                <div class="row">
-                                    <div class="col-8 col-sm-12 col-xl-8 my-auto">
-                                        <div class="d-flex d-sm-block d-md-flex align-items-center">
-                                            <h2 class="mb-0">08</h2>
-                                            <p class="text-success ms-2 mb-0 font-weight-medium"></p>
-                                        </div>
-                                        <h6 class="text-muted font-weight-normal">Được cập nhập vào năm 2023</h6>
-                                    </div>
-                                    <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-                                        <i class="icon-lg mdi mdi-codepen text-primary ms-auto"></i>
-                                    </div>
-                                </div>
+                    <div class="col-12"><p class="mb-2">Tên giảng viên</p>
+                        <div class=" box mb-3"><input type="text" class="form-control"
+                                                      placeholder="Vui lòng nhập tên giảng viên" th:field="*{lecturerName}">
+                        </div>
+                    </div>
+                    <div class="col-12"><p>Email</p>
+                        <div class="box"><input class="form-control" type="email"
+                                                placeholder="Vui lòng nhập email" th:field="*{lecturerEmail}">
+                        </div>
+                    </div>
+                    <div class="col-12"><p>Vị trí</p>
+                        <div class="box"><input class="form-control" type="text"
+                                                placeholder="Vui lòng nhập vị trí" th:field="*{lecturerPosition}">
+                        </div>
+                    </div>
+                    <div class="col-12"><p>Số điện thoại</p>
+                        <div class="box"><input class="form-control" type="text"
+                                                placeholder="Vui lòng nhập số điện thoại" th:field="*{lecturerPhone}">
+                        </div>
+                        <p class="bar2 mt-4"></p></div>
+                    <div class="col-12"><p>Thêm ảnh</p>
+                        <div class="box"><input class="form-control" type="text" placeholder="Thêm ảnh" th:field="*{lecturerImg}">
+                            <div class="add btn btn-outline-secondary">Add</div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-center mt-4">
+                            <div class="pic"><img
+                                    src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                    alt=""> <span class="fas fa-times"></span></div>
+                            <div class="pic"><img
+                                    src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                    alt=""> <span class="fas fa-times"></span></div>
+                            <div class="pic"><img
+                                    src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                    alt=""> <span class="fas fa-times"></span></div>
+                            <!-- <div class="pic"> <img src="https://images.pexels.com/photos/2078265/pexels-photo-2078265.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt=""> <span class="fas fa-times"></span> </div> -->
+                            <!-- <div class="pic"> <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt=""> <span class="fas fa-times"></span> </div> -->
+                            <div class="rounded-circle"><span class="fas fa-plus"></span> <span class="number">3</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4 grid-margin">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5>Số lượng khóa học đang đứng lớp</h5>
-                                <div class="row">
-                                    <div class="col-8 col-sm-12 col-xl-8 my-auto">
-                                        <div class="d-flex d-sm-block d-md-flex align-items-center">
-                                            <h2 class="mb-0">100</h2>
-                                            <p class="text-success ms-2 mb-0 font-weight-medium"></p>
-                                        </div>
-                                        <h6 class="text-muted font-weight-normal">Được cập nhập vào năm 2023</h6>
-                                    </div>
-                                    <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-                                        <i class="icon-lg mdi mdi-wallet-travel text-danger ms-auto"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row ">
-                    <div class="col-12 grid-margin">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Lecturer</h4>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>
-                                                <div class="form-check form-check-muted m-0">
-                                                    <label class="form-check-label">
-                                                        <input type="checkbox" class="form-check-input">
-                                                    </label>
-                                                </div>
-                                            </th>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Address</th>
-                                            <th>Image</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="student1 : ${student}">
-                                            <td>
-                                                <div class="form-check form-check-muted m-0">
-                                                    <label class="form-check-label">
-                                                        <input type="checkbox" class="form-check-input">
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td th:text="${student1.studentID}"></td>
-                                            <td th:text="${student1.studentName}"></td>
-                                            <td th:text="${student1.studentEmail}"></td>
-                                            <td th:text="${student1.studentPhone}"></td>
-                                            <td th:text="${student1.studentAddress}"></td>
-                                            <td>
-                                                <img th:src="${student1.studentImg}" alt="image"/>
-                                            </td>
-                                            <td>
-                                                <div class="badge badge-outline-success">Approved</div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="col-12">
+                    <input class="form-control" type="submit" value="Thêm mới giảng viên" style="border: 1px solid #00bb00; border-radius: 15px;margin-top: 20px ">
+                  </div>
                 </div>
             </div>
-            <footer class="footer">
-                <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © oneteam 2023</span>
-                </div>
-            </footer>
         </div>
+      </form>
     </div>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Đăng xuất</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="/logout">
-                <div class="modal-body">
-                    Bạn có chắc chắn muốn đăng xuất?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-primary">Đăng xuất</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 <script th:src="@{/admin/assets/vendors/js/vendor.bundle.base.js}"></script>
 <script th:src="@{/admin/assets/vendors/chart.js/Chart.min.js}"></script>
 <script th:src="@{/admin/assets/vendors/progressbar.js/progressbar.min.js}"></script>

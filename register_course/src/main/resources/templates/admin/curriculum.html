@@ -324,7 +324,7 @@
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                                             data-bs-target="#logoutModal">
-                                        Tuỳ chọn
+                                        Đăng xuất
                                     </button>
                                 </form>
                             </div>
@@ -412,7 +412,7 @@
                     <div class="col-12 grid-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Lecturer</h4>
+                                <h4 class="card-title">Curriculum (Chương trình khoá học)</h4>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
@@ -426,14 +426,13 @@
                                             </th>
                                             <th>Id</th>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Address</th>
+                                            <th>Description</th>
+                                            <th>Status</th>
                                             <th>Image</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="student1 : ${student}">
+                                        <tr th:each="cur : ${curriculum}">
                                             <td>
                                                 <div class="form-check form-check-muted m-0">
                                                     <label class="form-check-label">
@@ -441,13 +440,12 @@
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td th:text="${student1.studentID}"></td>
-                                            <td th:text="${student1.studentName}"></td>
-                                            <td th:text="${student1.studentEmail}"></td>
-                                            <td th:text="${student1.studentPhone}"></td>
-                                            <td th:text="${student1.studentAddress}"></td>
+                                            <td th:text="${cur.curriculumID}"></td>
+                                            <td th:text="${cur.curriculumName}"></td>
+                                            <td th:text="${cur.curriculumDescription}"></td>
+                                            <td th:text="${cur.curriculumStatus}"></td>
                                             <td>
-                                                <img th:src="${student1.studentImg}" alt="image"/>
+                                                <img th:src="${cur.curriculumImg}" alt="image"/>
                                             </td>
                                             <td>
                                                 <div class="badge badge-outline-success">Approved</div>
@@ -469,28 +467,6 @@
         </div>
     </div>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Đăng xuất</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="/logout">
-                <div class="modal-body">
-                    Bạn có chắc chắn muốn đăng xuất?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-primary">Đăng xuất</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 <script th:src="@{/admin/assets/vendors/js/vendor.bundle.base.js}"></script>
 <script th:src="@{/admin/assets/vendors/chart.js/Chart.min.js}"></script>
 <script th:src="@{/admin/assets/vendors/progressbar.js/progressbar.min.js}"></script>
