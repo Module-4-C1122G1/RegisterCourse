@@ -12,7 +12,7 @@ public interface IStudentService {
 
     List<Student> findAllStudent();
 
-    void save(Student student);
+    Student save(Student student);
 
     void update(Student student);
 
