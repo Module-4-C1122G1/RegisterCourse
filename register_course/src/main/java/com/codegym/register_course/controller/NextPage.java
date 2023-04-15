@@ -4,11 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-@RequestMapping("index")
-public class demo {
-    @GetMapping()
-    public String list(){
+@Controller()
+@RequestMapping("nextPage")
+public class NextPage {
+    @GetMapping("")
+    public String showIndex(){
         return "index";
+    }
+    @GetMapping("/login")
+    public String showLogin(){
+        return "login";
     }
 }
