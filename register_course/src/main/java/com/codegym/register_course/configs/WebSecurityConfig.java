@@ -41,10 +41,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Các trang bắt đầu từ đường dẫn /contracts
         // yêu cầu phải login với vai trò user hoặc admin.
         // Nếu chưa login, nó sẽ redirect tới trang /login.
-        http.authorizeRequests().antMatchers("/courses", "/teacher").access("hasAnyRole('user', 'admin')")
-                .antMatchers("/courses/**","/admin").access("hasRole('admin')")
-                .antMatchers("/student/**", "/employee/**").access("hasAnyRole('user', 'admin')")
-                .antMatchers("/facilities/**").access("hasRole('admin')");
+        http.authorizeRequests()
+//                .antMatchers("/courses", "/teacher").access("hasAnyRole('user', 'admin')")
+                .antMatchers("/admin/**","/admin").access("hasRole('admin')");
+//                .antMatchers("/student/**", "/employee/**").access("hasAnyRole('user', 'admin')");
+//                .antMatchers("/admin/**").access("hasRole('admin')");
 
         // Khi người dùng đã login, với vai trò XX.
         // Nhưng truy cập vào trang yêu cầu vai trò YY,
@@ -56,7 +57,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Submit URL của trang login
                 .loginProcessingUrl("/j_spring_security_check") // Submit URL
                 .loginPage("/login")//
-                .defaultSuccessUrl("/")//
+//                .defaultSuccessUrl("/")//
+                .successHandler((request, response, authentication) -> {
+                    if (request.isUserInRole("admin")) {
+                        response.sendRedirect("/admin");
+                    } else {
+                        response.sendRedirect("/");
+                    }
+                })
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")
