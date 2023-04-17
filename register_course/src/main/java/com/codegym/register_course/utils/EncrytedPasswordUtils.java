@@ -11,10 +11,16 @@ public class EncrytedPasswordUtils {
     }
 
     public static void main(String[] args) {
-        String password = "123";
-        String encrytedPassword = encrytePassword(password);
+        String password1 = "khai123";
+        String password2 = "dat123";
+        String password3 = "anh123";
+        String encrytedPassword1 = encrytePassword(password1);
+        String encrytedPassword2 = encrytePassword(password2);
+        String encrytedPassword3 = encrytePassword(password3);
 
-        System.out.println("Encryted Password: " + encrytedPassword);
+        System.out.println("Encryted Password: " + encrytedPassword1);
+        System.out.println("Encryted Password: " + encrytedPassword2);
+        System.out.println("Encryted Password: " + encrytedPassword3);
     }
 
 }
