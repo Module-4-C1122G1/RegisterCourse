@@ -27,13 +27,13 @@ public class CurriculumService implements ICurriculumService {
     }
 
     @Override
-    public void update(Integer id, Curriculum curriculum) {
+    public void update(Integer curriculumID, Curriculum curriculum) {
         this.curriculumRepository.save(curriculum);
     }
 
     @Override
-    public void delete(Curriculum curriculum) {
-        this.curriculumRepository.delete(curriculum);
+    public void removeById(Integer curriculumID) {
+        this.curriculumRepository.deleteById(curriculumID);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class CurriculumService implements ICurriculumService {
     }
 
     @Override
-    public Optional<Curriculum> findById(Integer id) {
-        return this.curriculumRepository.findById(id);
+    public Optional<Curriculum> findById(Integer curriculumID) {
+        return this.curriculumRepository.findById(curriculumID);
     }
 }

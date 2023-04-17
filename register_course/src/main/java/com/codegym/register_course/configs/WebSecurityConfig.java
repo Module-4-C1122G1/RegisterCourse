@@ -12,6 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
+
+import java.util.Set;
+import java.util.stream.Collectors;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -41,10 +44,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Các trang bắt đầu từ đường dẫn /contracts
         // yêu cầu phải login với vai trò user hoặc admin.
         // Nếu chưa login, nó sẽ redirect tới trang /login.
-        http.authorizeRequests().antMatchers("/courses", "/teacher").access("hasAnyRole('user', 'admin')")
-                .antMatchers("/courses/**","/admin").access("hasRole('admin')")
-                .antMatchers("/student/**", "/employee/**").access("hasAnyRole('user', 'admin')")
-                .antMatchers("/facilities/**").access("hasRole('admin')");
+        http.authorizeRequests()
+//                .antMatchers("/courses", "/teacher").access("hasAnyRole('user', 'admin')")
+                .antMatchers("/admin/**","/admin").access("hasRole('admin')");
+//                .antMatchers("/student/**", "/employee/**").access("hasAnyRole('user', 'admin')");
+//                .antMatchers("/admin/**").access("hasRole('admin')");
 
         // Khi người dùng đã login, với vai trò XX.
         // Nhưng truy cập vào trang yêu cầu vai trò YY,
@@ -56,7 +60,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Submit URL của trang login
                 .loginProcessingUrl("/j_spring_security_check") // Submit URL
                 .loginPage("/login")//
-                .defaultSuccessUrl("/")//
+//                .defaultSuccessUrl("/")//
+                .successHandler((request, response, authentication) -> {
+                    Set<String> roles = authentication.getAuthorities().stream()
+                            .map(r -> r.getAuthority()).collect(Collectors.toSet());
+                    if (roles.contains("ROLE_admin")) {
+                        response.sendRedirect("/admin/curriculum");
+                    } else {
+                        response.sendRedirect("/");
+                    }
+                })
+
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")
@@ -74,5 +88,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         InMemoryTokenRepositoryImpl memory = new InMemoryTokenRepositoryImpl();
         return memory;
     }
-
 }

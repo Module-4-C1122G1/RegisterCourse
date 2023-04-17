@@ -20,28 +20,28 @@ public class StudentController {
     @GetMapping("")
     public String listStudent(Model model) {
         model.addAttribute("student", iStudentService.findAllStudent());
-        return "/admin/student/student";
+        return "/admin/student";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/admin/student/create")
     public String showPageCreate(Model model) {
         model.addAttribute("student", new Student());
-        return "/admin/student/create-student";
+        return "/admin/create-student";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/admin/student/create")
     public String createStudent(Model model, Student student) {
         model.addAttribute("student", iStudentService.save(student));
         return "redirect:/admin/student";
     }
 
-    @GetMapping("/update/{studentID}")
+    @GetMapping("/admin/student/update/{studentID}")
     public String showPageUpdate(@PathVariable Integer studentID, Model model) {
         model.addAttribute("student", iStudentService.findById(studentID));
-        return "/admin/student/update-student";
+        return "/admin/update-student";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/admin/student/update")
     public String updateStudent(Model model, Student student) {
         model.addAttribute("student", iStudentService.save(student));
         String message = "Thêm mới thành công";
@@ -53,7 +53,7 @@ public class StudentController {
         iStudentService.removeById(studentID);
         return "redirect:/admin/student";
     }
-    @PostMapping("/findStudentByName")
+    @PostMapping("admin/student/findStudentByName")
     public String findStudentByName(Model model, @RequestParam String studentName,Integer page){
         Sort sort = Sort.by(studentName);
         model.addAttribute("student", iStudentService.findAll(studentName, PageRequest.of(page,2,sort)));
