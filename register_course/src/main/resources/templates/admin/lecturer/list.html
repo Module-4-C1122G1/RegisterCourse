@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Lecturer Admin</title>
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/mdi/css/materialdesignicons.min.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/css/vendor.bundle.base.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/jvectormap/jquery-jvectormap.css}">
@@ -24,9 +24,9 @@
 <div class="container-scroller">
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo3.png}"
+            <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo1.png}"
                                                                           style="height: 75px" alt="logo"/></a>
-            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img th:src="@{/admin/assets/images/logo3.png}"
+            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img th:src="@{/admin/assets/images/logo1.png}"
                                                                                alt="logo"/></a>
         </div>
         <ul class="nav">
@@ -115,13 +115,22 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="admin/student">
+                <a class="nav-link" onclick="location.href = '/admin/student'">
               <span class="menu-icon">
                 <i class="mdi mdi-account-badge"></i>
               </span>
                     <span class="menu-title">Học viên</span>
                 </a>
             </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" onclick="location.href = '/admin/employee' ">
+              <span class="menu-icon">
+                <i class="mdi mdi-account-multiple"></i>
+              </span>
+                    <span class="menu-title">Nhân viên</span>
+                </a>
+            </li>
+
         </ul>
     </nav>
     <!-- partial -->
@@ -382,7 +391,7 @@
                                             </td>
                                             <td>
                                                 <a th:href="@{/admin/lecturer/edit/{id}(id=${lecturer1.getLecturerID()})}" class="btn btn-danger"><i class="fa fa-pencil-square" style="margin: 0 auto"></i></a>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modelId"
+                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modelId"
                                                         th:attr="onclick=|getBlogInfo('${lecturer1.lecturerID}', '${lecturer1.lecturerName}')|">
                                                     <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
                                                 </button>
