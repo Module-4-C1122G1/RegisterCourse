@@ -184,30 +184,8 @@
                                          class="rounded-circle profile-pic">
                                 </div>
                                 <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
-                                    <p class="text-muted mb-0"> 1 Minutes ago </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face2.jpg" alt="image"
-                                         class="rounded-circle profile-pic">
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
-                                    <p class="text-muted mb-0"> 15 Minutes ago </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face3.jpg" alt="image"
-                                         class="rounded-circle profile-pic">
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
-                                    <p class="text-muted mb-0"> 18 Minutes ago </p>
+                                    <p class="preview-subject ellipsis mb-1" th:text="${msg}"></p>
+                                    <p class="text-muted mb-0" id="currentTime"></p>
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
@@ -396,9 +374,9 @@
                                                 <img th:src="${lecturer1.lecturerImg}" alt="image"/>
                                             </td>
                                             <td>
-                                                <a th:href="@{/admin/lecturer/edit/{id}(id=${lecturer1.getLecturerID()})}" class="btn btn-danger"><i class="fa fa-pencil-square" style="margin: 0 auto"></i></a>
+                                                <a th:href="@{/admin/lecturer/edit/{lecturerID}(lecturerID=${lecturer1.getLecturerID()})}" class="btn btn-danger"><i class="fa fa-pencil-square" style="margin: 0 auto"></i></a>
                                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modelId"
-                                                        th:attr="onclick=|getBlogInfo('${lecturer1.lecturerID}', '${lecturer1.lecturerName}')|">
+                                                        th:attr="onclick=|upload('${lecturer1.lecturerID}', '${lecturer1.lecturerName}')|">
                                                     <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
                                                 </button>
                                             </td>
@@ -420,10 +398,10 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="/admin/lecturer/delete">
+                        <form action="/admin/lecturer/delete" method="get">
                             <div class="modal-body">
-                                <input type="hidden" name="deleteId" id="deleteId">
-                                <span>Bạn có chắc muốn xóa </span> <span id="deleteName"></span>?
+                                <input type="hidden" name="lecturerID" id="id">
+                                <span>Bạn có chắc muốn xóa </span> <span id="name"></span>?
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -456,5 +434,16 @@
 <script th:src="@{/admin/assets/js/dashboard.js}"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    function upload(id, name){
+        document.getElementById("name").innerHTML = name;
+        document.getElementById("id").value = id;
+    }
+</script>
+<script>
+    var currentTime = new Date();
+    var formattedTime = currentTime.toLocaleString('vi-VN', {hour12:false});
+    document.getElementById('currentTime').innerHTML = formattedTime;
+</script>
 </body>
 </html>

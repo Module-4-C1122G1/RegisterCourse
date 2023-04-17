@@ -4,10 +4,12 @@ import com.codegym.register_course.model.Lecturer;
 import com.codegym.register_course.service.ILecturerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/admin")
@@ -42,9 +44,18 @@ public class LecturerController {
     }
 
     @PostMapping("/lecturer/create")
-    public String createLecturer(Lecturer lecturer){
+    public String createLecturer(@Valid @ModelAttribute("lecturerCreate") Lecturer lecturer,
+                                 BindingResult bindingResult,
+                                 RedirectAttributes redirectAttributes,
+                                 Model model
+            ){
+        if (bindingResult.hasErrors()){
+            return "/admin/lecturer/create";
+        }else {
         service.save(lecturer);
+        redirectAttributes.addFlashAttribute("msg","Thêm mới thành công");
         return "redirect:/admin/lecturer";
+        }
     }
 
     @GetMapping("/lecturer/edit/{id}")
@@ -63,8 +74,8 @@ public class LecturerController {
     }
 
     @GetMapping("/lecturer/delete")
-    public String delete (@PathVariable Integer deleteId) {
-        service.removeById(deleteId);
+    public String delete (@RequestParam Integer lecturerID) {
+        service.removeById(lecturerID);
         return "redirect:/admin/lecturer";
     }
 }
