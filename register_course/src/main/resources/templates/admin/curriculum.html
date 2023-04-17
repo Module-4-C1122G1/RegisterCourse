@@ -160,7 +160,7 @@
                 <ul class="navbar-nav w-100">
                     <li class="nav-item w-100">
                         <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm giảng viên">
+                            <input type="text" class="form-control" name="searchName" placeholder="Tìm kiếm chương trình học">
                         </form>
                     </li>
                 </ul>
@@ -372,11 +372,11 @@
                     <div class="col-sm-4 grid-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Số lượng giảng viên</h5>
+                                <h5>Số lượng khoá học</h5>
                                 <div class="row">
                                     <div class="col-8 col-sm-12 col-xl-8 my-auto">
                                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                                            <h2 class="mb-0">08</h2>
+                                            <h2 class="mb-0" th:text="${curriculum.size()}"> </h2>
                                             <p class="text-success ms-2 mb-0 font-weight-medium"></p>
                                         </div>
                                         <h6 class="text-muted font-weight-normal">Được cập nhập vào năm 2023</h6>
@@ -448,7 +448,10 @@
                                                 <img th:src="${cur.curriculumImg}" alt="image"/>
                                             </td>
                                             <td>
-                                                <div class="badge badge-outline-success">Approved</div>
+                                                <button th:attr="onclick=|click('${cur.getCurriculumID()}','${cur.getCurriculumName()}')|" type="button" class="btn btn-danger"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    Delete
+                                                </button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -467,6 +470,40 @@
         </div>
     </div>
 </div>
+
+<!--Modal delete-->
+<div class="modal fade" id="exampleModal" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Xác nhận xoá <span id="name"></span></p>
+            </div>
+            <div class="modal-footer">
+                <form action="/admin/curriculum/delete" method="get">
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Close
+                    </button>
+                    <input type="hidden" id="id" name="id"
+                           class="btn btn-secondary">
+                    <input type="submit" class="btn btn-secondary" value="Xoá"
+                           style="background: red">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function click(id, name) {
+        document.getElementById("name").innerHTML = name;
+        document.getElementById("id").value = id;
+    }
+</script>
 <script th:src="@{/admin/assets/vendors/js/vendor.bundle.base.js}"></script>
 <script th:src="@{/admin/assets/vendors/chart.js/Chart.min.js}"></script>
 <script th:src="@{/admin/assets/vendors/progressbar.js/progressbar.min.js}"></script>

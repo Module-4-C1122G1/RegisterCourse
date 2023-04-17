@@ -12,11 +12,11 @@ public interface ICurriculumService {
 
     List<Curriculum> findAllCurriculum();
 
-    void update(Integer id, Curriculum curriculum);
+    void update(Integer curriculumID, Curriculum curriculum);
 
-    void delete(Curriculum curriculum);
+    void removeById(Integer curriculumID);
 
     void save(Curriculum curriculum);
 
-    Optional<Curriculum> findById(Integer id);
+    Optional<Curriculum> findById(Integer curriculumID);
 }

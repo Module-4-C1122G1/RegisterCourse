@@ -44,7 +44,12 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void removeById(Integer studentID) {
-        iStudentRepository.deleteById(studentID);
+    public void delete(Integer studentID, Student student) {
+        this.iStudentRepository.delete(student);
+    }
+
+    @Override
+    public Student getStudentByID(Integer studentID) {
+        return iStudentRepository.findById(studentID).get();
     }
 }

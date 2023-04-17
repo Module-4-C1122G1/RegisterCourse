@@ -35,7 +35,7 @@ public class StudentController {
         return "redirect:/admin/student";
     }
 
-    @GetMapping("/update/{studentID}")
+    @GetMapping("update/{studentID}")
     public String showPageUpdate(@PathVariable Integer studentID, Model model) {
         model.addAttribute("student", iStudentService.findById(studentID));
         return "/admin/student/update-student";
@@ -48,12 +48,12 @@ public class StudentController {
         return "redirect:/admin/student";
     }
 
-    @GetMapping("/admin/student/delete")
+    @GetMapping("/delete")
     public String deleteStudent(@RequestParam Integer studentID) {
-        iStudentService.removeById(studentID);
+        iStudentService.delete(studentID, iStudentService.getStudentByID(studentID));
         return "redirect:/admin/student";
     }
-    @PostMapping("/findStudentByName")
+    @PostMapping("findStudentByName")
     public String findStudentByName(Model model, @RequestParam String studentName,Integer page){
         Sort sort = Sort.by(studentName);
         model.addAttribute("student", iStudentService.findAll(studentName, PageRequest.of(page,2,sort)));
