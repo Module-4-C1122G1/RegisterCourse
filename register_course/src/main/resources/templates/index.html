@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -106,7 +106,47 @@
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
                     </div>
-                    <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" onclick="location.href = '/nextPage/login'">Đăng nhập học viên</a>
+                    <!--                    <div th:if="${#request.userPrincipal.getName()} == null">-->
+                    <!--                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block"-->
+                    <!--                           onclick="location.href = '/nextPage/login'">Đăng nhập</a>-->
+                    <!--                    </div>-->
+                    <!--                    <form class="d-flex" th:if="${#request.userPrincipal != null}">-->
+                    <!--                        <div class="user-info">-->
+                    <!--                            <img class="img-xs rounded-circle"-->
+                    <!--                                 src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"-->
+                    <!--                                 width="100px" alt="">-->
+                    <!--                            <span class="mb-0 font-weight-normal text-light m-2"-->
+                    <!--                                  th:text="${#request.userPrincipal.getName()}"></span>-->
+                    <!--                        </div>-->
+                    <!--                        &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+                    <!--                        <button type="button" class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" data-bs-toggle="modal"-->
+                    <!--                                data-bs-target="#logoutModal">-->
+                    <!--                            Đăng xuất-->
+                    <!--                        </button>-->
+                    <!--                    </form>-->
+                    <div th:if="${request != null}">
+                        <div th:if="${#request.userPrincipal != null}">
+                            <form class="d-flex">
+                                <div class="user-info">
+                                    <img class="img-xs rounded-circle"
+                                         src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
+                                         width="100px" alt="">
+                                    <span class="mb-0 font-weight-normal m-2"
+                                          th:text="${#request.userPrincipal.getName()}"></span>
+                                    <!-- Button trigger modal &ndash;&gt;-->
+                                    <button type="button" class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#logoutModal">
+                                        Đăng xuất
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div th:if="${#request.userPrincipal == null}">
+                            <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block"
+                               onclick="location.href = '/login'">Đăng nhập</a>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -546,7 +586,9 @@
                             mình nâng cao kỹ năng làm việc. Qua các hoạt động seminar, teambuilding, techtalk… khả năng
                             giao tiếp của mình đã cải thiện, tự tin hơn, đây là một yếu tố rất quan trọng để mình trở
                             thành Sub-Leader như hiện tại.</h4>
-                        <img class="img-fluid mx-auto mb-3" src="https://andy.codegym.vn/storage/images/avatars/c20efd8f8714c05a6ae3eff1064d6814.jpg" alt="">
+                        <img class="img-fluid mx-auto mb-3"
+                             src="https://andy.codegym.vn/storage/images/avatars/c20efd8f8714c05a6ae3eff1064d6814.jpg"
+                             alt="">
                         <h5 class="m-0">Lê Văn Chính</h5>
                         <span>Sub Leader, Misumi Group VietNam</span>
                     </div>
@@ -556,7 +598,9 @@
                             sau đó cũng trải qua nhiều ngành nghề khác nhau nhưng cuối cùng vẫn quyết định bắt đầu lại
                             với ngành lập trình tại OneTeam. Tập trung rèn luyện sau 6 tháng, mình tốt nghiệp và đi làm.
                             Sau gần 2 năm, mình đang là PO/Team Leader tại BiPlus.</h4>
-                        <img class="img-fluid mx-auto mb-3" src="https://andy.codegym.vn/storage/images/avatars/b0a5602dcc1704dceea096c2e6c0fcd8.jpg" alt="">
+                        <img class="img-fluid mx-auto mb-3"
+                             src="https://andy.codegym.vn/storage/images/avatars/b0a5602dcc1704dceea096c2e6c0fcd8.jpg"
+                             alt="">
                         <h5 class="m-0">Nguyễn Quốc Anh</h5>
                         <span>PO/Technical Leader, BiPlus</span>
                     </div>
@@ -566,7 +610,9 @@
                             tháng học tại OneTeam. Để phát triển trong ngành IT với những vị trí quản lý như Leader,
                             Manager, bạn cần có năng lực cả về chuyên môn, ngoại ngữ, kỹ năng quản lý, ngoại ngữ… Chính
                             sự kỷ luật đã giúp mình bám đuổi kế hoạch học tập và đạt được mục tiêu.</h4>
-                        <img class="img-fluid mx-auto mb-3" src="https://andy.codegym.vn/storage/images/avatars/b1ce25698feb386d70c5ebe3c29439ee.jpg" alt="">
+                        <img class="img-fluid mx-auto mb-3"
+                             src="https://andy.codegym.vn/storage/images/avatars/b1ce25698feb386d70c5ebe3c29439ee.jpg"
+                             alt="">
                         <h5 class="m-0">Nguyễn Văn Minh</h5>
                         <span>Team Leader , NTT Data VDS</span>
                     </div>
@@ -636,12 +682,14 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-5">
-                    <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Khóa học của chúng tôi</h5>
+                    <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Khóa học của chúng
+                        tôi</h5>
                     <div class="d-flex flex-column justify-content-start">
                         <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Thiết kế web</a>
                         <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Thiết kế ứng dụng</a>
                         <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Khóa học lập trình</a>
-                        <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Khóa học chuyên sâu</a>
+                        <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Khóa học chuyên
+                            sâu</a>
                         <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Khóa học khác</a>
                     </div>
                 </div>
@@ -674,6 +722,27 @@
     </div>
 </div>
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+<!-- Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Đăng xuất</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/logout">
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn đăng xuất?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Đăng xuất</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script th:src="@{/lib/easing/easing.min.js}"></script>
