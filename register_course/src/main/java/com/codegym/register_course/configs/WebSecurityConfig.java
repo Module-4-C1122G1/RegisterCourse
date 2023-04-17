@@ -12,9 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
+
 import java.util.Set;
 import java.util.stream.Collectors;
-
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -70,6 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         response.sendRedirect("/");
                     }
                 })
+
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")
@@ -87,5 +88,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         InMemoryTokenRepositoryImpl memory = new InMemoryTokenRepositoryImpl();
         return memory;
     }
-
 }

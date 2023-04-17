@@ -306,7 +306,7 @@
                                 <div class="row">
                                     <div class="col-8 col-sm-12 col-xl-8 my-auto">
                                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                                            <h2 class="mb-0">08</h2>
+                                            <h2 class="mb-0" th:text="${lecturer1.size()}"></h2>
                                             <p class="text-success ms-2 mb-0 font-weight-medium"></p>
                                         </div>
                                         <h6 class="text-muted font-weight-normal">Được cập nhập vào năm 2023</h6>
@@ -381,8 +381,11 @@
                                                 <img th:src="${lecturer1.lecturerImg}" alt="image"/>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-danger btn-rounded btn-icon"> <i class="fa fa-pencil-square" style="margin: 0 auto"></i> </button>
-                                                <button type="button" class="btn btn-info btn-rounded btn-icon"> <i class="fa fa-trash-o" style="margin: 0 auto"></i> </button>
+                                                <a th:href="@{/admin/lecturer/edit/{id}(id=${lecturer1.getLecturerID()})}" class="btn btn-danger"><i class="fa fa-pencil-square" style="margin: 0 auto"></i></a>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modelId"
+                                                        th:attr="onclick=|getBlogInfo('${lecturer1.lecturerID}', '${lecturer1.lecturerName}')|">
+                                                    <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -390,6 +393,28 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"> Xóa sản phẩm </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="/admin/lecturer/delete">
+                            <div class="modal-body">
+                                <input type="hidden" name="deleteId" id="deleteId">
+                                <span>Bạn có chắc muốn xóa </span> <span id="deleteName"></span>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
