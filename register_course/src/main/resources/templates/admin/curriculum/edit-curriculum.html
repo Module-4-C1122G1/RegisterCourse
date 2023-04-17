@@ -15,7 +15,6 @@
   <style>
     * {
       font-family: Roboto;
-      font-size: 18px
     }
 
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
@@ -293,7 +292,7 @@
         </a>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" href="admin/student">
+        <a class="nav-link" onclick="location.href = '/admin/student'">
               <span class="menu-icon">
                 <i class="mdi mdi-account-badge"></i>
               </span>
@@ -301,11 +300,19 @@
         </a>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" th:href="@{/templates/admin/curriculum}">
+        <a class="nav-link" onclick="location.href = '/admin/employee' ">
               <span class="menu-icon">
-                <i class="mdi mdi-account-badge"></i>
+                <i class="mdi mdi-account-multiple"></i>
               </span>
-          <span class="menu-title">Chương trình học</span>
+          <span class="menu-title">Nhân viên</span>
+        </a>
+      </li>
+      <li class="nav-item menu-items">
+        <a class="nav-link" onclick="location.href = '/admin/curriculum' ">
+              <span class="menu-icon">
+                <i class="mdi mdi-account-multiple"></i>
+              </span>
+          <span class="menu-title">Chương trình giảng dạy</span>
         </a>
       </li>
     </ul>
