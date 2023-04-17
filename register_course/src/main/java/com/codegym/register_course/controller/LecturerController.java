@@ -5,6 +5,7 @@ import com.codegym.register_course.service.ILecturerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -43,6 +44,27 @@ public class LecturerController {
     @PostMapping("/lecturer/create")
     public String createLecturer(Lecturer lecturer){
         service.save(lecturer);
+        return "redirect:/admin/lecturer";
+    }
+
+    @GetMapping("/lecturer/edit/{id}")
+    public String showEdit(
+            Model model,
+            @PathVariable("id") Integer id
+    ){
+        model.addAttribute("lecturerEdit", service.findById(id));
+        return "/admin/lecturer/edit";
+    }
+
+    @PostMapping("/lecturer/edit")
+    public String edit(Lecturer lecturer){
+        service.save(lecturer);
+        return "redirect:/admin/lecturer";
+    }
+
+    @GetMapping("/lecturer/delete")
+    public String delete (@PathVariable Integer deleteId) {
+        service.removeById(deleteId);
         return "redirect:/admin/lecturer";
     }
 }
