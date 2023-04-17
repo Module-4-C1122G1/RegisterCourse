@@ -1,6 +1,9 @@
 package com.codegym.register_course.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "lecturer")
@@ -10,14 +13,20 @@ public class Lecturer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer lecturerID;
     @Column(name = "lecturer_name", columnDefinition = "varchar(45)")
+    @NotBlank(message = "Vui lòng không để trống tên giảng viên")
     private String lecturerName;
     @Column(name = "lecturer_email", columnDefinition = "varchar(255)")
+    @NotBlank(message = "Vui lòng không để trống email")
+    @Pattern(regexp = "^[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*$", message = "Email không hợp lệ")
     private String lecturerEmail;
     @Column(name = "lecturer_phone", columnDefinition = "varchar(45)")
+    @NotBlank(message = "Vui lòng không để trống số điện thoại")
     private String lecturerPhone;
     @Column(name = "lecturer_img", columnDefinition = "varchar(255)")
+    @NotBlank(message = "Vui lòng không để trống ảnh giảng viên")
     private String lecturerImg;
     @Column(name = "lecturer_position",columnDefinition = "varchar(255)")
+    @NotBlank(message = "Vui lòng không để trống vị trí làm việc")
     private String lecturerPosition;
     public Lecturer() {
     }
