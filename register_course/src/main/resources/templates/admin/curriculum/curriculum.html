@@ -128,7 +128,7 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" th:href="@{/templates/admin/student}">
+                <a class="nav-link" onclick="location.href = '/admin/student'">
               <span class="menu-icon">
                 <i class="mdi mdi-account-badge"></i>
               </span>
@@ -136,11 +136,19 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" th:href="@{/templates/admin/curriculum}">
+                <a class="nav-link" onclick="location.href = '/admin/employee' ">
               <span class="menu-icon">
-                <i class="mdi mdi-account-badge"></i>
+                <i class="mdi mdi-account-multiple"></i>
               </span>
-                    <span class="menu-title">Chương trình học</span>
+                    <span class="menu-title">Nhân viên</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" onclick="location.href = '/admin/curriculum' ">
+              <span class="menu-icon">
+                <i class="mdi mdi-account-multiple"></i>
+              </span>
+                    <span class="menu-title">Chương trình giảng dạy</span>
                 </a>
             </li>
         </ul>
