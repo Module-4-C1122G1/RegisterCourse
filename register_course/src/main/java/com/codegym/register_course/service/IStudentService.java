@@ -18,5 +18,6 @@ public interface IStudentService {
 
     Optional<Student> findById(Integer studentID);
 
-    void removeById(Integer studentID);
+    void delete(Integer studentID, Student student);
+    Student getStudentByID(Integer studentID);
 }

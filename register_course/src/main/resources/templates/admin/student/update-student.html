@@ -15,7 +15,6 @@
     <style>
         * {
             font-family: Roboto;
-            font-size: 18px
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
@@ -469,12 +468,17 @@
                 </button>
             </div>
         </nav>
-        <form style="margin: 0 auto" action="/admin/student/create" method="post" th:object="${student}">
+        <form style="margin: 0 auto" action="/admin/student/update" method="post" th:object="${student}">
             <div class="container">
-                <div class="card"><p class="h-1">Thêm mới học viên</p>
+                <div class="card"><p class="h-1">Create Event</p>
                     <div class="bar mb-3"></div>
                     <div class="row">
-                        <div class="col-12"><p class="mb-2">Tên học viên</p>
+                        <div class="col-12"><p>ID</p>
+                            <div class="box"><input class="form-control" type="hidden"
+                                                    placeholder="Vui lòng nhập id" th:field="*{studentID}">
+                            </div>
+                        </div>
+                        <div class="col-12"><p class="mb-2">Tên giảng viên</p>
                             <div class=" box mb-3"><input type="text" class="form-control"
                                                           placeholder="Vui lòng nhập tên học viên" th:field="*{studentName}">
                             </div>
@@ -484,18 +488,16 @@
                                                     placeholder="Vui lòng nhập email" th:field="*{studentEmail}">
                             </div>
                         </div>
-                        <div class="col-12"><p>Số điện thoại</p>
+                        <div class="col-12"><p>Vị trí</p>
                             <div class="box"><input class="form-control" type="text"
                                                     placeholder="Vui lòng nhập số điện thoại" th:field="*{studentPhone}">
                             </div>
-                            <p class="bar2 mt-4"></p>
                         </div>
-                        <div class="col-12"><p>Địa chỉ</p>
+                        <div class="col-12"><p>Số điện thoại</p>
                             <div class="box"><input class="form-control" type="text"
                                                     placeholder="Vui lòng nhập địa chỉ" th:field="*{studentAddress}">
                             </div>
-                            <p class="bar2 mt-4"></p>
-                        </div>
+                            <p class="bar2 mt-4"></p></div>
                         <div class="col-12"><p>Thêm ảnh</p>
                             <div class="box"><input class="form-control" type="text" placeholder="Thêm ảnh" th:field="*{studentImg}">
                                 <div class="add btn btn-outline-secondary">Add</div>
@@ -512,14 +514,12 @@
                                 <div class="pic"><img
                                         src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                                         alt=""> <span class="fas fa-times"></span></div>
-                                <!-- <div class="pic"> <img src="https://images.pexels.com/photos/2078265/pexels-photo-2078265.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt=""> <span class="fas fa-times"></span> </div> -->
-                                <!-- <div class="pic"> <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt=""> <span class="fas fa-times"></span> </div> -->
                                 <div class="rounded-circle"><span class="fas fa-plus"></span> <span class="number">3</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12">
-                            <input class="form-control" type="submit" value="Thêm mới học viên" style="border: 1px solid #00bb00; border-radius: 15px;margin-top: 20px ">
+                            <input class="form-control" type="submit" value="Chỉnh sửa học viên" style="border: 1px solid #00bb00; border-radius: 15px;margin-top: 20px ">
                         </div>
                     </div>
                 </div>
