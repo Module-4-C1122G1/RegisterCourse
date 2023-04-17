@@ -392,7 +392,7 @@
                       <td th:text="${employee.employeeEmail}"></td>
                       <td th:text="${employee.employeePhone}"></td>
                       <td>
-                        <a class="btn btn-danger"><i class="fa fa-pencil-square" style="margin: 0 auto"></i></a>
+                        <a class="btn btn-danger" th:href="@{/admin/employee/edit/{id}(id = ${employee.getEmployeeID()})}"><i class="fa fa-pencil-square" style="margin: 0 auto"></i></a>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modelId">
                           <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
                         </button>
