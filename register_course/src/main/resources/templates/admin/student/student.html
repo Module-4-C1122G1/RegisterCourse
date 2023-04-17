@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Lecturer Admin</title>
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/mdi/css/materialdesignicons.min.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/css/vendor.bundle.base.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/jvectormap/jquery-jvectormap.css}">
@@ -12,9 +12,10 @@
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/css/style.css}">
     <link rel="shortcut icon" th:href="@{/admin/assets/images/favicon.png}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
     <style>
         * {
-            font-family: Roboto
+            font-family: Roboto;
         }
     </style>
 </head>
@@ -431,9 +432,7 @@
                                                 <img th:src="${student1.studentImg}" alt="image"/>
                                             </td>
                                             <td>
-                                                <a th:href="@{/admin/student/update/{studentID}(studentID=${student1.getStudentID()})}"
-                                                   class="btn btn-danger"><i class="fa fa-pencil-square"
-                                                                             style="margin: 0 auto"></i></a>
+                                                <a th:href="@{/admin/student/update/{studentID}(studentID=${student1.getStudentID()})}" class="btn btn-danger"><i class="fa fa-pencil-square" style="margin: 0 auto"></i></a>
                                                 <button th:attr="onclick=|upload('${student1.studentID}','${student1.studentName}')|"
                                                         type="button" class="btn btn-primary"
                                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
