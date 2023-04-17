@@ -41,7 +41,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public Optional<Employee> findById(Integer employeeID) {
-        return Optional.empty();
+        return this.repository.findById(employeeID);
     }
 
     @Override

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Register Courses Admin</title>
+    <title>Create Lecturer</title>
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/mdi/css/materialdesignicons.min.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/css/vendor.bundle.base.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/jvectormap/jquery-jvectormap.css}">
@@ -268,7 +268,7 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" onclick="location.href = '/admin/curriculum' ">
+                <a class="nav-link" onclick="location.href = '/admin/lecturer' ">
               <span class="menu-icon">
                 <i class="mdi mdi-account-multiple"></i>
               </span>
@@ -444,7 +444,7 @@
                                 <img class="img-xs rounded-circle"
                                      src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
                                      alt="">
-                                <p class="mb-0 d-none d-sm-block navbar-profile-name">Đạt Nguyễn</p>
+                                <p class="mb-0 d-none d-sm-block navbar-profile-name">Khải Nguyễn</p>
                                 <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                             </div>
                         </a>
@@ -484,55 +484,58 @@
                 </button>
             </div>
         </nav>
-      <form style="margin: 0 auto;margin-top: 60px;" action="/admin/curriculum/create" method="post" th:object="${curriculumCreate}">
-        <div class="container">
-            <div class="card"><p class="h-1">Thêm mới chương trình học</p>
-                <div class="bar mb-3"></div>
-                <div class="row">
-                    <div class="col-12"><p class="mb-2">Tên Chương trình học</p>
-                        <div class=" box mb-3"><input type="text" class="form-control"
-                                                      placeholder="Vui lòng nhập tên chương trình học" th:field="*{curriculumName}">
-                        </div>
-                    </div>
-                    <div class="col-12"><p>Mô tả chương trình học</p>
-                        <div class="box"><input class="form-control" type="text"
-                                                placeholder="Vui lòng nhập email" th:field="*{curriculumDescription}">
-                        </div>
-                    </div>
-                    <div class="col-12"><p>Trạng thái chương trình học</p>
-                        <div class="box"><input class="form-control" type="text"
-                                                placeholder="Vui lòng nhập vị trí" th:field="*{curriculumStatus}">
-                        </div>
-                    </div>
-                    <div class="col-12"><p>Thêm ảnh</p>
-                        <div class="box"><input class="form-control" type="text" placeholder="Thêm ảnh" th:field="*{curriculumImg}">
-                            <div class="add btn btn-outline-secondary">Add</div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="d-flex align-items-center mt-4">
-                            <div class="pic"><img
-                                    src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                                    alt=""> <span class="fas fa-times"></span></div>
-                            <div class="pic"><img
-                                    src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                                    alt=""> <span class="fas fa-times"></span></div>
-                            <div class="pic"><img
-                                    src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                                    alt=""> <span class="fas fa-times"></span></div>
-                            <!-- <div class="pic"> <img src="https://images.pexels.com/photos/2078265/pexels-photo-2078265.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt=""> <span class="fas fa-times"></span> </div> -->
-                            <!-- <div class="pic"> <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt=""> <span class="fas fa-times"></span> </div> -->
-                            <div class="rounded-circle"><span class="fas fa-plus"></span> <span class="number">3</span>
+        <form style="margin: 0 auto;margin-top: 60px;" action="/admin/employee/edit" method="post" th:object="${employeeEdit}">
+            <div class="container">
+                <div class="card"><p class="h-1">Cập nhập nhân viên</p>
+                    <div class="bar mb-3"></div>
+                    <div class="row">
+                        <div class="col-12"><p class="mb-2">Mã nhân viên</p>
+                            <div class=" box mb-3"><input type="hidden" class="form-control"
+                                                          placeholder="Vui lòng nhập tên nhân viên" th:field="*{employeeID}">
                             </div>
                         </div>
+                        <div class="col-12"><p class="mb-2">Tên nhân viên</p>
+                            <div class=" box mb-3"><input type="text" class="form-control"
+                                                          placeholder="Vui lòng nhập tên nhân viên" th:field="*{employeeName}">
+                            </div>
+                        </div>
+                        <div class="col-12"><p>Email</p>
+                            <div class="box"><input class="form-control" type="email"
+                                                    placeholder="Vui lòng nhập email" th:field="*{employeeEmail}">
+                            </div>
+                        </div>
+                        <div class="col-12"><p>Số điện thoại</p>
+                            <div class="box"><input class="form-control" type="text"
+                                                    placeholder="Vui lòng nhập số điện thoại" th:field="*{employeePhone}">
+                            </div>
+                        </div>
+                        <div class="col-12"><p>Địa chỉ</p>
+                            <div class="box"><input class="form-control" type="text"
+                                                    placeholder="Vui lòng nhập địa chỉ" th:field="*{employeeAddress}">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex align-items-center mt-4">
+                                <div class="pic"><img
+                                        src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                        alt=""> <span class="fas fa-times"></span></div>
+                                <div class="pic"><img
+                                        src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                        alt=""> <span class="fas fa-times"></span></div>
+                                <div class="pic"><img
+                                        src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                        alt=""> <span class="fas fa-times"></span></div>
+                                <div class="rounded-circle"><span class="fas fa-plus"></span> <span class="number">3</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <input class="form-control" type="submit" value="Thêm mới nhân viên" style="border: 1px solid #00bb00; border-radius: 15px;margin-top: 20px ">
+                        </div>
                     </div>
-                  <div class="col-12">
-                    <input class="form-control" type="submit" value="Xác nhận Tạo mới Chương trình học" style="border: 1px solid #00bb00; border-radius: 15px;margin-top: 20px ">
-                  </div>
                 </div>
             </div>
-        </div>
-      </form>
+        </form>
     </div>
 </div>
 <script th:src="@{/admin/assets/vendors/js/vendor.bundle.base.js}"></script>
