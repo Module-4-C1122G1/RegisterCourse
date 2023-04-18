@@ -23,6 +23,7 @@ public class Student {
     private String studentEmail;
     @Column(name = "student_phone", columnDefinition = "varchar(45)" , unique = true)
     @NotBlank(message = "Không được để trống số điện thoại")
+    @Pattern(regexp = "\\b\\d{10,11}\\b", message = "Số điện thoại phải 10 hoặc 11 số")
     private String studentPhone;
     @Column(name = "student_address", columnDefinition = "varchar(255)")
     @NotBlank(message = "Không được để trống địa chỉ")
