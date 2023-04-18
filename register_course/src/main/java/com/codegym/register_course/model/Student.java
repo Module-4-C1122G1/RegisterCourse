@@ -5,7 +5,10 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "student")
+@Table(name = "student", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "student_email"),
+        @UniqueConstraint(columnNames = "student_phone")
+})
 public class Student {
     @Id
     @Column(name = "student_id")
@@ -14,10 +17,11 @@ public class Student {
     @Column(name = "student_name", columnDefinition = "varchar(45)")
     @NotBlank(message = "Không được để trống tên học viên")
     private String studentName;
-    @Column(name = "student_email", columnDefinition = "varchar(255)")
+    @Column(name = "student_email", columnDefinition = "varchar(255)", unique = true)
     @Email(message = "Email không đúng định dạng")
+    @NotBlank(message = "Không được để trống email")
     private String studentEmail;
-    @Column(name = "student_phone", columnDefinition = "varchar(45)")
+    @Column(name = "student_phone", columnDefinition = "varchar(45)" , unique = true)
     @NotBlank(message = "Không được để trống số điện thoại")
     private String studentPhone;
     @Column(name = "student_address", columnDefinition = "varchar(255)")
