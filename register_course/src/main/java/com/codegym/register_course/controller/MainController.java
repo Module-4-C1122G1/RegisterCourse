@@ -24,14 +24,14 @@ public class MainController {
     }
 
     @GetMapping("/index")
-    public String getPageWelcome() {
+    public String getPageWelcome(Model model, HttpServletRequest request) {
+        model.addAttribute("request", request);
         return "/index";
     }
 
     @GetMapping("/")
     public String getPageHome(Model model, HttpServletRequest request) {
         model.addAttribute("request", request);
-
         return "/index";
     }
 

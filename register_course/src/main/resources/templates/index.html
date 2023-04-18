@@ -93,27 +93,27 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav py-0">
-                        <a href="index.html" class="nav-item nav-link active">Trang chủ</a>
-                        <a href="about.html" class="nav-item nav-link">Giới thiệu</a>
-                        <a href="course.html" class="nav-item nav-link">Khóa học</a>
-                        <a href="teacher.html" class="nav-item nav-link">Giảng viên</a>
+                        <a href="/index" class="nav-item nav-link active">Trang chủ</a>
+                        <a href="/about" class="nav-item nav-link">Giới thiệu</a>
+                        <a href="/course" class="nav-item nav-link">Khóa học</a>
+                        <a href="/teacher" class="nav-item nav-link">Giảng viên</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="blog.html" class="dropdown-item">Danh sách blog</a>
-                                <a href="single.html" class="dropdown-item">Chi tiết blog</a>
+                                <a href="/blog" class="dropdown-item">Danh sách blog</a>
+                                <a href="/single" class="dropdown-item">Chi tiết blog</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+                        <a href="/contact" class="nav-item nav-link">Liên hệ</a>
                     </div>
                     <div th:if="${request != null}" class="d-flex justify-content-between align-items-center">
                         <div th:if="${#request.userPrincipal != null}">
                             <form>
-                                <div class="user-info d-flex align-items-center">
+                                <div class="user-info d-flex align-items-center" th:if="${#request.userPrincipal != null}">
                                     <img class="img-xs rounded-circle"
                                          src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
                                          width="100px" alt="">
-                                    <span class="mb-0 font-weight-normal m-2"
+                                    <span class="mb-0 font-weight-normal m-2" th:if="${#request.userPrincipal != null}"
                                           th:text="${#request.userPrincipal.getName()}"></span>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" data-toggle="modal" data-target="#staticBackdrop">
@@ -713,7 +713,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Bạn <span class="mb-0 text-danger font-weight-medium m-2"
+                Bạn <span class="mb-0 text-danger font-weight-medium m-2" th:if="${#request.userPrincipal != null}"
                            th:text="${#request.userPrincipal.getName()}"></span> có chắc chắn muốn đăng xuất?
             </div>
             <div class="modal-footer">
