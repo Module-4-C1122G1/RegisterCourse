@@ -24,11 +24,10 @@
 <div class="container-scroller">
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo2.png}"
-                                                                          style="height: 75px" alt="logo"/></a>
-            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img
-                    th:src="@{/admin/assets/images/logo2.png}"
-                    alt="logo"/></a>
+            <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo4.png}"
+                                                                          style="height: 58px" alt="logo"/></a>
+            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img th:src="@{/admin/assets/images/logo4.png}"
+                                                                               alt="logo"/></a>
         </div>
         <ul class="nav">
             <li class="nav-item profile">
@@ -184,34 +183,12 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face4.jpg" alt="image"
+                                    <img src="https://phunugioi.com/wp-content/uploads/2020/03/anh-hot-girl-trung-quoc-cuc-tinh-y-451x600.jpg" alt="image"
                                          class="rounded-circle profile-pic">
                                 </div>
                                 <div class="preview-item-content">
                                     <p class="preview-subject ellipsis mb-1" th:text="${message}"></p>
                                     <p class="text-muted mb-0" id="currentTime"></p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face2.jpg" alt="image"
-                                         class="rounded-circle profile-pic">
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
-                                    <p class="text-muted mb-0"> 15 Minutes ago </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face3.jpg" alt="image"
-                                         class="rounded-circle profile-pic">
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
-                                    <p class="text-muted mb-0"> 18 Minutes ago </p>
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
@@ -417,20 +394,20 @@
                                         </tbody>
                                     </table>
                                     <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item btn btn-dark active1">
+                                        <ul class="pagination" style="display: flex; justify-content: center; margin-top: 20px">
+                                            <li class="page-item btn btn-dark active1" style="background: none;border: none;">
                                                 <a class="page-link" th:if="${curriculum.hasPrevious()}"
-                                                   th:href="@{/admin/curriculum(page=${curriculum.number -1},nameSearch=${nameSearch})}">Previous</a>
+                                                   th:href="@{/admin/curriculum(page=${curriculum.number -1},nameSearch=${nameSearch})}" style="background: palevioletred;color: white;border-radius: inherit;"><i class="fa fa-arrow-left"></i></a>
                                             </li>
-                                            <li class="page-item btn btn-dark active1"><a class="page-link"
-                                                                                          th:href="@{/admin/curriculum(page=0,nameSearch=${nameSearch})}">1</a>
+                                            <li class="page-item btn btn-dark active1" style="background: none;border: none;"><a class="page-link"
+                                                                                          th:href="@{/admin/curriculum(page=0,nameSearch=${nameSearch})}" style="background: palevioletred;color: white;border-radius: inherit;">1</a>
                                             </li>
-                                            <li class="page-item btn btn-dark active1"><a class="page-link"
-                                                                                          th:href="@{/admin/curriculum(page=1,nameSearch=${nameSearch})}">2</a>
+                                            <li class="page-item btn btn-dark active1" style="background: none;border: none;"><a class="page-link"
+                                                                                          th:href="@{/admin/curriculum(page=1,nameSearch=${nameSearch})}" style="background: palevioletred;color: white;border-radius: inherit;">2</a>
                                             </li>
-                                            <li class="page-item btn btn-dark active1">
+                                            <li class="page-item btn btn-dark active1" style="background: none;border: none;">
                                                 <a class="page-link" th:if="${curriculum.hasNext()}"
-                                                   th:href="@{/admin/curriculum(page=${curriculum.number +1},nameSearch=${nameSearch})}">Next</a>
+                                                   th:href="@{/admin/curriculum(page=${curriculum.number +1},nameSearch=${nameSearch})}" style="background: palevioletred;color: white;border-radius: inherit;"><i class="fa fa-arrow-right"></i></a>
                                             </li>
                                         </ul>
                                     </nav>
@@ -480,12 +457,6 @@
         <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © oneteam 2023</span>
     </div>
 </footer>
-<script>
-    function upload(id, name) {
-        document.getElementById("name").innerHTML = name;
-        document.getElementById("id").value = id;
-    }
-</script>
 <script th:src="@{/admin/assets/vendors/js/vendor.bundle.base.js}"></script>
 <script th:src="@{/admin/assets/vendors/chart.js/Chart.min.js}"></script>
 <script th:src="@{/admin/assets/vendors/progressbar.js/progressbar.min.js}"></script>
@@ -499,8 +470,18 @@
 <script th:src="@{/admin/assets/js/settings.js}"></script>
 <script th:src="@{/admin/assets/js/todolist.js}"></script>
 <script th:src="@{/admin/assets/js/dashboard.js}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    function upload(id, name){
+        document.getElementById("name").innerHTML = name;
+        document.getElementById("id").value = id;
+    }
+</script>
+<script>
+    var currentTime = new Date();
+    var formattedTime = currentTime.toLocaleString('vi-VN', {hour12:false});
+    document.getElementById('currentTime').innerHTML = formattedTime;
+</script>
 </body>
 </html>

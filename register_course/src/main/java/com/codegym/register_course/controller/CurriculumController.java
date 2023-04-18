@@ -47,9 +47,11 @@ public class CurriculumController {
     }
     @GetMapping("/create")
     public String showCreate(
-            Model model
-    ) {
+            Model model,
+            RedirectAttributes attributes
+    ){
         model.addAttribute("curriculumCreate", new Curriculum());
+        attributes.addFlashAttribute("message", "Thêm mới thành công");
         return "/admin/curriculum/create-curriculum";
     }
 
