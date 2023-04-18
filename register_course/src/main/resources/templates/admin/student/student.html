@@ -440,20 +440,20 @@
                                         </tbody>
                                     </table>
                                     <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item btn btn-dark active1">
+                                        <ul class="pagination"  style="display: flex; justify-content: center; margin-top: 20px">
+                                            <li class="page-item btn btn-dark active1" style="background: none;border: none;">
                                                 <a class="page-link" th:if="${student.hasPrevious()}"
-                                                   th:href="@{/admin/student(page=${student.number -1},nameSearch=${nameSearch})}">Previous</a>
+                                                   th:href="@{/admin/student(page=${student.number -1},nameSearch=${nameSearch})}" style="background: palevioletred;color: white;border-radius: inherit;"><i class="fa fa-arrow-left"></i></a>
                                             </li>
-                                            <li class="page-item btn btn-dark active1"><a class="page-link"
-                                                                                          th:href="@{/admin/student(page=0,nameSearch=${nameSearch})}">1</a>
+                                            <li class="page-item btn btn-dark active1" style="background: none;border: none;"><a class="page-link"
+                                                                                          th:href="@{/admin/student(page=0,nameSearch=${nameSearch})}" style="background: palevioletred;color: white;border-radius: inherit;">1</a>
                                             </li>
-                                            <li class="page-item btn btn-dark active1"><a class="page-link"
-                                                                                          th:href="@{/admin/student(page=1,nameSearch=${nameSearch})}">2</a>
+                                            <li class="page-item btn btn-dark active1" style="background: none;border: none;"><a class="page-link"
+                                                                                          th:href="@{/admin/student(page=1,nameSearch=${nameSearch})}" style="background: palevioletred;color: white;border-radius: inherit;">2</a>
                                             </li>
-                                            <li class="page-item btn btn-dark active1">
+                                            <li class="page-item btn btn-dark active1" style="background: none;border: none;">
                                                 <a class="page-link" th:if="${student.hasNext()}"
-                                                   th:href="@{/admin/student(page=${student.number +1},nameSearch=${nameSearch})}">Next</a>
+                                                   th:href="@{/admin/student(page=${student.number +1},nameSearch=${nameSearch})}" style="background: palevioletred;color: white;border-radius: inherit;"><i class="fa fa-arrow-right"></i></a>
                                             </li>
                                         </ul>
                                     </nav>
