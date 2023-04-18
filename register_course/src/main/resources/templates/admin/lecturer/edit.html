@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Edit Lecturer</title>
+  <title>Cập nhật giảng viên</title>
   <link rel="stylesheet" th:href="@{/admin/assets/vendors/mdi/css/materialdesignicons.min.css}">
   <link rel="stylesheet" th:href="@{/admin/assets/vendors/css/vendor.bundle.base.css}">
   <link rel="stylesheet" th:href="@{/admin/assets/vendors/jvectormap/jquery-jvectormap.css}">
@@ -498,26 +498,31 @@
               <div class=" box mb-3"><input type="text" class="form-control"
                                             placeholder="Vui lòng nhập tên giảng viên" th:field="*{lecturerName}">
               </div>
+              <p th:if="${#fields.hasErrors('lecturerName')}" th:errors="*{lecturerName}" style="color: red"></p>
             </div>
             <div class="col-12"><p>Email</p>
               <div class="box"><input class="form-control" type="email"
                                       placeholder="Vui lòng nhập email" th:field="*{lecturerEmail}">
               </div>
+              <p th:if="${#fields.hasErrors('lecturerEmail')}" th:errors="*{lecturerEmail}" style="color: red;"></p>
             </div>
             <div class="col-12"><p>Vị trí</p>
               <div class="box"><input class="form-control" type="text"
                                       placeholder="Vui lòng nhập vị trí" th:field="*{lecturerPosition}">
               </div>
+              <p th:if="${#fields.hasErrors('lecturerPosition')}" th:errors="*{lecturerPosition}" style="color: red;"></p>
             </div>
             <div class="col-12"><p>Số điện thoại</p>
               <div class="box"><input class="form-control" type="text"
                                       placeholder="Vui lòng nhập số điện thoại" th:field="*{lecturerPhone}">
               </div>
+              <p th:if="${#fields.hasErrors('lecturerPhone')}" th:errors="*{lecturerPhone}" style="color: red;"></p>
               <p class="bar2 mt-4"></p></div>
             <div class="col-12"><p>Thêm ảnh</p>
               <div class="box"><input class="form-control" type="text" placeholder="Thêm ảnh" th:field="*{lecturerImg}">
                 <div class="add btn btn-outline-secondary">Add</div>
               </div>
+              <p th:if="${#fields.hasErrors('lecturerImg')}" th:errors="*{lecturerImg}" style="color: red;"></p>
             </div>
             <div class="col-12">
               <div class="d-flex align-items-center mt-4">
