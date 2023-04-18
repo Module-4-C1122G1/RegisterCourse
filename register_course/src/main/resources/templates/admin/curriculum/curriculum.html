@@ -13,6 +13,7 @@
     <link rel="stylesheet" th:href="@{/admin/assets/css/style.css}">
     <link rel="shortcut icon" th:href="@{/admin/assets/images/favicon.png}"/>
     <link rel="shortcut icon" th:href="@{/admin/assets/images/favicon.png}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
     <style>
         * {
             font-family: Roboto
@@ -406,15 +407,10 @@
                                                 <img th:src="${cur.curriculumImg}" alt="image"/>
                                             </td>
                                             <td>
-                                                <a th:href="@{/admin/curriculum/edit/{id}(id=${cur.getCurriculumID()})}"
-                                                   class="btn btn-danger">
-                                                    <i class="fa fa-pencil-square" style="margin: 0 auto"></i>
-                                                </a>
-                                                <button th:attr="onclick=|upload('${cur.getCurriculumID()}','${cur.getCurriculumName()}')|"
-                                                        type="button" class="btn btn-primary"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                        style="background: red">
-                                                    Delete
+                                                <a th:href="@{/admin/curriculum/edit/{id}(id=${cur.getCurriculumID()})}" class="btn btn-danger"><i class="fa fa-pencil-square" style="margin: 0 auto"></i></a>
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                        th:attr="onclick=|upload('${cur.getCurriculumID()}','${cur.getCurriculumName()}')|">
+                                                    <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
                                                 </button>
                                             </td>
                                         </tr>

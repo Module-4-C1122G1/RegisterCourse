@@ -17,7 +17,7 @@ public class Lecturer {
     private String lecturerName;
     @Column(name = "lecturer_email", columnDefinition = "varchar(255)")
     @NotBlank(message = "Vui lòng không để trống email")
-    @Pattern(regexp = "^[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*$", message = "Email không hợp lệ")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Email không hợp lệ")
     private String lecturerEmail;
     @Column(name = "lecturer_phone", columnDefinition = "varchar(45)")
     @NotBlank(message = "Vui lòng không để trống số điện thoại")
