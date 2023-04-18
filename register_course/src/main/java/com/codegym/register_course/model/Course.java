@@ -27,10 +27,10 @@ public class Course {
     private String courseStatus;
     @Column(name = "course_img", columnDefinition = "varchar(255)")
     private String courseImg;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "lecturer_id")
     private Lecturer lecturer;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
     private Employee employee;
 

@@ -17,7 +17,7 @@ public class CourseContent {
     private Integer contentOrder;
     @Column(name = "content_img", columnDefinition = "varchar(255)")
     private String contentImg;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private Course course;
 

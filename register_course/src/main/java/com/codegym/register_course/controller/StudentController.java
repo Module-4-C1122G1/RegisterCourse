@@ -6,7 +6,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
+import java.sql.ResultSet;
 
 @Controller
 @RequestMapping("/admin/student")
@@ -30,9 +35,17 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    public String createStudent(Model model, Student student) {
-        model.addAttribute("student", iStudentService.save(student));
-        return "redirect:/admin/student";
+    public String createStudent(@Valid @ModelAttribute("student") Student student,
+                                BindingResult bindingResult,
+                                RedirectAttributes redirectAttributes,
+                                Model model) {
+        if (bindingResult.hasErrors()) {
+            return "/admin/student/create-student";
+        } else {
+            model.addAttribute("student", iStudentService.save(student));
+            redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
+            return "redirect:/admin/student";
+        }
     }
 
     @GetMapping("update/{studentID}")
@@ -53,10 +66,11 @@ public class StudentController {
         iStudentService.delete(studentID, iStudentService.getStudentByID(studentID));
         return "redirect:/admin/student";
     }
+
     @PostMapping("findStudentByName")
-    public String findStudentByName(Model model, @RequestParam String studentName,Integer page){
+    public String findStudentByName(Model model, @RequestParam String studentName, Integer page) {
         Sort sort = Sort.by(studentName);
-        model.addAttribute("student", iStudentService.findAll(studentName, PageRequest.of(page,2,sort)));
+        model.addAttribute("student", iStudentService.findAll(studentName, PageRequest.of(page, 2, sort)));
         return "redirect:/admin/student";
     }
 }

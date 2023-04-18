@@ -20,27 +20,13 @@
 </head>
 <body>
 <div class="container-scroller">
-    <div class="row p-0 m-0 proBanner" id="proBanner">
-        <div class="col-md-12 p-0 m-0">
-            <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
-                <div class="ps-lg-1">
-                </div>
-                <div class="d-flex align-items-center justify-content-between">
-                    <a href="https://www.bootstrapdash.com/product/corona-free/"><i
-                            class="mdi mdi-home me-3 text-white"></i></a>
-                    <button id="bannerClose" class="btn border-0 p-0">
-                        <i class="mdi mdi-close text-white me-0"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
             <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo2.png}"
                                                                           style="height: 75px" alt="logo"/></a>
-            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img th:src="@{/admin/assets/images/logo2.png}"
-                                                                               alt="logo"/></a>
+            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img
+                    th:src="@{/admin/assets/images/logo2.png}"
+                    alt="logo"/></a>
         </div>
         <ul class="nav">
             <li class="nav-item profile">
@@ -168,14 +154,16 @@
                 <ul class="navbar-nav w-100">
                     <li class="nav-item w-100">
                         <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                            <input type="text" class="form-control" name="searchName" placeholder="Tìm kiếm chương trình học">
+                            <input type="text" class="form-control" name="searchName"
+                                   placeholder="Tìm kiếm chương trình học">
                         </form>
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item dropdown d-none d-lg-block">
                         <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown"
-                           data-bs-toggle="dropdown" aria-expanded="false" onclick="location.href = '/admin/curriculum/create'">+ Thêm mới chương trình học</a>
+                           data-bs-toggle="dropdown" aria-expanded="false"
+                           onclick="location.href = '/admin/curriculum/create'">+ Thêm mới chương trình học</a>
                     </li>
                     <li class="nav-item nav-settings d-none d-lg-block">
                         <a class="nav-link" href="#">
@@ -290,7 +278,8 @@
                                         <img class="img-xs rounded-circle"
                                              src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
                                              alt="">
-                                        <span class="mb-0 font-weight-normal text-light m-2" th:utext="${#request.userPrincipal.getName()}"></span>
+                                        <span class="mb-0 font-weight-normal text-light m-2"
+                                              th:utext="${#request.userPrincipal.getName()}"></span>
                                     </div>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
@@ -347,7 +336,7 @@
                                 <div class="row">
                                     <div class="col-8 col-sm-12 col-xl-8 my-auto">
                                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                                            <h2 class="mb-0" th:text="${curriculum.size()}"> </h2>
+                                            <h2 class="mb-0" th:text="${curriculum.size()}"></h2>
                                             <p class="text-success ms-2 mb-0 font-weight-medium"></p>
                                         </div>
                                         <h6 class="text-muted font-weight-normal">Được cập nhập vào năm 2023</h6>
@@ -419,8 +408,12 @@
                                                 <img th:src="${cur.curriculumImg}" alt="image"/>
                                             </td>
                                             <td>
-                                                <button class="btn btn-primary" th:href="@{/admin/curriculum/edit/{id}(id=${cur.getCurriculumID()})}" type="button"> Update  </button>
-                                                <button th:attr="onclick=|click('${cur.getCurriculumID()}','${cur.getCurriculumName()}')|" type="button" class="btn btn-danger"
+                                                <button class="btn btn-primary"
+                                                        th:href="@{/admin/curriculum/edit/{id}(id=${cur.getCurriculumID()})}"
+                                                        type="button"> Update
+                                                </button>
+                                                <button th:attr="onclick=|click('${cur.getCurriculumID()}','${cur.getCurriculumName()}')|"
+                                                        type="button" class="btn btn-danger"
                                                         data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                     Delete
                                                 </button>

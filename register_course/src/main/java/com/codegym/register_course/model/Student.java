@@ -2,6 +2,7 @@ package com.codegym.register_course.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "student")
@@ -11,12 +12,16 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer studentID;
     @Column(name = "student_name", columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống tên học viên")
     private String studentName;
     @Column(name = "student_email", columnDefinition = "varchar(255)")
+    @Email(message = "Email không đúng định dạng")
     private String studentEmail;
     @Column(name = "student_phone", columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống số điện thoại")
     private String studentPhone;
     @Column(name = "student_address", columnDefinition = "varchar(255)")
+    @NotBlank(message = "Không được để trống địa chỉ")
     private String studentAddress;
     @Column(name = "student_img", columnDefinition = "varchar(255)")
     private String studentImg;
