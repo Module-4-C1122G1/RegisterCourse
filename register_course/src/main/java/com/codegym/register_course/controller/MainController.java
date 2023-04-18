@@ -1,7 +1,9 @@
 package com.codegym.register_course.controller;
 
 
+import com.codegym.register_course.service.ILecturerService;
 import com.codegym.register_course.utils.WebUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,12 @@ import java.security.Principal;
 
 @Controller
 public class MainController {
+    private final ILecturerService service;
+
+    public MainController(ILecturerService service) {
+        this.service = service;
+    }
+
     @GetMapping("/login")
     public String loginPage(Model model) {
         return "/login";
@@ -81,7 +89,8 @@ public class MainController {
     }
 
     @GetMapping("/teacher")
-    public String getPageTeacher() {
+    public String getPageTeacher(Model model) {
+        model.addAttribute("teacher", service.findAllLecturer());
         return "/teacher";
     }
 

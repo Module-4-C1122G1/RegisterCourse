@@ -24,13 +24,7 @@ public class LecturerController {
         this.service = service;
     }
 
-    @GetMapping("/teacher")
-    public String showList(
-            Model model
-    ){
-        model.addAttribute("lecturer", service.findAllLecturer());
-        return "/teacher";
-    }
+
     @GetMapping("/lecturer")
     public String showListAdmin(
             Model model, @RequestParam(defaultValue = "", required = false) String searchName,
