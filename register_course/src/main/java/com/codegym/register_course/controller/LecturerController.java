@@ -68,9 +68,17 @@ public class LecturerController {
     }
 
     @PostMapping("/lecturer/edit")
-    public String edit(Lecturer lecturer){
+    public String edit(@Valid @ModelAttribute("lecturerEdit") Lecturer lecturer,
+                       BindingResult bindingResult,
+                       RedirectAttributes redirectAttributes,
+                       Model model){
+        if(bindingResult.hasErrors()){
+            return "/admin/lecturer/edit";
+        }else {
         service.save(lecturer);
+        redirectAttributes.addFlashAttribute("msg","Cập nhập thành công");
         return "redirect:/admin/lecturer";
+        }
     }
 
     @GetMapping("/lecturer/delete")
