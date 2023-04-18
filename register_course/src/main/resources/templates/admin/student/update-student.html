@@ -499,28 +499,38 @@
                             <div class=" box mb-3"><input type="text" class="form-control"
                                                           placeholder="Vui lòng nhập tên học viên"
                                                           th:field="*{studentName}">
+                                <p th:if="${#fields.hasErrors('studentName')}" th:errors="*{studentName}"
+                                   style="color: red"></p>
                             </div>
                         </div>
                         <div class="col-12"><p>Email</p>
                             <div class="box"><input class="form-control" type="email"
                                                     placeholder="Vui lòng nhập email" th:field="*{studentEmail}">
-                            </div>
-                        </div>
-                        <div class="col-12"><p>Vị trí</p>
-                            <div class="box"><input class="form-control" type="text"
-                                                    placeholder="Vui lòng nhập số điện thoại"
-                                                    th:field="*{studentPhone}">
+                                <p th:if="${#fields.hasErrors('studentEmail')}" th:errors="*{studentEmail}"
+                                   style="color: red"></p>
                             </div>
                         </div>
                         <div class="col-12"><p>Số điện thoại</p>
                             <div class="box"><input class="form-control" type="text"
+                                                    placeholder="Vui lòng nhập số điện thoại"
+                                                    th:field="*{studentPhone}">
+                                <p th:if="${#fields.hasErrors('studentPhone')}" th:errors="*{studentPhone}"
+                                   style="color: red"></p>
+                            </div>
+                        </div>
+                        <div class="col-12"><p>Địa chỉ</p>
+                            <div class="box"><input class="form-control" type="text"
                                                     placeholder="Vui lòng nhập địa chỉ" th:field="*{studentAddress}">
+                                <p th:if="${#fields.hasErrors('studentAddress')}" th:errors="*{studentAddress}"
+                                   style="color: red"></p>
                             </div>
                             <p class="bar2 mt-4"></p></div>
                         <div class="col-12"><p>Thêm ảnh</p>
                             <div class="box"><input class="form-control" type="text" placeholder="Thêm ảnh"
                                                     th:field="*{studentImg}">
                                 <div class="add btn btn-outline-secondary">Add</div>
+                                <p th:if="${#fields.hasErrors('studentImg')}" th:errors="*{studentImg}"
+                                   style="color: red"></p>
                             </div>
                         </div>
                         <div class="col-12">
