@@ -401,28 +401,31 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                      </td>
-                      <td th:text="${employee.employeeID}"></td>
-                      <td th:text="${employee.employeeName}"></td>
-                      <td th:text="${employee.employeeAddress}"></td>
-                      <td th:text="${employee.employeeEmail}"></td>
-                      <td th:text="${employee.employeePhone}"></td>
-                      <td>
-                        <a class="btn btn-danger" th:href="@{/admin/employee/edit/{id}(id = ${employee.getEmployeeID()})}"><i class="fa fa-pencil-square" style="margin: 0 auto"></i></a>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modelId">
-                          <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
+                        </td>
+                        <td th:text="${employee.employeeID}"></td>
+                        <td th:text="${employee.employeeName}"></td>
+                        <td th:text="${employee.employeeAddress}"></td>
+                        <td th:text="${employee.employeeEmail}"></td>
+                        <td th:text="${employee.employeePhone}"></td>
+                        <td>
+                            <a class="btn btn-danger"
+                               th:href="@{/admin/employee/edit/{id}(id = ${employee.getEmployeeID()})}"><i
+                                    class="fa fa-pencil-square" style="margin: 0 auto"></i></a>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modelId">
+                                <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
+                            </button>
+                        </td>
+                        </tr>
+                        </tbody>
+                        </table>
+                    </div>
                 </div>
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © oneteam 2023</span>
+                    </div>
+                </footer>
             </div>
-            <footer class="footer">
-                <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © oneteam 2023</span>
-                </div>
-            </footer>
         </div>
     </div>
 </div>

@@ -3,6 +3,7 @@ package com.codegym.register_course.model;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "student")
@@ -15,7 +16,7 @@ public class Student {
     @NotBlank(message = "Không được để trống tên học viên")
     private String studentName;
     @Column(name = "student_email", columnDefinition = "varchar(255)")
-    @Email(message = "Email không đúng định dạng")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Email không hợp lệ")
     private String studentEmail;
     @Column(name = "student_phone", columnDefinition = "varchar(45)")
     @NotBlank(message = "Không được để trống số điện thoại")

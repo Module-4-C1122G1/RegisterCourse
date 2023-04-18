@@ -69,9 +69,10 @@ public class StudentController {
     }
 
     @PostMapping("/update")
-    public String updateStudent(Model model, Student student) {
+    public String updateStudent(Model model, Student student,
+                                RedirectAttributes redirectAttributes) {
         model.addAttribute("student", iStudentService.save(student));
-        String message = "Thêm mới thành công";
+        redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
         return "redirect:/admin/student";
     }
 
