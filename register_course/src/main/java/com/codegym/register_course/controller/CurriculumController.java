@@ -9,6 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.stream.IntStream;
 
@@ -44,9 +45,11 @@ public class CurriculumController {
     };
     @GetMapping("/create")
     public String showCreate(
-            Model model
+            Model model,
+            RedirectAttributes attributes
     ){
         model.addAttribute("curriculumCreate", new Curriculum());
+        attributes.addFlashAttribute("message", "Thêm mới thành công");
         return "/admin/curriculum/create-curriculum";
     }
 
@@ -66,8 +69,10 @@ public class CurriculumController {
     }
 
     @PostMapping("/edit")
-    public String edit(Curriculum curriculum){
+    public String edit(Curriculum curriculum,
+                       RedirectAttributes redirectAttributes){
         curriculumService.save(curriculum);
+        redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
         return "redirect:/admin/curriculum";
     }
 
