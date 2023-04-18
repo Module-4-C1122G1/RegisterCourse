@@ -13,6 +13,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
+    <style>
+        * {
+            font-family: Roboto;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid d-none d-lg-block">
@@ -85,20 +90,39 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav py-0">
-                            <a href="index.html" class="nav-item nav-link">Home</a>
-                            <a href="about.html" class="nav-item nav-link">About</a>
-                            <a href="course.html" class="nav-item nav-link">Courses</a>
-                            <a href="teacher.html" class="nav-item nav-link">Teachers</a>
+                            <a href="/index" class="nav-item nav-link">Home</a>
+                            <a href="/about" class="nav-item nav-link">About</a>
+                            <a href="/course" class="nav-item nav-link">Courses</a>
+                            <a href="/teacher" class="nav-item nav-link">Teachers</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Blog</a>
                                 <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                    <a href="single.html" class="dropdown-item active">Blog Detail</a>
+                                    <a href="/blog" class="dropdown-item">Blog Grid</a>
+                                    <a href="/single" class="dropdown-item active">Blog Detail</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="/contact" class="nav-item nav-link">Contact</a>
                         </div>
-                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="">Join Now</a>
+                        <div th:if="${request != null}" class="d-flex justify-content-between align-items-center">
+                            <div th:if="${#request.userPrincipal != null}">
+                                <form>
+                                    <div class="user-info d-flex align-items-center" th:if="${#request.userPrincipal != null}">
+                                        <img class="img-xs rounded-circle"
+                                             src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
+                                             width="100px" alt="">
+                                        <span class="mb-0 font-weight-normal m-2" th:if="${#request.userPrincipal != null}"
+                                              th:text="${#request.userPrincipal.getName()}"></span>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" data-toggle="modal" data-target="#staticBackdrop">
+                                            Đăng xuất
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div th:if="${#request.userPrincipal == null}">
+                                <a class="btn btn-primary py-2 px-4 d-none d-lg-block" onclick="location.href = '/login'">Đăng nhập</a>
+                            </div>
+                        </div>
                     </div>
                 </nav>
             </div>
@@ -365,6 +389,30 @@
                         <a class="nav-link text-white py-0" href="#">Help</a>
                     </li>
                 </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Hôp thoại đăng xuất</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn <span class="mb-0 text-danger font-weight-medium m-2" th:if="${#request.userPrincipal != null}"
+                              th:text="${#request.userPrincipal.getName()}"></span> có chắc chắn muốn đăng xuất?
+                </div>
+                <div class="modal-footer">
+                    <form action="/logout" method="get">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                        <button type="submit" class="btn btn-primary">Đăng xuất</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
