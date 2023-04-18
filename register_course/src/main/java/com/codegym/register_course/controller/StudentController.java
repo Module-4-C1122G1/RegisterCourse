@@ -29,7 +29,7 @@ public class StudentController {
                               @PageableDefault(size = 5) Pageable pageable) {
         Page<Student> studentPage = null;
         model.addAttribute("searchName", searchName);
-        model.addAttribute("total",iStudentService.findAllStudent());
+        model.addAttribute("total", iStudentService.findAllStudent());
         Sort sort = Sort.by("student_id").descending();
         if (searchName != null) {
             studentPage = iStudentService.findAllByName(searchName, pageable);
@@ -71,11 +71,16 @@ public class StudentController {
     }
 
     @PostMapping("/update")
-    public String updateStudent(Model model, Student student,
+    public String updateStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult,
+                                Model model,
                                 RedirectAttributes redirectAttributes) {
-        model.addAttribute("student", iStudentService.save(student));
-        redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
-        return "redirect:/admin/student";
+        if (bindingResult.hasErrors()) {
+            return "/admin/student/update-student";
+        } else {
+            model.addAttribute("student", iStudentService.save(student));
+            redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
+            return "redirect:/admin/student";
+        }
     }
 
     @GetMapping("/delete")
