@@ -4,6 +4,7 @@ import com.codegym.register_course.model.Student;
 import com.codegym.register_course.repository.IStudentRepository;
 import com.codegym.register_course.service.IStudentService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +52,14 @@ public class StudentService implements IStudentService {
     @Override
     public Student getStudentByID(Integer studentID) {
         return iStudentRepository.findById(studentID).get();
+    }
+
+    @Override
+    public void deleteAllStudent(Integer studentID) {
+        this.iStudentRepository.deleteStudentByStudentID(studentID);
+    }
+    @Override
+    public Page<Student> findAll( PageRequest pageRequest) {
+        return iStudentRepository.findAll(pageRequest);
     }
 }

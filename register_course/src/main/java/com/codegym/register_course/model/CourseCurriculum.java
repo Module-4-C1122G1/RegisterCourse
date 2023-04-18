@@ -14,7 +14,7 @@ public class CourseCurriculum {
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "curriculum_id")
     private Curriculum curriculum;
 
