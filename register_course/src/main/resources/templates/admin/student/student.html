@@ -155,9 +155,8 @@
                 </button>
                 <ul class="navbar-nav w-100">
                     <li class="nav-item w-100">
-                        <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search"
-                              action="/admin/student/findStudentByName" method="post">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm học viên"
+                        <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                            <input type="text" class="form-control" name="searchName" placeholder="Tìm kiếm học viên"
                                    style="color: white">
                         </form>
                     </li>
@@ -343,7 +342,7 @@
                                 <div class="row">
                                     <div class="col-8 col-sm-12 col-xl-8 my-auto">
                                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                                            <h2 class="mb-0" th:text="${student.size()}"></h2>
+                                            <h2 class="mb-0" th:text="${total.size()}"></h2>
                                             <p class="text-success ms-2 mb-0 font-weight-medium"></p>
                                         </div>
                                         <h6 class="text-muted font-weight-normal">Được cập nhập vào năm 2023</h6>
@@ -402,7 +401,8 @@
                                                 <a th:href="@{/admin/student/update/{studentID}(studentID=${student1.getStudentID()})}"
                                                    class="btn btn-danger"><i class="fa fa-pencil-square"
                                                                              style="margin: 0 auto"></i></a>
-                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modelId"
+                                                <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                        data-target="#modelId"
                                                         th:attr="onclick=|upload('${student1.studentID}', '${student1.studentName}')|"
                                                         data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                     <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
@@ -439,6 +439,24 @@
                                         </div>
                                         </tbody>
                                     </table>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item btn btn-dark active1">
+                                                <a class="page-link" th:if="${student.hasPrevious()}"
+                                                   th:href="@{/admin/student(page=${student.number -1},nameSearch=${nameSearch})}">Previous</a>
+                                            </li>
+                                            <li class="page-item btn btn-dark active1"><a class="page-link"
+                                                                                          th:href="@{/admin/student(page=0,nameSearch=${nameSearch})}">1</a>
+                                            </li>
+                                            <li class="page-item btn btn-dark active1"><a class="page-link"
+                                                                                          th:href="@{/admin/student(page=1,nameSearch=${nameSearch})}">2</a>
+                                            </li>
+                                            <li class="page-item btn btn-dark active1">
+                                                <a class="page-link" th:if="${student.hasNext()}"
+                                                   th:href="@{/admin/student(page=${student.number +1},nameSearch=${nameSearch})}">Next</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>

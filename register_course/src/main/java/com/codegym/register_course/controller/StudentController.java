@@ -2,8 +2,9 @@ package com.codegym.register_course.controller;
 
 import com.codegym.register_course.model.Student;
 import com.codegym.register_course.service.IStudentService;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.sql.ResultSet;
+import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("/admin/student")
@@ -23,8 +24,21 @@ public class StudentController {
     }
 
     @GetMapping("")
-    public String listStudent(Model model) {
-        model.addAttribute("student", iStudentService.findAllStudent());
+    public String listStudent(Model model, @RequestParam(defaultValue = "", required = false) String searchName,
+                              @PageableDefault(size = 5) Pageable pageable) {
+        Page<Student> studentPage = null;
+        model.addAttribute("searchName", searchName);
+        model.addAttribute("total",iStudentService.findAllStudent());
+        if (searchName != null) {
+            studentPage = iStudentService.findAllByName(searchName, pageable);
+        } else {
+            studentPage = iStudentService.findAll(pageable);
+        }
+        model.addAttribute("student", studentPage);
+        model.addAttribute("pageNumberList", IntStream.rangeClosed(1, studentPage.getTotalPages()).toArray());
+        model.addAttribute("pageNumber", pageable.getPageNumber());
+        model.addAttribute("nameSearch", searchName);
+        model.addAttribute("pageSize", pageable.getPageSize());
         return "/admin/student/student";
     }
 
@@ -65,13 +79,6 @@ public class StudentController {
     @GetMapping("/delete")
     public String deleteStudent(@RequestParam Integer studentID) {
         iStudentService.delete(studentID, iStudentService.getStudentByID(studentID));
-        return "redirect:/admin/student";
-    }
-
-    @PostMapping("findStudentByName")
-    public String findStudentByName(Model model, @RequestParam String studentName, Integer page) {
-        Sort sort = Sort.by(studentName);
-        model.addAttribute("student", iStudentService.findAll(studentName, PageRequest.of(page, 2, sort)));
         return "redirect:/admin/student";
     }
 }
