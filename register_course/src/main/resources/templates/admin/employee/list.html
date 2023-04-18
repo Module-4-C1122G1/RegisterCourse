@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Danh sách nhân viên</title>
+    <title>Quản lý học viên</title>
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/mdi/css/materialdesignicons.min.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/css/vendor.bundle.base.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/jvectormap/jquery-jvectormap.css}">
@@ -21,12 +21,13 @@
 </head>
 <body>
 <div class="container-scroller">
+
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo1.png}"
+            <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo3.png}"
                                                                           style="height: 75px" alt="logo"/></a>
             <a class="sidebar-brand brand-logo-mini" href="../index.html"><img
-                    th:src="@{/admin/assets/images/logo1.png}"
+                    th:src="@{/admin/assets/images/logo3.png}"
                     alt="logo"/></a>
         </div>
         <ul class="nav">
@@ -155,7 +156,8 @@
                 <ul class="navbar-nav w-100">
                     <li class="nav-item w-100">
                         <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm giảng viên">
+                            <input type="text" class="form-control" name="searchName" placeholder="Tìm kiếm nhân viên"
+                                   style="color: white">
                         </form>
                     </li>
                 </ul>
@@ -164,6 +166,45 @@
                         <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown"
                            data-bs-toggle="dropdown" aria-expanded="false"
                            onclick="location.href = '/admin/employee/create'">+ Thêm mới nhân viên</a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                             aria-labelledby="createbuttonDropdown">
+                            <h6 class="p-3 mb-0">Projects</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-file-outline text-primary"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1">Software Development</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-web text-info"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1">UI Development</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-layers text-danger"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1">Software Testing</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <p class="p-3 mb-0 text-center">See all projects</p>
+                        </div>
                     </li>
                     <li class="nav-item nav-settings d-none d-lg-block">
                         <a class="nav-link" href="#">
@@ -319,11 +360,11 @@
                     <div class="col-sm-4 grid-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Số lượng nhân viên</h5>
+                                <h5>Số lượng giảng viên</h5>
                                 <div class="row">
                                     <div class="col-8 col-sm-12 col-xl-8 my-auto">
                                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                                            <h2 class="mb-0" th:text="${employee.size()}"></h2>
+                                            <h2 class="mb-0" th:text="${total.size()}"></h2>
                                             <p class="text-success ms-2 mb-0 font-weight-medium"></p>
                                         </div>
                                         <h6 class="text-muted font-weight-normal">Được cập nhập vào năm 2023</h6>
@@ -352,7 +393,7 @@
                                                     </label>
                                                 </div>
                                             </th>
-                                            <th>Mã nhân viên</th>
+                                            <th>STT</th>
                                             <th>Tên nhân viên</th>
                                             <th>Địa chỉ</th>
                                             <th>Email</th>
@@ -361,7 +402,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="employee : ${employee}">
+                                        <tr th:each="employee1,ep1 : ${employee}">
                                             <td>
                                                 <div class="form-check form-check-muted m-0">
                                                     <label class="form-check-label">
@@ -369,63 +410,82 @@
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td th:text="${employee.employeeID}"></td>
-                                            <td th:text="${employee.employeeName}"></td>
-                                            <td th:text="${employee.employeeAddress}"></td>
-                                            <td th:text="${employee.employeeEmail}"></td>
-                                            <td th:text="${employee.employeePhone}"></td>
+                                            <td th:text="${ep1.count}"></td>
+                                            <td th:text="${employee1.employeeName}"></td>
+                                            <td th:text="${employee1.employeeAddress}"></td>
+                                            <td th:text="${employee1.employeeEmail}"></td>
+                                            <td th:text="${employee1.employeePhone}"></td>
                                             <td>
-                                                <a class="btn btn-danger"><i class="fa fa-pencil-square"
+                                                <a th:href="@{/admin/employee/edit/{employeeID}(employeeID=${employee1.getEmployeeID()})}"
+                                                   class="btn btn-danger"><i class="fa fa-pencil-square"
                                                                              style="margin: 0 auto"></i></a>
                                                 <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                        data-target="#modelId">
+                                                        data-target="#modelId"
+                                                        th:attr="onclick=|upload('${employee1.employeeID}', '${employee1.employeeName}')|"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                     <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
                                                 </button>
                                             </td>
                                         </tr>
+
+
+                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Xác nhận xoá <span id="name"></span></p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="/admin/employee/delete" method="get">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close
+                                                            </button>
+                                                            <input type="hidden" id="id" name="employeeID"
+                                                                   class="btn btn-secondary">
+                                                            <input type="submit" class="btn btn-secondary" value="Xoá"
+                                                                   style="background: red">
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         </tbody>
                                     </table>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item btn btn-dark active1">
+                                                <a class="page-link" th:if="${employee.hasPrevious()}"
+                                                   th:href="@{/admin/employee(page=${employee.number -1},nameSearch=${nameSearch})}">Previous</a>
+                                            </li>
+                                            <li class="page-item btn btn-dark active1"><a class="page-link"
+                                                                                          th:href="@{/admin/employee(page=0,nameSearch=${nameSearch})}">1</a>
+                                            </li>
+                                            <li class="page-item btn btn-dark active1"><a class="page-link"
+                                                                                          th:href="@{/admin/employee(page=1,nameSearch=${nameSearch})}">2</a>
+                                            </li>
+                                            <li class="page-item btn btn-dark active1">
+                                                <a class="page-link" th:if="${employee.hasNext()}"
+                                                   th:href="@{/admin/employee(page=${employee.number +1},nameSearch=${nameSearch})}">Next</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title"> Xóa sản phẩm </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        </td>
-                        <td th:text="${employee.employeeID}"></td>
-                        <td th:text="${employee.employeeName}"></td>
-                        <td th:text="${employee.employeeAddress}"></td>
-                        <td th:text="${employee.employeeEmail}"></td>
-                        <td th:text="${employee.employeePhone}"></td>
-                        <td>
-                            <a class="btn btn-danger"
-                               th:href="@{/admin/employee/edit/{id}(id = ${employee.getEmployeeID()})}"><i
-                                    class="fa fa-pencil-square" style="margin: 0 auto"></i></a>
-                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modelId">
-                                <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
-                            </button>
-                        </td>
-                        </tr>
-                        </tbody>
-                        </table>
-                    </div>
+            <footer class="footer">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © oneteam 2023</span>
                 </div>
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © oneteam 2023</span>
-                    </div>
-                </footer>
-            </div>
+            </footer>
         </div>
     </div>
 </div>
@@ -442,7 +502,14 @@
 <script th:src="@{/admin/assets/js/settings.js}"></script>
 <script th:src="@{/admin/assets/js/todolist.js}"></script>
 <script th:src="@{/admin/assets/js/dashboard.js}"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script>
+    function upload(id, name) {
+        document.getElementById("name").innerHTML = name;
+        document.getElementById("id").value = id;
+    }
+</script>
 </body>
 </html>

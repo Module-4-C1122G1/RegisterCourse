@@ -4,6 +4,7 @@ import com.codegym.register_course.model.Student;
 import com.codegym.register_course.service.IStudentService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,7 @@ public class StudentController {
         Page<Student> studentPage = null;
         model.addAttribute("searchName", searchName);
         model.addAttribute("total",iStudentService.findAllStudent());
+        Sort sort = Sort.by("student_id").descending();
         if (searchName != null) {
             studentPage = iStudentService.findAllByName(searchName, pageable);
         } else {

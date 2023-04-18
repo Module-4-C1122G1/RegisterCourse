@@ -6,7 +6,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Entity
-@Table(name = "student")
+@Table(name = "student", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "student_email"),
+        @UniqueConstraint(columnNames = "student_phone")
+})
 public class Student {
     @Id
     @Column(name = "student_id")
@@ -18,7 +21,7 @@ public class Student {
     @Column(name = "student_email", columnDefinition = "varchar(255)")
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Email không hợp lệ")
     private String studentEmail;
-    @Column(name = "student_phone", columnDefinition = "varchar(45)")
+    @Column(name = "student_phone", columnDefinition = "varchar(45)" , unique = true)
     @NotBlank(message = "Không được để trống số điện thoại")
     private String studentPhone;
     @Column(name = "student_address", columnDefinition = "varchar(255)")

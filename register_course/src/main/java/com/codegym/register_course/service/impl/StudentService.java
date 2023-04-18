@@ -55,7 +55,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void deleteAllStudent(Integer studentID) {
-        this.iStudentRepository.deleteStudentByStudentID(studentID);
+        this.iStudentRepository.deleteAllByStudentID(studentID);
     }
     @Override
     public Page<Student> findAll( Pageable pageable) {
