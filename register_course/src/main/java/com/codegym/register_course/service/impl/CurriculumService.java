@@ -32,8 +32,8 @@ public class CurriculumService implements ICurriculumService {
     }
 
     @Override
-    public void update(Integer curriculumID, Curriculum curriculum) {
-        this.curriculumRepository.save(curriculum);
+    public Curriculum update(Integer curriculumID, Curriculum curriculum) {
+        return this.curriculumRepository.save(curriculum);
     }
 
     @Override
@@ -43,8 +43,8 @@ public class CurriculumService implements ICurriculumService {
     }
 
     @Override
-    public void save(Curriculum curriculum) {
-        this.curriculumRepository.save(curriculum);
+    public Curriculum save(Curriculum curriculum) {
+        return this.curriculumRepository.save(curriculum);
     }
 
     @Override

@@ -8,7 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.stream.IntStream;
 
@@ -29,7 +32,7 @@ public class CurriculumController {
                           @PageableDefault(size = 5) Pageable pageable) {
         Page<Curriculum> curriculumPage = null;
         model.addAttribute("searchName", searchName);
-        model.addAttribute("total",curriculumService.findAll());
+        model.addAttribute("total", curriculumService.findAll());
         if (searchName != null) {
             curriculumPage = curriculumService.findAllByName(searchName, pageable);
         } else {
@@ -45,30 +48,45 @@ public class CurriculumController {
     @GetMapping("/create")
     public String showCreate(
             Model model
-    ){
+    ) {
         model.addAttribute("curriculumCreate", new Curriculum());
         return "/admin/curriculum/create-curriculum";
     }
 
     @PostMapping("/create")
-    public String createCurriculum(Curriculum curriculum){
-        curriculumService.save(curriculum);
-        return "redirect:/admin/curriculum";
+    public String createCurriculum(@Validated @ModelAttribute("curriculumCreate") Curriculum curriculum,
+                                   BindingResult bindingResult,
+                                   RedirectAttributes redirectAttributes,
+                                   Model model) {
+        if (bindingResult.hasErrors()) {
+            return "/admin/curriculum/create-curriculum";
+        } else {
+            model.addAttribute("curriculumCreate", curriculumService.save(curriculum));
+            redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
+            return "redirect:/admin/curriculum";
+        }
     }
 
     @GetMapping("/edit/{id}")
     public String showEdit(
             Model model,
             @PathVariable("id") Integer id
-    ){
+    ) {
         model.addAttribute("curriculumEdit", curriculumService.findById(id));
         return "/admin/curriculum/edit-curriculum";
     }
 
     @PostMapping("/edit")
-    public String edit(Curriculum curriculum){
-        curriculumService.save(curriculum);
-        return "redirect:/admin/curriculum";
+    public String edit(@Validated @ModelAttribute("curriculumEdit") Curriculum curriculum,
+                       BindingResult bindingResult,
+                       RedirectAttributes redirectAttributes,
+                       Model model) {
+        if (bindingResult.hasErrors()) {
+            return "/admin/curriculum/edit-curriculum";
+        } else {
+            model.addAttribute("curriculumEdit", curriculumService.save(curriculum));
+            redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
+            return "redirect:/admin/curriculum";
+        }
     }
-
 }
