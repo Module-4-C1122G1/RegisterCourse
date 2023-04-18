@@ -12,6 +12,7 @@ public interface ICurriculumService {
     Page<Curriculum> findAllByName(String nameSearch, Pageable pageable);
 
     Page<Curriculum> findAllCurriculum(Pageable pageable);
+
     List<Curriculum> findAll();
 
     Curriculum update(Integer curriculumID, Curriculum curriculum);
