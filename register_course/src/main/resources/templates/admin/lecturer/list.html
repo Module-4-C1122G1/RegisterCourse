@@ -154,7 +154,7 @@
                 <ul class="navbar-nav w-100">
                     <li class="nav-item w-100">
                         <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm giảng viên">
+                            <input name="searchName" type="text" class="form-control" placeholder="Tìm kiếm giảng viên" style="color: white">
                         </form>
                     </li>
                 </ul>
@@ -299,7 +299,7 @@
                                 <div class="row">
                                     <div class="col-8 col-sm-12 col-xl-8 my-auto">
                                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                                            <h2 class="mb-0" th:text="${lecturer1.size()}"></h2>
+                                            <h2 class="mb-0" th:text="${total.size()}"></h2>
                                             <p class="text-success ms-2 mb-0 font-weight-medium"></p>
                                         </div>
                                         <h6 class="text-muted font-weight-normal">Được cập nhập vào năm 2023</h6>
@@ -383,6 +383,24 @@
                                         </tr>
                                         </tbody>
                                     </table>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item btn btn-dark active1">
+                                                <a class="page-link" th:if="${lecturer1.hasPrevious()}"
+                                                   th:href="@{/admin/lecturer(page=${lecturer1.number -1},nameSearch=${nameSearch})}">Previous</a>
+                                            </li>
+                                            <li class="page-item btn btn-dark active1"><a class="page-link"
+                                                                                          th:href="@{/admin/lecturer(page=0,nameSearch=${nameSearch})}">1</a>
+                                            </li>
+                                            <li class="page-item btn btn-dark active1"><a class="page-link"
+                                                                                          th:href="@{/admin/lecturer(page=1,nameSearch=${nameSearch})}">2</a>
+                                            </li>
+                                            <li class="page-item btn btn-dark active1">
+                                                <a class="page-link" th:if="${lecturer1.hasNext()}"
+                                                   th:href="@{/admin/lecturer(page=${lecturer1.number +1},nameSearch=${nameSearch})}">Next</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>

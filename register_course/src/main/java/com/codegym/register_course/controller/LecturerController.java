@@ -2,6 +2,9 @@ package com.codegym.register_course.controller;
 
 import com.codegym.register_course.model.Lecturer;
 import com.codegym.register_course.service.ILecturerService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,9 +33,21 @@ public class LecturerController {
     }
     @GetMapping("/lecturer")
     public String showListAdmin(
-            Model model
-    ){
-        model.addAttribute("lecturer1", service.findAllLecturer());
+            Model model, @RequestParam(defaultValue = "", required = false) String searchName,
+            @PageableDefault(size = 5) Pageable pageable) {
+        Page<Lecturer> lecturerPage = null;
+        model.addAttribute("searchName", searchName);
+        model.addAttribute("total",service.findAllLecturer());
+        if (searchName != null) {
+            lecturerPage = service.findAllByName(searchName, pageable);
+        } else {
+            lecturerPage = service.findAll(pageable);
+        }
+        model.addAttribute("lecturer1", lecturerPage);
+        model.addAttribute("pageNumberList", IntStream.rangeClosed(1, lecturerPage.getTotalPages()).toArray());
+        model.addAttribute("pageNumber", pageable.getPageNumber());
+        model.addAttribute("nameSearch", searchName);
+        model.addAttribute("pageSize", pageable.getPageSize());
         return "/admin/lecturer/list";
     }
 
@@ -86,4 +102,5 @@ public class LecturerController {
         service.removeById(lecturerID);
         return "redirect:/admin/lecturer";
     }
+
 }

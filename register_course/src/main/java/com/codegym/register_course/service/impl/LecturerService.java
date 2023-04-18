@@ -19,8 +19,8 @@ public class LecturerService implements ILecturerService {
     }
 
     @Override
-    public Page<Lecturer> findAll(String lecturerName, Pageable pageable) {
-        return iLecturerRepository.findAll(pageable);
+    public Page<Lecturer> findAllByName(String nameSearch, Pageable pageable) {
+        return iLecturerRepository.findAllByLecturerNameContaining(nameSearch, pageable);
     }
 
     @Override
@@ -47,4 +47,11 @@ public class LecturerService implements ILecturerService {
     public void removeById(Integer lecturerID) {
         iLecturerRepository.deleteById(lecturerID);
     }
+
+
+    @Override
+    public Page<Lecturer> findAll(Pageable pageable) {
+        return iLecturerRepository.findAll(pageable);
+    }
+
 }
