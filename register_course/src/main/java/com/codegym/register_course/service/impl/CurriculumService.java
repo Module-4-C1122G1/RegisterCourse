@@ -22,7 +22,12 @@ public class CurriculumService implements ICurriculumService {
     }
 
     @Override
-    public List<Curriculum> findAllCurriculum() {
+    public Page<Curriculum> findAllCurriculum(Pageable pageable) {
+        return this.curriculumRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Curriculum> findAll() {
         return this.curriculumRepository.findAll();
     }
 
@@ -32,8 +37,9 @@ public class CurriculumService implements ICurriculumService {
     }
 
     @Override
-    public void removeById(Integer curriculumID) {
-        this.curriculumRepository.deleteById(curriculumID);
+    public void delete(Integer curriculumID, Curriculum curriculum) {
+        this.curriculumRepository.delete(curriculum);
+
     }
 
     @Override
@@ -45,4 +51,10 @@ public class CurriculumService implements ICurriculumService {
     public Optional<Curriculum> findById(Integer curriculumID) {
         return this.curriculumRepository.findById(curriculumID);
     }
+
+    @Override
+    public Curriculum getByID(Integer curriculumID) {
+        return this.curriculumRepository.findById(curriculumID).get();
+    }
+
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Corona Admin</title>
+  <title>Quản lý Chương trình giảng dạy</title>
   <link rel="stylesheet" th:href="@{/admin/assets/vendors/mdi/css/materialdesignicons.min.css}">
   <link rel="stylesheet" th:href="@{/admin/assets/vendors/css/vendor.bundle.base.css}">
   <link rel="stylesheet" th:href="@{/admin/assets/vendors/jvectormap/jquery-jvectormap.css}">
@@ -484,9 +484,9 @@
         </button>
       </div>
     </nav>
-    <form style="margin: 0 auto" action="/admin/curriculum/edit" method="post" th:object="${curriculumEdit}">
+    <form style="margin: 0 auto;margin-top: 60px;" action="/admin/curriculum/edit" method="post" th:object="${curriculumEdit}">
       <div class="container">
-        <div class="card"><p class="h-1">Create Event</p>
+        <div class="card"><p class="h-1">Cập nhập chương trình học</p>
           <div class="bar mb-3"></div>
           <div class="row">
             <div class="col-12"><p>ID</p>
@@ -510,9 +510,12 @@
               </div>
             </div>
               <p class="bar2 mt-4"></p></div>
-            <div class="col-12"><p>Thêm ảnh</p>
-              <div class="box"><input class="form-control" type="text" placeholder="Thêm ảnh" th:field="*{curriculumImg}">
-                <div class="add btn btn-outline-secondary">Add</div>
+            <div class="col-12">
+              <p>Thêm ảnh</p>
+              <div class="box">
+                <input class="form-control" type="text" id="image-url" name="image-url" placeholder="Thêm ảnh" th:field="*{curriculumImg}">
+                <input type="file" id="file-input">
+                <button type="button" id="upload-btn">Tải ảnh lên server</button>
               </div>
             </div>
             <div class="col-12">
@@ -539,6 +542,40 @@
     </form>
   </div>
 </div>
+<script>
+  const button = document.getElementById("upload-btn");
+  const fileInput = document.getElementById("file-input");
+  const imageUrlInput = document.getElementById("image-url");
+  let clicked = false; // Tạo biến flag ban đầu
+
+  button.addEventListener("click", function(event) {
+    event.preventDefault(); // Ngăn chặn form đăng ký bị tự động submit
+
+    if (!clicked) { // Kiểm tra nếu chưa được click
+      clicked = true; // Set biến flag thành true
+      const apiUrl = "https://api.imgbb.com/1/upload";
+      const apiKey = "9ef525f231d4403642c7a187f6843de0";
+      const imgFile = fileInput.files[0];
+
+      const formData = new FormData();
+      formData.append("image", imgFile);
+      formData.append("key", apiKey);
+
+      fetch(apiUrl, {
+        method: "POST",
+        body: formData
+      })
+              .then(function(response) {
+                return response.json();
+              })
+              .then(function(data) {
+                const imgUrl = data.data.url;
+                imageUrlInput.value = imgUrl; // Gán URL của ảnh đã tải lên vào giá trị của thẻ input
+                clicked = false; // Set biến flag lại thành false để có thể click lại
+              });
+    }
+  });
+</script>
 <script th:src="@{/admin/assets/vendors/js/vendor.bundle.base.js}"></script>
 <script th:src="@{/admin/assets/vendors/chart.js/Chart.min.js}"></script>
 <script th:src="@{/admin/assets/vendors/progressbar.js/progressbar.min.js}"></script>
