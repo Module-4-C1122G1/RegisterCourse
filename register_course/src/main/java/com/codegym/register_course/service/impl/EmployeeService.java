@@ -20,8 +20,8 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public Page<Employee> findAll(String employeeName, Pageable pageable) {
-        return null;
+    public Page<Employee> findAllByName(String nameSearch, Pageable pageable) {
+        return repository.findAllByEmployeeNameContaining(nameSearch,pageable);
     }
 
     @Override
@@ -45,7 +45,18 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public void removeById(Integer employeeID) {
+    public void delete(Integer employeeID, Employee employee) {
+        repository.delete(employee);
+    }
 
+
+    @Override
+    public Page<Employee> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+
+    @Override
+    public Employee getEmployeeByID(Integer employeeID) {
+        return repository.findById(employeeID).get();
     }
 }

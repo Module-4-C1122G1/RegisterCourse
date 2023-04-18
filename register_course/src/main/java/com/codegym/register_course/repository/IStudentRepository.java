@@ -9,5 +9,6 @@ public interface IStudentRepository extends JpaRepository<Student,Integer> {
     void deleteStudentByStudentID(Integer studentID);
     Page<Student> findAllByStudentNameContaining(String studentName, Pageable pageable);
     Page<Student> findAll(Pageable pageable);
+    void deleteAllByStudentID(Integer studentID);
 
 }
