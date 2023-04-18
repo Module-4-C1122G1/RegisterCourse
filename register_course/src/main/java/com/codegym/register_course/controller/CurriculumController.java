@@ -41,7 +41,7 @@ public class CurriculumController {
         model.addAttribute("nameSearch", searchName);
         model.addAttribute("pageSize", pageable.getPageSize());
         return "admin/curriculum/curriculum";
-    };
+    }
     @GetMapping("/create")
     public String showCreate(
             Model model
