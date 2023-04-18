@@ -358,8 +358,8 @@
                                          class="rounded-circle profile-pic">
                                 </div>
                                 <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
-                                    <p class="text-muted mb-0"> 1 Minutes ago </p>
+                                    <p class="preview-subject ellipsis mb-1" th:text="${msg}"></p>
+                                    <p class="text-muted mb-0" id="currentTime"></p>
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
@@ -493,16 +493,22 @@
                         <div class=" box mb-3"><input type="text" class="form-control"
                                                       placeholder="Vui lòng nhập tên Chương trình học" th:field="*{curriculumName}">
                         </div>
+                        <p th:if="${#fields.hasErrors('curriculumName')}" th:errors="*{curriculumName}" style="color: red"></p>
+
                     </div>
                     <div class="col-12"><p>Mô tả chương trình học</p>
                         <div class="box"><input class="form-control" type="text"
                                                 placeholder="Vui lòng nhập mô tả Chương trình học" th:field="*{curriculumDescription}">
                         </div>
+                        <p th:if="${#fields.hasErrors('curriculumDescription')}" th:errors="*{curriculumDescription}" style="color: red"></p>
+
                     </div>
                     <div class="col-12"><p>Trạng thái chương trình học</p>
                         <div class="box"><input class="form-control" type="text"
                                                 placeholder="Vui lòng nhập trạng thái chương trình học" th:field="*{curriculumStatus}">
                         </div>
+                        <p th:if="${#fields.hasErrors('curriculumStatus')}" th:errors="*{curriculumStatus}" style="color: red"></p>
+
                     </div>
                     <div class="col-12">
                         <p>Thêm ảnh</p>
@@ -512,6 +518,8 @@
                         <input type="file" id="file-input">
                         <button type="button" id="upload-btn">Tải ảnh lên server</button>
                     </div>
+                    <p th:if="${#fields.hasErrors('curriculumImg')}" th:errors="*{curriculumImg}" style="color: red"></p>
+
                     <div class="col-12">
                         <div class="d-flex align-items-center mt-4">
                             <div class="pic"><img

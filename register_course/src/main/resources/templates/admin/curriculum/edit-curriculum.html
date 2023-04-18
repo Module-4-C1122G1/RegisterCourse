@@ -1,580 +1,594 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Quản lý Chương trình giảng dạy</title>
-  <link rel="stylesheet" th:href="@{/admin/assets/vendors/mdi/css/materialdesignicons.min.css}">
-  <link rel="stylesheet" th:href="@{/admin/assets/vendors/css/vendor.bundle.base.css}">
-  <link rel="stylesheet" th:href="@{/admin/assets/vendors/jvectormap/jquery-jvectormap.css}">
-  <link rel="stylesheet" th:href="@{/admin/assets/vendors/flag-icon-css/css/flag-icon.min.css}">
-  <link rel="stylesheet" th:href="@{/admin/assets/vendors/owl-carousel-2/owl.carousel.min.css}">
-  <link rel="stylesheet" th:href="@{/admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css}">
-  <link rel="stylesheet" th:href="@{/admin/assets/css/style.css}">
-  <link rel="shortcut icon" th:href="@{/admin/assets/images/favicon.png}"/>
-  <style>
-    * {
-      font-family: Roboto;
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Quản lý Chương trình giảng dạy</title>
+    <link rel="stylesheet" th:href="@{/admin/assets/vendors/mdi/css/materialdesignicons.min.css}">
+    <link rel="stylesheet" th:href="@{/admin/assets/vendors/css/vendor.bundle.base.css}">
+    <link rel="stylesheet" th:href="@{/admin/assets/vendors/jvectormap/jquery-jvectormap.css}">
+    <link rel="stylesheet" th:href="@{/admin/assets/vendors/flag-icon-css/css/flag-icon.min.css}">
+    <link rel="stylesheet" th:href="@{/admin/assets/vendors/owl-carousel-2/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css}">
+    <link rel="stylesheet" th:href="@{/admin/assets/css/style.css}">
+    <link rel="shortcut icon" th:href="@{/admin/assets/images/favicon.png}"/>
+    <style>
+        * {
+            font-family: Roboto;
+        }
 
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .container {
-      background-color: rgba(24, 23, 23, 0)
-    }
+        .container {
+            background-color: rgba(24, 23, 23, 0)
+        }
 
-    .card {
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 20px;
-      color: white;
-    }
+        .card {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            color: white;
+        }
 
-    .card .h-1 {
-      font-size: 24px;
-      font-weight: 600
-    }
+        .card .h-1 {
+            font-size: 24px;
+            font-weight: 600
+        }
 
-    .card .bar {
-      border-top: 1px solid white
-    }
+        .card .bar {
+            border-top: 1px solid white
+        }
 
-    .card .bar2 {
-      border-top: 1px dashed white
-    }
+        .card .bar2 {
+            border-top: 1px dashed white
+        }
 
-    .card .form-control {
-      background-color: #252525;
-      border: none;
-      box-shadow: none;
-      color: white;
-      height: 40px;
-      padding: 3px;
-      padding-left: 10px
-    }
+        .card .form-control {
+            background-color: #252525;
+            border: none;
+            box-shadow: none;
+            color: white;
+            height: 40px;
+            padding: 3px;
+            padding-left: 10px
+        }
 
-    .box {
-      position: relative
-    }
+        .box {
+            position: relative
+        }
 
-    .btn {
-      position: absolute;
-      top: 50%;
-      right: 4px;
-      transform: translateY(-50%);
-      height: 32px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      background-color: #2e2e2e;
-      color: #fff
-    }
+        .btn {
+            position: absolute;
+            top: 50%;
+            right: 4px;
+            transform: translateY(-50%);
+            height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            background-color: #2e2e2e;
+            color: #fff
+        }
 
-    .fas.fa-plus {
-      font-size: 12px
-    }
+        .fas.fa-plus {
+            font-size: 12px
+        }
 
-    .add.btn {
-      position: absolute;
-      top: 50%;
-      right: 0px;
-      height: 100%;
-      transform: translateY(-50%);
-      border-radius: 5px
-    }
+        .add.btn {
+            position: absolute;
+            top: 50%;
+            right: 0px;
+            height: 100%;
+            transform: translateY(-50%);
+            border-radius: 5px
+        }
 
-    span.fas.fa-stopwatch,
-    span.fas.fa-calendar-alt,
-    .arrow {
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      color: #8f8d8d
-    }
+        span.fas.fa-stopwatch,
+        span.fas.fa-calendar-alt,
+        .arrow {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: #8f8d8d
+        }
 
-    .fas.fa-check-circle {
-      color: green
-    }
+        .fas.fa-check-circle {
+            color: green
+        }
 
-    .dis {
-      font-size: 12px
-    }
+        .dis {
+            font-size: 12px
+        }
 
-    .pic {
-      position: relative;
-      margin-right: 8px
-    }
+        .pic {
+            position: relative;
+            margin-right: 8px
+        }
 
-    img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover
-    }
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover
+        }
 
-    .pic .fas.fa-times {
-      position: absolute;
-      top: 0px;
-      right: 3px;
-      font-size: 10px;
-      height: 18px;
-      width: 18px;
-      border: 2px solid black;
-      background-color: #8f8d8d;
-      color: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%
-    }
+        .pic .fas.fa-times {
+            position: absolute;
+            top: 0px;
+            right: 3px;
+            font-size: 10px;
+            height: 18px;
+            width: 18px;
+            border: 2px solid black;
+            background-color: #8f8d8d;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%
+        }
 
-    .rounded-circle {
-      height: 30px;
-      width: 30px;
-      background-color: #252525;
-      color: #8f8d8d;
-      display: flex;
-      align-items: center;
-      justify-content: center
-    }
+        .rounded-circle {
+            height: 30px;
+            width: 30px;
+            background-color: #252525;
+            color: #8f8d8d;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
 
-    .rounded-circle .fas {
-      font-size: 10px
-    }
+        .rounded-circle .fas {
+            font-size: 10px
+        }
 
-    .rounded-circle .number {
-      font-size: 14px;
-      font-weight: 800
-    }
+        .rounded-circle .number {
+            font-size: 14px;
+            font-weight: 800
+        }
 
-    .Radio.form-control {
-      padding: 3px;
-      width: 140px
-    }
+        .Radio.form-control {
+            padding: 3px;
+            width: 140px
+        }
 
-    label.radio {
-      cursor: pointer
-    }
+        label.radio {
+            cursor: pointer
+        }
 
-    label.radio input {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      visibility: hidden;
-      pointer-events: none
-    }
+        label.radio input {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            visibility: hidden;
+            pointer-events: none
+        }
 
-    label.radio span {
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 64px;
-      height: 34px;
-      color: #fff;
-      font-size: 14px;
-      border-radius: 3px;
-      text-transform: uppercase
-    }
+        label.radio span {
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 34px;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 3px;
+            text-transform: uppercase
+        }
 
-    label.radio input:checked + span {
-      background-color: #2e2e2e
-    }
+        label.radio input:checked + span {
+            background-color: #2e2e2e
+        }
 
-    ::placeholder {
-      font-size: 14px
-    }
-  </style>
+        ::placeholder {
+            font-size: 14px
+        }
+    </style>
 </head>
 <body>
 <div class="container-scroller">
-  <nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-      <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo3.png}"
-                                                                    style="height: 75px" alt="logo"/></a>
-      <a class="sidebar-brand brand-logo-mini" href="../index.html"><img
-              th:src="@{/admin/assets/images/logo3.png}"
-              alt="logo"/></a>
-    </div>
-    <ul class="nav">
-      <li class="nav-item profile">
-        <div class="profile-desc">
-          <div class="profile-pic">
-            <div class="count-indicator">
-              <img class="img-xs rounded-circle "
-                   src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
-                   alt="">
-              <span class="count bg-success"></span>
-            </div>
-            <div class="profile-name">
-              <h5 class="mb-0 font-weight-normal">Đạt Nguyễn</h5>
-            </div>
-          </div>
-          <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
-                  class="mdi mdi-dots-vertical"></i></a>
-          <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
-               aria-labelledby="profile-dropdown">
-            <a href="#" class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <div class="preview-icon bg-dark rounded-circle">
-                  <i class="mdi mdi-settings text-primary"></i>
-                </div>
-              </div>
-              <div class="preview-item-content">
-                <p class="preview-subject ellipsis mb-1 text-small">Thông tin tài khoản</p>
-              </div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <div class="preview-icon bg-dark rounded-circle">
-                  <i class="mdi mdi-onepassword  text-info"></i>
-                </div>
-              </div>
-              <div class="preview-item-content">
-                <p class="preview-subject ellipsis mb-1 text-small">Đặt lại mật khẩu</p>
-              </div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <div class="preview-icon bg-dark rounded-circle">
-                  <i class="mdi mdi-calendar-today text-success"></i>
-                </div>
-              </div>
-              <div class="preview-item-content">
-                <p class="preview-subject ellipsis mb-1 text-small">Lịch lên lớp</p>
-              </div>
-            </a>
-          </div>
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+            <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo3.png}"
+                                                                          style="height: 75px" alt="logo"/></a>
+            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img
+                    th:src="@{/admin/assets/images/logo3.png}"
+                    alt="logo"/></a>
         </div>
-      </li>
-      <li class="nav-item menu-items">
-        <a class="nav-link" href="../index.html">
+        <ul class="nav">
+            <li class="nav-item profile">
+                <div class="profile-desc">
+                    <div class="profile-pic">
+                        <div class="count-indicator">
+                            <img class="img-xs rounded-circle "
+                                 src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
+                                 alt="">
+                            <span class="count bg-success"></span>
+                        </div>
+                        <div class="profile-name">
+                            <h5 class="mb-0 font-weight-normal">Đạt Nguyễn</h5>
+                        </div>
+                    </div>
+                    <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
+                            class="mdi mdi-dots-vertical"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
+                         aria-labelledby="profile-dropdown">
+                        <a href="#" class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                    <i class="mdi mdi-settings text-primary"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <p class="preview-subject ellipsis mb-1 text-small">Thông tin tài khoản</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                    <i class="mdi mdi-onepassword  text-info"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <p class="preview-subject ellipsis mb-1 text-small">Đặt lại mật khẩu</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                    <i class="mdi mdi-calendar-today text-success"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <p class="preview-subject ellipsis mb-1 text-small">Lịch lên lớp</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="../index.html">
               <span class="menu-icon">
                 <i class="mdi mdi-book-open"></i>
               </span>
-          <span class="menu-title">Khóa học</span>
-        </a>
-      </li>
-      <li class="nav-item menu-items">
-        <a class="nav-link" onclick="location.href = '/admin/curriculum' ">
+                    <span class="menu-title">Khóa học</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" onclick="location.href = '/admin/curriculum' ">
               <span class="menu-icon">
                 <i class="mdi mdi-account-multiple"></i>
               </span>
-          <span class="menu-title">chương trình học</span>
-        </a>
-      </li>
-      <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
+                    <span class="menu-title">chương trình học</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="pages/forms/basic_elements.html">
               <span class="menu-icon">
                 <i class="mdi mdi-postage-stamp"></i>
               </span>
-          <span class="menu-title">Blog</span>
-        </a>
-      </li>
-      <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/tables/basic-table.html">
+                    <span class="menu-title">Blog</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="pages/tables/basic-table.html">
               <span class="menu-icon">
                 <i class="mdi mdi-account-circle"></i>
               </span>
-          <span class="menu-title">Tài khoản</span>
-        </a>
-      </li>
-      <li class="nav-item menu-items">
-        <a class="nav-link" onclick="location.href = '/admin/student'">
+                    <span class="menu-title">Tài khoản</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" onclick="location.href = '/admin/student'">
               <span class="menu-icon">
                 <i class="mdi mdi-account-badge"></i>
               </span>
-          <span class="menu-title">Học viên</span>
-        </a>
-      </li>
-      <li class="nav-item menu-items">
-        <a class="nav-link" onclick="location.href = '/admin/employee' ">
+                    <span class="menu-title">Học viên</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" onclick="location.href = '/admin/employee' ">
               <span class="menu-icon">
                 <i class="mdi mdi-account-multiple"></i>
               </span>
-          <span class="menu-title">Nhân viên</span>
-        </a>
-      </li>
-      <li class="nav-item menu-items">
-        <a class="nav-link" onclick="location.href = '/admin/curriculum' ">
+                    <span class="menu-title">Nhân viên</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" onclick="location.href = '/admin/curriculum' ">
               <span class="menu-icon">
                 <i class="mdi mdi-account-multiple"></i>
               </span>
-          <span class="menu-title">Chương trình giảng dạy</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <!-- partial -->
-  <div class="container-fluid page-body-wrapper">
-    <!-- partial:partials/_navbar.html -->
-    <nav class="navbar p-0 fixed-top d-flex flex-row">
-      <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo-mini" href="../index.html"><img src="assets/images/logo-mini.svg"
-                                                                          alt="logo"/></a>
-      </div>
-      <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-          <span class="mdi mdi-menu"></span>
-        </button>
-        <ul class="navbar-nav w-100">
-          <li class="nav-item w-100">
-            <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-              <input type="text" class="form-control" placeholder="Tìm kiếm chương trình học">
-            </form>
-          </li>
+                    <span class="menu-title">Chương trình giảng dạy</span>
+                </a>
+            </li>
         </ul>
-        <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item nav-settings d-none d-lg-block">
-            <a class="nav-link" href="#">
-              <i class="mdi mdi-view-grid"></i>
-            </a>
-          </li>
-          <li class="nav-item dropdown border-left">
-            <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
-               data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="mdi mdi-email"></i>
-              <span class="count bg-success"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                 aria-labelledby="messageDropdown">
-              <h6 class="p-3 mb-0">Messages</h6>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <img src="assets/images/faces/face4.jpg" alt="image"
-                       class="rounded-circle profile-pic">
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
-                  <p class="text-muted mb-0"> 1 Minutes ago </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <img src="assets/images/faces/face2.jpg" alt="image"
-                       class="rounded-circle profile-pic">
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
-                  <p class="text-muted mb-0"> 15 Minutes ago </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <img src="assets/images/faces/face3.jpg" alt="image"
-                       class="rounded-circle profile-pic">
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
-                  <p class="text-muted mb-0"> 18 Minutes ago </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <p class="p-3 mb-0 text-center">4 new messages</p>
-            </div>
-          </li>
-          <li class="nav-item dropdown border-left">
-            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
-               data-bs-toggle="dropdown">
-              <i class="mdi mdi-bell"></i>
-              <span class="count bg-danger"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                 aria-labelledby="notificationDropdown">
-              <h6 class="p-3 mb-0">Notifications</h6>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-dark rounded-circle">
-                    <i class="mdi mdi-calendar text-success"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject mb-1">Event today</p>
-                  <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event
-                    today </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-dark rounded-circle">
-                    <i class="mdi mdi-settings text-danger"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject mb-1">Settings</p>
-                  <p class="text-muted ellipsis mb-0"> Update dashboard </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-dark rounded-circle">
-                    <i class="mdi mdi-link-variant text-warning"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject mb-1">Launch Admin</p>
-                  <p class="text-muted ellipsis mb-0"> New admin wow! </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <p class="p-3 mb-0 text-center">See all notifications</p>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
-              <div class="navbar-profile">
-                <img class="img-xs rounded-circle"
-                     src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
-                     alt="">
-                <p class="mb-0 d-none d-sm-block navbar-profile-name">Đạt Nguyễn</p>
-                <i class="mdi mdi-menu-down d-none d-sm-block"></i>
-              </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                 aria-labelledby="profileDropdown">
-              <h6 class="p-3 mb-0">Profile</h6>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-dark rounded-circle">
-                    <i class="mdi mdi-settings text-success"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject mb-1">Thông tin tài khoản</p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-dark rounded-circle">
-                    <i class="mdi mdi-logout text-danger"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject mb-1">Đăng xuất</p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <p class="p-3 mb-0 text-center">Cài đặt</p>
-            </div>
-          </li>
-        </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                data-toggle="offcanvas">
-          <span class="mdi mdi-format-line-spacing"></span>
-        </button>
-      </div>
     </nav>
-    <form style="margin: 0 auto;margin-top: 60px;" action="/admin/curriculum/edit" method="post" th:object="${curriculumEdit}">
-      <div class="container">
-        <div class="card"><p class="h-1">Cập nhập chương trình học</p>
-          <div class="bar mb-3"></div>
-          <div class="row">
-            <div class="col-12"><p>ID</p>
-              <div class="box"><input class="form-control" type="hidden"
-                                      placeholder="" th:field="*{curriculumID}">
-              </div>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar p-0 fixed-top d-flex flex-row">
+            <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo-mini" href="../index.html"><img src="assets/images/logo-mini.svg"
+                                                                                  alt="logo"/></a>
             </div>
-            <div class="col-12"><p class="mb-2">Tên Chương trình học</p>
-              <div class=" box mb-3"><input type="text" class="form-control"
-                                            placeholder="Vui lòng nhập tên chương trình học" th:field="*{curriculumName}">
-              </div>
+            <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+                <ul class="navbar-nav w-100">
+                    <li class="nav-item w-100">
+                        <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm chương trình học">
+                        </form>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-settings d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-view-grid"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown border-left">
+                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-email"></i>
+                            <span class="count bg-success"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                             aria-labelledby="messageDropdown">
+                            <h6 class="p-3 mb-0">Messages</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="assets/images/faces/face4.jpg" alt="image"
+                                         class="rounded-circle profile-pic">
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
+                                    <p class="text-muted mb-0"> 1 Minutes ago </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="assets/images/faces/face2.jpg" alt="image"
+                                         class="rounded-circle profile-pic">
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
+                                    <p class="text-muted mb-0"> 15 Minutes ago </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="assets/images/faces/face3.jpg" alt="image"
+                                         class="rounded-circle profile-pic">
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
+                                    <p class="text-muted mb-0"> 18 Minutes ago </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <p class="p-3 mb-0 text-center">4 new messages</p>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown border-left">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                           data-bs-toggle="dropdown">
+                            <i class="mdi mdi-bell"></i>
+                            <span class="count bg-danger"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                             aria-labelledby="notificationDropdown">
+                            <h6 class="p-3 mb-0">Notifications</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-calendar text-success"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject mb-1">Event today</p>
+                                    <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event
+                                        today </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-settings text-danger"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject mb-1">Settings</p>
+                                    <p class="text-muted ellipsis mb-0"> Update dashboard </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-link-variant text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject mb-1">Launch Admin</p>
+                                    <p class="text-muted ellipsis mb-0"> New admin wow! </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <p class="p-3 mb-0 text-center">See all notifications</p>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
+                            <div class="navbar-profile">
+                                <img class="img-xs rounded-circle"
+                                     src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
+                                     alt="">
+                                <p class="mb-0 d-none d-sm-block navbar-profile-name">Đạt Nguyễn</p>
+                                <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                             aria-labelledby="profileDropdown">
+                            <h6 class="p-3 mb-0">Profile</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-settings text-success"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject mb-1">Thông tin tài khoản</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-logout text-danger"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject mb-1">Đăng xuất</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <p class="p-3 mb-0 text-center">Cài đặt</p>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                        data-toggle="offcanvas">
+                    <span class="mdi mdi-format-line-spacing"></span>
+                </button>
             </div>
-            <div class="col-12"><p>Description</p>
-              <div class="box"><input class="form-control" type="text"
-                                      placeholder="Vui lòng nhập mô tả chương trình học" th:field="*{curriculumDescription}">
-              </div>
-            </div>
-            <div class="col-12"><p>Trạng thái</p>
-              <div class="box"><input class="form-control" type="text"
-                                      placeholder="Vui lòng nhập trạng thái" th:field="*{curriculumStatus}">
-              </div>
-            </div>
-              <p class="bar2 mt-4"></p></div>
-            <div class="col-12">
-              <p>Thêm ảnh</p>
-              <div class="box">
-                <input class="form-control" type="text" id="image-url" name="image-url" placeholder="Thêm ảnh" th:field="*{curriculumImg}">
-                <input type="file" id="file-input">
-                <button type="button" id="upload-btn">Tải ảnh lên server</button>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="d-flex align-items-center mt-4">
-                <div class="pic"><img
-                        src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                        alt=""> <span class="fas fa-times"></span></div>
-                <div class="pic"><img
-                        src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                        alt=""> <span class="fas fa-times"></span></div>
-                <div class="pic"><img
-                        src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                        alt=""> <span class="fas fa-times"></span></div>
-                <div class="rounded-circle"><span class="fas fa-plus"></span> <span class="number">3</span>
+        </nav>
+        <form style="margin: 0 auto;margin-top: 60px;" action="/admin/curriculum/edit" method="post"
+              th:object="${curriculumEdit}">
+            <div class="container">
+                <div class="card"><p class="h-1">Cập nhập chương trình học</p>
+                    <div class="bar mb-3"></div>
+                    <div class="row">
+                        <div class="col-12"><p>ID</p>
+                            <div class="box"><input class="form-control" type="hidden"
+                                                    placeholder="" th:field="*{curriculumID}">
+                            </div>
+                        </div>
+                        <div class="col-12"><p class="mb-2">Tên Chương trình học</p>
+                            <div class=" box mb-3"><input type="text" class="form-control"
+                                                          placeholder="Vui lòng nhập tên chương trình học"
+                                                          th:field="*{curriculumName}">
+                            </div>
+                            <p th:if="${#fields.hasErrors('curriculumName')}" th:errors="*{curriculumName}"
+                               style="color: red"></p>
+                        </div>
+                        <div class="col-12"><p>Description</p>
+                            <div class="box"><input class="form-control" type="text"
+                                                    placeholder="Vui lòng nhập mô tả chương trình học"
+                                                    th:field="*{curriculumDescription}">
+                            </div>
+                            <p th:if="${#fields.hasErrors('curriculumDescription')}"
+                               th:errors="*{curriculumDescription}" style="color: red"></p>
+                        </div>
+                        <div class="col-12"><p>Trạng thái</p>
+                            <div class="box"><input class="form-control" type="text"
+                                                    placeholder="Vui lòng nhập trạng thái"
+                                                    th:field="*{curriculumStatus}">
+                            </div>
+                            <p th:if="${#fields.hasErrors('curriculumStatus')}" th:errors="*{curriculumStatus}"
+                               style="color: red"></p>
+                        </div>
+                        <p class="bar2 mt-4"></p></div>
+                    <div class="col-12">
+                        <p>Thêm ảnh</p>
+                        <div class="box">
+                            <input class="form-control" type="text" id="image-url" name="image-url"
+                                   placeholder="Thêm ảnh" th:field="*{curriculumImg}">
+                            <input type="file" id="file-input">
+                            <button type="button" id="upload-btn">Tải ảnh lên server</button>
+                        </div>
+                        <p th:if="${#fields.hasErrors('curriculumImg')}" th:errors="*{curriculumImg}"
+                           style="color: red"></p>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-center mt-4">
+                            <div class="pic"><img
+                                    src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                    alt=""> <span class="fas fa-times"></span></div>
+                            <div class="pic"><img
+                                    src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                    alt=""> <span class="fas fa-times"></span></div>
+                            <div class="pic"><img
+                                    src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                    alt=""> <span class="fas fa-times"></span></div>
+                            <div class="rounded-circle"><span class="fas fa-plus"></span> <span class="number">3</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <input class="form-control" type="submit" value="Xác nhận chỉnh sửa chương trình học"
+                               style="border: 1px solid #00bb00; border-radius: 15px;margin-top: 20px ">
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="col-12">
-              <input class="form-control" type="submit" value="Xác nhận chỉnh sửa chương trình học" style="border: 1px solid #00bb00; border-radius: 15px;margin-top: 20px ">
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
     </form>
-  </div>
+</div>
 </div>
 <script>
-  const button = document.getElementById("upload-btn");
-  const fileInput = document.getElementById("file-input");
-  const imageUrlInput = document.getElementById("image-url");
-  let clicked = false; // Tạo biến flag ban đầu
+    const button = document.getElementById("upload-btn");
+    const fileInput = document.getElementById("file-input");
+    const imageUrlInput = document.getElementById("image-url");
+    let clicked = false; // Tạo biến flag ban đầu
 
-  button.addEventListener("click", function(event) {
-    event.preventDefault(); // Ngăn chặn form đăng ký bị tự động submit
+    button.addEventListener("click", function (event) {
+        event.preventDefault(); // Ngăn chặn form đăng ký bị tự động submit
 
-    if (!clicked) { // Kiểm tra nếu chưa được click
-      clicked = true; // Set biến flag thành true
-      const apiUrl = "https://api.imgbb.com/1/upload";
-      const apiKey = "9ef525f231d4403642c7a187f6843de0";
-      const imgFile = fileInput.files[0];
+        if (!clicked) { // Kiểm tra nếu chưa được click
+            clicked = true; // Set biến flag thành true
+            const apiUrl = "https://api.imgbb.com/1/upload";
+            const apiKey = "9ef525f231d4403642c7a187f6843de0";
+            const imgFile = fileInput.files[0];
 
-      const formData = new FormData();
-      formData.append("image", imgFile);
-      formData.append("key", apiKey);
+            const formData = new FormData();
+            formData.append("image", imgFile);
+            formData.append("key", apiKey);
 
-      fetch(apiUrl, {
-        method: "POST",
-        body: formData
-      })
-              .then(function(response) {
-                return response.json();
-              })
-              .then(function(data) {
-                const imgUrl = data.data.url;
-                imageUrlInput.value = imgUrl; // Gán URL của ảnh đã tải lên vào giá trị của thẻ input
-                clicked = false; // Set biến flag lại thành false để có thể click lại
-              });
-    }
-  });
+            fetch(apiUrl, {
+                method: "POST",
+                body: formData
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    const imgUrl = data.data.url;
+                    imageUrlInput.value = imgUrl; // Gán URL của ảnh đã tải lên vào giá trị của thẻ input
+                    clicked = false; // Set biến flag lại thành false để có thể click lại
+                });
+        }
+    });
 </script>
 <script th:src="@{/admin/assets/vendors/js/vendor.bundle.base.js}"></script>
 <script th:src="@{/admin/assets/vendors/chart.js/Chart.min.js}"></script>

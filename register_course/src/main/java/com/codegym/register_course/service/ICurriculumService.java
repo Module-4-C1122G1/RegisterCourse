@@ -14,11 +14,11 @@ public interface ICurriculumService {
     Page<Curriculum> findAllCurriculum(Pageable pageable);
     List<Curriculum> findAll();
 
-    void update(Integer curriculumID, Curriculum curriculum);
+    Curriculum update(Integer curriculumID, Curriculum curriculum);
 
     void delete(Integer curriculumID, Curriculum curriculum);
 
-    void save(Curriculum curriculum);
+    Curriculum save(Curriculum curriculum);
 
     Optional<Curriculum> findById(Integer curriculumID);
 
