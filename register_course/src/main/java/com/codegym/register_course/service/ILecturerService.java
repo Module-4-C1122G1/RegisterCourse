@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ILecturerService {
-    Page<Lecturer> findAll(String lecturerName, Pageable pageable);
+    Page<Lecturer> findAllByName(String nameSearch, Pageable pageable);
 
     List<Lecturer> findAllLecturer();
 
@@ -20,4 +20,6 @@ public interface ILecturerService {
     Optional<Lecturer> findById(Integer lecturerID);
 
     void removeById(Integer lecturerID);
+    Page<Lecturer> findAll(Pageable pageable);
+
 }
