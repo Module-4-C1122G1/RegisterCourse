@@ -23,11 +23,10 @@ public class MainController {
         return "/login";
     }
 
-    @RequestMapping(value = {"/index" }, method = RequestMethod.GET)
+    @GetMapping("/index")
     public String getPageWelcome() {
         return "/index";
     }
-
 
     @GetMapping("/")
     public String getPageHome(Model model, HttpServletRequest request) {
@@ -36,13 +35,13 @@ public class MainController {
         return "/index";
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @GetMapping("/logout")
     public String logoutSuccessfulPage(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("mess", "Đăng xuất thành công!");
         return "/login";
     }
 
-    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    @GetMapping("/403")
     public String accessDenied(Model model, Principal principal) {
 
         if (principal != null) {
@@ -57,8 +56,43 @@ public class MainController {
             model.addAttribute("message", message);
 
         }
-
         return "/403Page";
+    }
+
+
+    @GetMapping("/about")
+    public String getPageAbout() {
+        return "/about";
+    }
+
+    @GetMapping("/blog")
+    public String getPageBlog() {
+        return "/blog";
+    }
+
+    @GetMapping("/contact")
+    public String getPageContact() {
+        return "/contact";
+    }
+
+    @GetMapping("/course")
+    public String getPageCourse() {
+        return "/course";
+    }
+
+    @GetMapping("/teacher")
+    public String getPageTeacher() {
+        return "/teacher";
+    }
+
+    @GetMapping("/single")
+    public String getPageSingle() {
+        return "/single";
+    }
+
+    @GetMapping("/register")
+    public String getPageRegister() {
+        return "/register";
     }
 }
 

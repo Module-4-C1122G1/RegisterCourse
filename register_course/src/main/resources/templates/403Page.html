@@ -88,13 +88,12 @@
 <body>
 <div class="text-wrapper">
     <div class="title" data-content="404">
-        <h3 th:if="${message != null}" th:utext="${message}" style="color: red;"></h3>
-
-        <div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
         TRUY CẬP BỊ TỪ CHỐI
     </div>
     <h3 class="text-wrapper text-light">403 - ACCESS DENIED</h3>
+    <h3 th:if="${message != null}" th:utext="${message}" style="color: red;"></h3>
 
+    <div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
     <div class="subtitle">
         Rất tiếc, Bạn không có quyền truy cập trang này.
         <h4 class="text-wrapper">   Oops, You don't have permission to access this page.</h4>

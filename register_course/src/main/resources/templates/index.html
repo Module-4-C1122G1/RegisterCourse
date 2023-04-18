@@ -106,45 +106,24 @@
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
                     </div>
-                    <!--                    <div th:if="${#request.userPrincipal.getName()} == null">-->
-                    <!--                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block"-->
-                    <!--                           onclick="location.href = '/nextPage/login'">Đăng nhập</a>-->
-                    <!--                    </div>-->
-                    <!--                    <form class="d-flex" th:if="${#request.userPrincipal != null}">-->
-                    <!--                        <div class="user-info">-->
-                    <!--                            <img class="img-xs rounded-circle"-->
-                    <!--                                 src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"-->
-                    <!--                                 width="100px" alt="">-->
-                    <!--                            <span class="mb-0 font-weight-normal text-light m-2"-->
-                    <!--                                  th:text="${#request.userPrincipal.getName()}"></span>-->
-                    <!--                        </div>-->
-                    <!--                        &lt;!&ndash; Button trigger modal &ndash;&gt;-->
-                    <!--                        <button type="button" class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" data-bs-toggle="modal"-->
-                    <!--                                data-bs-target="#logoutModal">-->
-                    <!--                            Đăng xuất-->
-                    <!--                        </button>-->
-                    <!--                    </form>-->
-                    <div th:if="${request != null}">
+                    <div th:if="${request != null}" class="d-flex justify-content-between align-items-center">
                         <div th:if="${#request.userPrincipal != null}">
-                            <form class="d-flex">
-                                <div class="user-info">
+                            <form>
+                                <div class="user-info d-flex align-items-center">
                                     <img class="img-xs rounded-circle"
                                          src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
                                          width="100px" alt="">
                                     <span class="mb-0 font-weight-normal m-2"
                                           th:text="${#request.userPrincipal.getName()}"></span>
-                                    <!-- Button trigger modal &ndash;&gt;-->
-                                    <button type="button" class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#logoutModal">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" data-toggle="modal" data-target="#staticBackdrop">
                                         Đăng xuất
                                     </button>
                                 </div>
                             </form>
                         </div>
                         <div th:if="${#request.userPrincipal == null}">
-                            <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block"
-                               onclick="location.href = '/login'">Đăng nhập</a>
+                            <a class="btn btn-primary py-2 px-4 d-none d-lg-block" onclick="location.href = '/login'">Đăng nhập</a>
                         </div>
                     </div>
                 </div>
@@ -722,27 +701,30 @@
     </div>
 </div>
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
 <!-- Modal -->
-<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Đăng xuất</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="staticBackdropLabel">Hôp thoại đăng xuất</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <form action="/logout">
-                <div class="modal-body">
-                    Bạn có chắc chắn muốn đăng xuất?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-primary">Đăng xuất</button>
-                </div>
-            </form>
+            <div class="modal-body">
+                Bạn <span class="mb-0 text-danger font-weight-medium m-2"
+                           th:text="${#request.userPrincipal.getName()}"></span> có chắc chắn muốn đăng xuất?
+            </div>
+            <div class="modal-footer">
+                <form action="/logout" method="get">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                <button type="submit" class="btn btn-primary">Đăng xuất</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script th:src="@{/lib/easing/easing.min.js}"></script>
@@ -750,6 +732,7 @@
 <script th:src="@{/mail/jqBootstrapValidation.min.js}"></script>
 <script th:src="@{/mail/contact.js}"></script>
 <script th:src="@{/js/main.js}"></script>
+
 </body>
 
 </html>
