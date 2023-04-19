@@ -1,6 +1,8 @@
 package com.codegym.register_course.controller;
 
 
+import com.codegym.register_course.model.Course;
+import com.codegym.register_course.service.ICourseService;
 import com.codegym.register_course.service.ILecturerService;
 import com.codegym.register_course.utils.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,10 +23,12 @@ import java.security.Principal;
 
 @Controller
 public class MainController {
+    private final ICourseService courseService;
     private final ILecturerService service;
 
-    public MainController(ILecturerService service) {
+    public MainController(ILecturerService service, ICourseService courseService) {
         this.service = service;
+        this.courseService = courseService;
     }
 
     @GetMapping("/login")
@@ -34,6 +39,7 @@ public class MainController {
     @GetMapping("/index")
     public String getPageWelcome(Model model, HttpServletRequest request) {
         model.addAttribute("request", request);
+        model.addAttribute("courseList", courseService.findAll());
         return "/index";
     }
 
@@ -103,5 +109,10 @@ public class MainController {
     public String getPageRegister() {
         return "/register";
     }
+
+//    @PostMapping("/index/cousre")
+//    public String create(Course course){
+//
+//    }
 }
 

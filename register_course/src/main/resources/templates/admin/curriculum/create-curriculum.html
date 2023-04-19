@@ -202,8 +202,9 @@
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
             <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo4.png}"
                                                                           style="height: 58px" alt="logo"/></a>
-            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img th:src="@{/admin/assets/images/logo4.png}"
-                                                                               alt="logo"/></a>
+            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img
+                    th:src="@{/admin/assets/images/logo4.png}"
+                    alt="logo"/></a>
         </div>
         <ul class="nav">
             <li class="nav-item profile">
@@ -218,46 +219,48 @@
                         <div class="profile-name">
 
                             <div class="profile-name">
-                                <h2 class="mb-0 text-white text-xxl-center font-weight-semi-bold m-2" th:if="${#request.userPrincipal != null}"
+                                <h2 class="mb-0 text-white text-xxl-center font-weight-semi-bold m-2"
+                                    th:if="${#request.userPrincipal != null}"
                                     th:text="${#request.userPrincipal.getName()}"></h2>
-                           </div>
-                    </div>
-                    <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
-                            class="mdi mdi-dots-vertical"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
-                         aria-labelledby="profile-dropdown">
-                        <a href="#" class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-dark rounded-circle">
-                                    <i class="mdi mdi-settings text-primary"></i>
+                            </div>
+                        </div>
+                        <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
+                                class="mdi mdi-dots-vertical"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
+                             aria-labelledby="profile-dropdown">
+                            <a href="#" class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-settings text-primary"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <p class="preview-subject ellipsis mb-1 text-small">Thông tin tài khoản</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-dark rounded-circle">
-                                    <i class="mdi mdi-onepassword  text-info"></i>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1 text-small">Thông tin tài khoản</p>
                                 </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <p class="preview-subject ellipsis mb-1 text-small">Đặt lại mật khẩu</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-dark rounded-circle">
-                                    <i class="mdi mdi-calendar-today text-success"></i>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-onepassword  text-info"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <p class="preview-subject ellipsis mb-1 text-small">Lịch lên lớp</p>
-                            </div>
-                        </a>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1 text-small">Đặt lại mật khẩu</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-calendar-today text-success"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1 text-small">Lịch lên lớp</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </li>
@@ -315,6 +318,14 @@
                 <i class="mdi mdi-account-multiple"></i>
               </span>
                     <span class="menu-title">Chương trình giảng dạy</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" onclick="location.href = '/admin/enrollment' ">
+              <span class="menu-icon">
+                <i class="mdi mdi-account-multiple"></i>
+              </span>
+                    <span class="menu-title">Đăng ký khóa học</span>
                 </a>
             </li>
         </ul>
@@ -486,66 +497,77 @@
                 </button>
             </div>
         </nav>
-      <form style="margin: 0 auto;margin-top: 60px;" action="/admin/curriculum/create" method="post" th:object="${curriculumCreate}">
-        <div class="container">
-            <div class="card"><p class="h-1">Thêm mới chương trình học</p>
-                <div class="bar mb-3"></div>
-                <div class="row">
-                    <div class="col-12"><p class="mb-2">Tên Chương trình học</p>
-                        <div class=" box mb-3"><input type="text" class="form-control"
-                                                      placeholder="Vui lòng nhập tên Chương trình học" th:field="*{curriculumName}">
-                        </div>
-                        <p th:if="${#fields.hasErrors('curriculumName')}" th:errors="*{curriculumName}" style="color: red"></p>
+        <form style="margin: 0 auto;margin-top: 60px;" action="/admin/curriculum/create" method="post"
+              th:object="${curriculumCreate}">
+            <div class="container">
+                <div class="card"><p class="h-1">Thêm mới chương trình học</p>
+                    <div class="bar mb-3"></div>
+                    <div class="row">
+                        <div class="col-12"><p class="mb-2">Tên Chương trình học</p>
+                            <div class=" box mb-3"><input type="text" class="form-control"
+                                                          placeholder="Vui lòng nhập tên Chương trình học"
+                                                          th:field="*{curriculumName}">
+                            </div>
+                            <p th:if="${#fields.hasErrors('curriculumName')}" th:errors="*{curriculumName}"
+                               style="color: red"></p>
 
-                    </div>
-                    <div class="col-12"><p>Mô tả chương trình học</p>
-                        <div class="box"><input class="form-control" type="text"
-                                                placeholder="Vui lòng nhập mô tả Chương trình học" th:field="*{curriculumDescription}">
                         </div>
-                        <p th:if="${#fields.hasErrors('curriculumDescription')}" th:errors="*{curriculumDescription}" style="color: red"></p>
+                        <div class="col-12"><p>Mô tả chương trình học</p>
+                            <div class="box"><input class="form-control" type="text"
+                                                    placeholder="Vui lòng nhập mô tả Chương trình học"
+                                                    th:field="*{curriculumDescription}">
+                            </div>
+                            <p th:if="${#fields.hasErrors('curriculumDescription')}"
+                               th:errors="*{curriculumDescription}" style="color: red"></p>
 
-                    </div>
-                    <div class="col-12"><p>Trạng thái chương trình học</p>
-                        <div class="box"><input class="form-control" type="text"
-                                                placeholder="Vui lòng nhập trạng thái chương trình học" th:field="*{curriculumStatus}">
                         </div>
-                        <p th:if="${#fields.hasErrors('curriculumStatus')}" th:errors="*{curriculumStatus}" style="color: red"></p>
+                        <div class="col-12"><p>Trạng thái chương trình học</p>
+                            <div class="box"><input class="form-control" type="text"
+                                                    placeholder="Vui lòng nhập trạng thái chương trình học"
+                                                    th:field="*{curriculumStatus}">
+                            </div>
+                            <p th:if="${#fields.hasErrors('curriculumStatus')}" th:errors="*{curriculumStatus}"
+                               style="color: red"></p>
 
-                    </div>
-                    <div class="col-12">
-                        <p>Thêm ảnh</p>
-                        <div class="box">
-                            <input class="form-control" type="text" id="image-url" name="image-url" th:field="*{curriculumImg}">
                         </div>
-                        <input type="file" id="file-input">
-                        <button type="button" id="upload-btn">Tải ảnh lên server</button>
-                    </div>
-                    <p th:if="${#fields.hasErrors('curriculumImg')}" th:errors="*{curriculumImg}" style="color: red"></p>
+                        <div class="col-12">
+                            <p>Thêm ảnh</p>
+                            <div class="box">
+                                <input class="form-control" type="text" id="image-url" name="image-url"
+                                       th:field="*{curriculumImg}">
+                            </div>
+                            <input type="file" id="file-input">
+                            <button type="button" id="upload-btn">Tải ảnh lên server</button>
+                        </div>
+                        <p th:if="${#fields.hasErrors('curriculumImg')}" th:errors="*{curriculumImg}"
+                           style="color: red"></p>
 
-                    <div class="col-12">
-                        <div class="d-flex align-items-center mt-4">
-                            <div class="pic"><img
-                                    src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                                    alt=""> <span class="fas fa-times"></span></div>
-                            <div class="pic"><img
-                                    src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                                    alt=""> <span class="fas fa-times"></span></div>
-                            <div class="pic"><img
-                                    src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                                    alt=""> <span class="fas fa-times"></span></div>
-                            <!-- <div class="pic"> <img src="https://images.pexels.com/photos/2078265/pexels-photo-2078265.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt=""> <span class="fas fa-times"></span> </div> -->
-                            <!-- <div class="pic"> <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt=""> <span class="fas fa-times"></span> </div> -->
-                            <div class="rounded-circle"><span class="fas fa-plus"></span> <span class="number">3</span>
+                        <div class="col-12">
+                            <div class="d-flex align-items-center mt-4">
+                                <div class="pic"><img
+                                        src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                        alt=""> <span class="fas fa-times"></span></div>
+                                <div class="pic"><img
+                                        src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                        alt=""> <span class="fas fa-times"></span></div>
+                                <div class="pic"><img
+                                        src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                        alt=""> <span class="fas fa-times"></span></div>
+                                <!-- <div class="pic"> <img src="https://images.pexels.com/photos/2078265/pexels-photo-2078265.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt=""> <span class="fas fa-times"></span> </div> -->
+                                <!-- <div class="pic"> <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt=""> <span class="fas fa-times"></span> </div> -->
+                                <div class="rounded-circle"><span class="fas fa-plus"></span> <span
+                                        class="number">3</span>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <input class="form-control" type="submit" value="Xác nhận Tạo mới Chương trình học"
+                                   style="border: 1px solid #00bb00; border-radius: 15px;margin-top: 20px ">
+                        </div>
                     </div>
-                  <div class="col-12">
-                    <input class="form-control" type="submit" value="Xác nhận Tạo mới Chương trình học" style="border: 1px solid #00bb00; border-radius: 15px;margin-top: 20px ">
-                  </div>
                 </div>
             </div>
-        </div>
-      </form>
+        </form>
     </div>
 </div>
 <script>
@@ -554,7 +576,7 @@
     const imageUrlInput = document.getElementById("image-url");
     let clicked = false; // Tạo biến flag ban đầu
 
-    button.addEventListener("click", function(event) {
+    button.addEventListener("click", function (event) {
         event.preventDefault(); // Ngăn chặn form đăng ký bị tự động submit
 
         if (!clicked) { // Kiểm tra nếu chưa được click
@@ -571,10 +593,10 @@
                 method: "POST",
                 body: formData
             })
-                .then(function(response) {
+                .then(function (response) {
                     return response.json();
                 })
-                .then(function(data) {
+                .then(function (data) {
                     const imgUrl = data.data.url;
                     imageUrlInput.value = imgUrl; // Gán URL của ảnh đã tải lên vào giá trị của thẻ input
                     clicked = false; // Set biến flag lại thành false để có thể click lại
