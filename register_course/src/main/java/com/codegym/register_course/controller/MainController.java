@@ -10,10 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -110,9 +107,11 @@ public class MainController {
         return "/register";
     }
 
-//    @PostMapping("/index/cousre")
-//    public String create(Course course){
-//
-//    }
+    @GetMapping("/single/detail/{id}")
+    public String showDetail(@PathVariable("id") Integer id,
+                             Model model){
+        model.addAttribute("single", courseService.getByID(id));
+        return "/single";
+    }
 }
 
