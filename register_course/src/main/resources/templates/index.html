@@ -363,11 +363,11 @@
             <h1>Các giảng viên của chúng tôi</h1>
         </div>
         <div class="row">
-            <div class="col-md-6 col-lg-3 text-center team mb-4">
+            <div class="col-md-6 col-lg-3 text-center team mb-4" th:each="teacherList1: ${teacherList}">
                 <div class="team-item rounded overflow-hidden mb-2">
                     <div class="team-img position-relative">
                         <img class="img-fluid"
-                             src="https://andy.codegym.vn/storage/images/avatars/b1ce25698feb386d70c5ebe3c29439ee.jpg"
+                             th:src="${teacherList1.lecturerImg}"
                              alt="">
                         <div class="team-social">
                             <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
@@ -375,63 +375,9 @@
                             <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
-                    <div class="bg-secondary p-4">
-                        <h5>Nguyễn Văn Minh</h5>
-                        <p class="m-0">Web Designer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center team mb-4">
-                <div class="team-item rounded overflow-hidden mb-2">
-                    <div class="team-img position-relative">
-                        <img class="img-fluid"
-                             src="https://andy.codegym.vn/storage/images/avatars/b0a5602dcc1704dceea096c2e6c0fcd8.jpg"
-                             alt="">
-                        <div class="team-social">
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary p-4">
-                        <h5>Nguyễn Quốc Anh</h5>
-                        <p class="m-0">Web Designer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center team mb-4">
-                <div class="team-item rounded overflow-hidden mb-2">
-                    <div class="team-img position-relative">
-                        <img class="img-fluid"
-                             src="https://andy.codegym.vn/storage/images/avatars/b2b569dbd27aace0cd8318903389cb89.jpg"
-                             alt="">
-                        <div class="team-social">
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary p-4">
-                        <h5>Phan Văn Đồng</h5>
-                        <p class="m-0">Web Designer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center team mb-4">
-                <div class="team-item rounded overflow-hidden mb-2">
-                    <div class="team-img position-relative">
-                        <img class="img-fluid"
-                             src="https://andy.codegym.vn/storage/images/avatars/c20efd8f8714c05a6ae3eff1064d6814.jpg"
-                             alt="">
-                        <div class="team-social">
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary p-4">
-                        <h5>Lê Văn Chính</h5>
-                        <p class="m-0">Web Designer</p>
+                    <div class="bg-secondary p-4" style="height: 120px">
+                        <h5 th:text="${teacherList1.lecturerName}"></h5>
+                        <p class="m-0" th:text="${teacherList1.lecturerPosition}"></p>
                     </div>
                 </div>
             </div>
@@ -568,8 +514,7 @@
         </div>
         <div class="col-lg-5 col-md-12 mb-5">
             <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Bản tin</h5>
-            <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd
-                sed ea duo ipsum. Dolor duo eirmod sea justo no lorem est diam</p>
+            <p>Để giúp bạn có cách tiếp cận với nguồn kiến thức và phương pháp học đúng đắn nhằm tiết kiệm thời gian, iViettech sẽ chia sẻ lộ trình trở thành…</p>
             <div class="w-100">
                 <div class="input-group">
                     <input type="text" class="form-control border-light" style="padding: 30px;"
@@ -624,7 +569,8 @@
 <script th:src="@{/mail/jqBootstrapValidation.min.js}"></script>
 <script th:src="@{/mail/contact.js}"></script>
 <script th:src="@{/js/main.js}"></script>
-
+<script>
+</script>
 </body>
 
 </html>

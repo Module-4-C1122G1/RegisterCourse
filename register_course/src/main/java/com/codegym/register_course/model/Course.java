@@ -19,8 +19,8 @@ public class Course {
     private String endDate;
     @Column(name = "course_location", columnDefinition = "varchar(255)")
     private String courseLocation;
-    @Column(name = "course_price")
-    private double coursePrice;
+    @Column(name = "course_price", columnDefinition = "varchar(45)")
+    private String coursePrice;
     @Column(name = "student_max")
     private Integer studentMax;
     @Column(name = "course_status", columnDefinition = "varchar(45)")
@@ -37,7 +37,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(Integer courseID, String courseName, String courseDescription, String startDate, String endDate, String courseLocation, double coursePrice, Integer studentMax, String courseStatus, String courseImg, Lecturer lecturer, Employee employee) {
+    public Course(Integer courseID, String courseName, String courseDescription, String startDate, String endDate, String courseLocation, String coursePrice, Integer studentMax, String courseStatus, String courseImg, Lecturer lecturer, Employee employee) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.courseDescription = courseDescription;
@@ -100,11 +100,11 @@ public class Course {
         this.courseLocation = courseLocation;
     }
 
-    public double getCoursePrice() {
+    public String getCoursePrice() {
         return coursePrice;
     }
 
-    public void setCoursePrice(double coursePrice) {
+    public void setCoursePrice(String coursePrice) {
         this.coursePrice = coursePrice;
     }
 

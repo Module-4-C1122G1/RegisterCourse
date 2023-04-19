@@ -5,6 +5,7 @@ import com.codegym.register_course.model.Course;
 import com.codegym.register_course.service.ICourseService;
 import com.codegym.register_course.service.ILecturerService;
 import com.codegym.register_course.utils.WebUtils;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -37,6 +38,7 @@ public class MainController {
     public String getPageWelcome(Model model, HttpServletRequest request) {
         model.addAttribute("request", request);
         model.addAttribute("courseList", courseService.findAll());
+        model.addAttribute("teacherList", service.findAllLecturer());
         return "/index";
     }
 
@@ -72,7 +74,8 @@ public class MainController {
 
 
     @GetMapping("/about")
-    public String getPageAbout() {
+    public String getPageAbout(Model model) {
+        model.addAttribute("courseList", courseService.findAll());
         return "/about";
     }
 
