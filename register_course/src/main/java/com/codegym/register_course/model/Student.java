@@ -30,17 +30,21 @@ public class Student {
     private String studentAddress;
     @Column(name = "student_img", columnDefinition = "varchar(255)")
     private String studentImg;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private Course course;
 
     public Student() {
     }
 
-    public Student(Integer studentID, String studentName, String studentEmail, String studentPhone, String studentAddress, String studentImg) {
+    public Student(Integer studentID, String studentName, String studentEmail, String studentPhone, String studentAddress, String studentImg, Course course) {
         this.studentID = studentID;
         this.studentName = studentName;
         this.studentEmail = studentEmail;
         this.studentPhone = studentPhone;
         this.studentAddress = studentAddress;
         this.studentImg = studentImg;
+        this.course = course;
     }
 
     public Integer getStudentID() {
@@ -89,5 +93,13 @@ public class Student {
 
     public void setStudentImg(String studentImg) {
         this.studentImg = studentImg;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

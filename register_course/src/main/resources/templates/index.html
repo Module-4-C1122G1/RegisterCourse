@@ -264,17 +264,21 @@
                         <h1 class="m-0">Đăng ký ngay</h1>
                     </div>
                     <div class="card-body rounded-bottom bg-primary p-5">
-                        <form action="/">
+                        <form action="/enrollment/create" method="post">
                             <div class="form-group">
-                                <input type="text" class="form-control border-0 p-4" placeholder="Vui lòng nhập tên"
+                                <input type="text" name="personName" class="form-control border-0 p-4" placeholder="Vui lòng nhập tên"
                                        required="required"/>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control border-0 p-4" placeholder="Vui lòng nhập email"
+                                <input type="email" name="personEmail" class="form-control border-0 p-4" placeholder="Vui lòng nhập email"
                                        required="required"/>
                             </div>
                             <div class="form-group">
-                                <select class="custom-select border-0 px-4" style="height: 47px;">
+                                <input type="number" name="personPhone" class="form-control border-0 p-4" placeholder="Vui lòng nhập số điện thoại"
+                                       required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <select class="custom-select border-0 px-4" style="height: 47px;" name="courseName">
                                     <option selected>Chọn khóa học mà bạn mong muốn</option>
                                     <option th:each="course1: ${courseList}" th:text="${course1.courseName}" th:value="${course1.courseID}"></option>
                                 </select>
