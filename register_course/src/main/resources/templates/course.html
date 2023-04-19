@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Khóa học</title>
@@ -143,9 +142,9 @@
         <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
             <h3 class="display-4 text-white text-uppercase">Khóa học</h3>
             <div class="d-inline-flex text-white">
-                <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                <p class="m-0 text-uppercase"><a class="text-white" href="">Trang chủ</a></p>
                 <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                <p class="m-0 text-uppercase">Courses</p>
+                <p class="m-0 text-uppercase">Khóa học</p>
             </div>
         </div>
     </div>
@@ -239,127 +238,22 @@
             <h1>Các khóa học của chúng tôi</h1>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div class="col-lg-4 col-md-6 mb-4" th:each="courseList1: ${courseList}">
                 <div class="rounded overflow-hidden mb-2">
                     <img class="img-fluid"
-                         src="https://tse4.mm.bing.net/th?id=OIP.W8feVu3fsg_rTbDIf2s_dQHaE8&pid=Api&P=0-1.jpg" alt="">
+                         th:src="${courseList1.courseImg}" alt="" style="height: 150px;">
                     <div class="bg-secondary p-4">
                         <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 học viên</small>
+                            <small class="m-0"><i class="fa fa-users text-primary mr-2"></i><span th:text="${courseList1.studentMax}"></span></small>
                             <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
                         </div>
-                        <a class="h5" href="">
-                            Lập trình viên chuyên nghiệp</a>
+                        <a class="h5" th:href="@{/single/detail/{id}(id = ${courseList1.getCourseID()})}" th:text="${courseList1.courseName}">
+                        </a>
                         <div class="border-top mt-4 pt-4">
                             <div class="d-flex justify-content-between">
                                 <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
                                 </h6>
-                                <h5 class="m-0">100.000.000đ</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="rounded overflow-hidden mb-2">
-                    <img class="img-fluid"
-                         src="https://tse4.mm.bing.net/th?id=OIP.W8feVu3fsg_rTbDIf2s_dQHaE8&pid=Api&P=0-1.jpg" alt="">
-                    <div class="bg-secondary p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 học viên</small>
-                            <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
-                        </div>
-                        <a class="h5" href="">
-                            Lập trình Front -End</a>
-                        <div class="border-top mt-4 pt-4">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                </h6>
-                                <h5 class="m-0">100.000.000đ</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="rounded overflow-hidden mb-2">
-                    <img class="img-fluid"
-                         src="https://tse4.mm.bing.net/th?id=OIP.W8feVu3fsg_rTbDIf2s_dQHaE8&pid=Api&P=0-1.jpg" alt="">
-                    <div class="bg-secondary p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 học viên</small>
-                            <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
-                        </div>
-                        <a class="h5" href="">
-                            Lập trình cơ bản</a>
-                        <div class="border-top mt-4 pt-4">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                </h6>
-                                <h5 class="m-0">100.000.000đ</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="rounded overflow-hidden mb-2">
-                    <img class="img-fluid"
-                         src="https://tse4.mm.bing.net/th?id=OIP.W8feVu3fsg_rTbDIf2s_dQHaE8&pid=Api&P=0-1.jpg" alt="">
-                    <div class="bg-secondary p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 học viên</small>
-                            <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
-                        </div>
-                        <a class="h5" href="">
-                            Lập trình Java từ A-Z</a>
-                        <div class="border-top mt-4 pt-4">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                </h6>
-                                <h5 class="m-0">100.000.000đ</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="rounded overflow-hidden mb-2">
-                    <img class="img-fluid"
-                         src="https://tse4.mm.bing.net/th?id=OIP.W8feVu3fsg_rTbDIf2s_dQHaE8&pid=Api&P=0-1.jpg" alt="">
-                    <div class="bg-secondary p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 học viên</small>
-                            <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
-                        </div>
-                        <a class="h5" href="">
-                            Lập trình Python chuyên nghiệp</a>
-                        <div class="border-top mt-4 pt-4">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                </h6>
-                                <h5 class="m-0">100.000.000đ</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="rounded overflow-hidden mb-2">
-                    <img class="img-fluid"
-                         src="https://tse4.mm.bing.net/th?id=OIP.W8feVu3fsg_rTbDIf2s_dQHaE8&pid=Api&P=0-1.jpg" alt="">
-                    <div class="bg-secondary p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 học viên</small>
-                            <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
-                        </div>
-                        <a class="h5" href="">
-                            Lập trình web với PHP & Laravel</a>
-                        <div class="border-top mt-4 pt-4">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                </h6>
-                                <h5 class="m-0">100.000.000đ</h5>
+                                <h5 class="m-0" th:text="${courseList1.coursePrice}"></h5>
                             </div>
                         </div>
                     </div>

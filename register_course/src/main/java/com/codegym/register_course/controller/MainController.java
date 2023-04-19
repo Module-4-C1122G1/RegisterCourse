@@ -2,6 +2,7 @@ package com.codegym.register_course.controller;
 
 
 import com.codegym.register_course.model.Course;
+import com.codegym.register_course.service.IContentService;
 import com.codegym.register_course.service.ICourseService;
 import com.codegym.register_course.service.ILecturerService;
 import com.codegym.register_course.utils.WebUtils;
@@ -21,12 +22,14 @@ import java.security.Principal;
 
 @Controller
 public class MainController {
+    private final IContentService contentService;
     private final ICourseService courseService;
     private final ILecturerService service;
 
-    public MainController(ILecturerService service, ICourseService courseService) {
+    public MainController(ILecturerService service, ICourseService courseService, IContentService contentService) {
         this.service = service;
         this.courseService = courseService;
+        this.contentService = contentService;
     }
 
     @GetMapping("/login")
@@ -37,6 +40,7 @@ public class MainController {
     @GetMapping("/index")
     public String getPageWelcome(Model model, HttpServletRequest request) {
         model.addAttribute("request", request);
+        model.addAttribute("contentList", contentService.findAll());
         model.addAttribute("courseList", courseService.findAll());
         model.addAttribute("teacherList", service.findAllLecturer());
         return "/index";
@@ -90,7 +94,8 @@ public class MainController {
     }
 
     @GetMapping("/course")
-    public String getPageCourse() {
+    public String getPageCourse(Model model) {
+        model.addAttribute("courseList", courseService.findAll());
         return "/course";
     }
 

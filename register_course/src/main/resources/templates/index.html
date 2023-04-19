@@ -187,75 +187,12 @@
             <h1>Khám phá các khóa học hàng đầu</h1>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4">
+            <div class="col-lg-3 col-md-6 mb-4" th:each="contentList:${contentList}">
                 <div class="cat-item position-relative overflow-hidden rounded mb-2">
-                    <img class="img-fluid" src="img/cat-1.jpg" alt="">
+                    <img class="img-fluid" th:src="${contentList.contentImg}" alt="" style="height: 150px;width: 100%">
                     <a class="cat-overlay text-white text-decoration-none" href="">
-                        <h4 class="text-white font-weight-medium">Web Design</h4>
-                        <span>100 khóa học</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="cat-item position-relative overflow-hidden rounded mb-2">
-                    <img class="img-fluid" src="img/cat-2.jpg" alt="">
-                    <a class="cat-overlay text-white text-decoration-none" href="">
-                        <h4 class="text-white font-weight-medium">Front-End</h4>
-                        <span>100 khóa học</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="cat-item position-relative overflow-hidden rounded mb-2">
-                    <img class="img-fluid" src="img/cat-3.jpg" alt="">
-                    <a class="cat-overlay text-white text-decoration-none" href="">
-                        <h4 class="text-white font-weight-medium">Game Design</h4>
-                        <span>100 khóa học</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="cat-item position-relative overflow-hidden rounded mb-2">
-                    <img class="img-fluid" src="img/cat-4.jpg" alt="">
-                    <a class="cat-overlay text-white text-decoration-none" href="">
-                        <h4 class="text-white font-weight-medium">Apps Design</h4>
-                        <span>100 khóa học</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="cat-item position-relative overflow-hidden rounded mb-2">
-                    <img class="img-fluid" src="img/cat-5.jpg" alt="">
-                    <a class="cat-overlay text-white text-decoration-none" href="">
-                        <h4 class="text-white font-weight-medium">Automation Testing</h4>
-                        <span>100 khóa học</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="cat-item position-relative overflow-hidden rounded mb-2">
-                    <img class="img-fluid" src="img/cat-6.jpg" alt="">
-                    <a class="cat-overlay text-white text-decoration-none" href="">
-                        <h4 class="text-white font-weight-medium">IOS-Swift</h4>
-                        <span>100 khóa học</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="cat-item position-relative overflow-hidden rounded mb-2">
-                    <img class="img-fluid" src="img/cat-7.jpg" alt="">
-                    <a class="cat-overlay text-white text-decoration-none" href="">
-                        <h4 class="text-white font-weight-medium">Android-Kotlin</h4>
-                        <span>100 khóa học</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="cat-item position-relative overflow-hidden rounded mb-2">
-                    <img class="img-fluid" src="img/cat-8.jpg" alt="">
-                    <a class="cat-overlay text-white text-decoration-none" href="">
-                        <h4 class="text-white font-weight-medium">BackEnd</h4>
-                        <span>100 khóa học</span>
+                        <h4 class="text-white font-weight-medium" th:text="${contentList.contentTitle}">Web Design</h4>
+                        <span th:text="${contentList.contentDescription}"></span>
                     </a>
                 </div>
             </div>
@@ -551,12 +488,12 @@
             </div>
             <div class="modal-body">
                 Bạn <span class="mb-0 text-danger font-weight-medium m-2" th:if="${#request.userPrincipal != null}"
-                           th:text="${#request.userPrincipal.getName()}"></span> có chắc chắn muốn đăng xuất?
+                          th:text="${#request.userPrincipal.getName()}"></span> có chắc chắn muốn đăng xuất?
             </div>
             <div class="modal-footer">
                 <form action="/logout" method="get">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-                <button type="submit" class="btn btn-primary">Đăng xuất</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                    <button type="submit" class="btn btn-primary">Đăng xuất</button>
                 </form>
             </div>
         </div>
