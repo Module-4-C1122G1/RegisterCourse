@@ -166,7 +166,7 @@
                 <ul class="navbar-nav w-100">
                     <li class="nav-item w-100">
                         <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                            <input type="text" class="form-control" name="searchName" placeholder="Tìm kiếm học viên"
+                            <input type="text" class="form-control" name="name" placeholder="Tìm kiếm học viên"
                                    style="color: white">
                         </form>
                     </li>
@@ -348,7 +348,7 @@
                     <div class="col-sm-4 grid-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Số lượng giảng viên</h5>
+                                <h5>Số lượng học viên</h5>
                                 <div class="row">
                                     <div class="col-8 col-sm-12 col-xl-8 my-auto">
                                         <div class="d-flex d-sm-block d-md-flex align-items-center">
@@ -426,12 +426,12 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Xác nhận xoá</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Xác nhận xoá <span id="name"></span></p>
+                                                        <p>Xác nhận xoá <span id="name" class="text-reddit text-warning" ></span>?</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <form action="/admin/student/delete" method="get">
@@ -449,24 +449,24 @@
                                         </div>
                                         </tbody>
                                     </table>
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination"  style="display: flex; justify-content: center; margin-top: 20px">
-                                            <li class="page-item btn btn-dark active1" style="background: none;border: none;">
-                                                <a class="page-link" th:if="${student.hasPrevious()}"
-                                                   th:href="@{/admin/student(page=${student.number -1},nameSearch=${nameSearch})}" style="background: palevioletred;color: white;border-radius: inherit;"><i class="fa fa-arrow-left"></i></a>
-                                            </li>
-                                            <li class="page-item btn btn-dark active1" style="background: none;border: none;"><a class="page-link"
-                                                                                          th:href="@{/admin/student(page=0,nameSearch=${nameSearch})}" style="background: palevioletred;color: white;border-radius: inherit;">1</a>
-                                            </li>
-                                            <li class="page-item btn btn-dark active1" style="background: none;border: none;"><a class="page-link"
-                                                                                          th:href="@{/admin/student(page=1,nameSearch=${nameSearch})}" style="background: palevioletred;color: white;border-radius: inherit;">2</a>
-                                            </li>
-                                            <li class="page-item btn btn-dark active1" style="background: none;border: none;">
-                                                <a class="page-link" th:if="${student.hasNext()}"
-                                                   th:href="@{/admin/student(page=${student.number +1},nameSearch=${nameSearch})}" style="background: palevioletred;color: white;border-radius: inherit;"><i class="fa fa-arrow-right"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+                                    <div class="text-center container">
+                                        <a class="page-item btn btn-dark page-item" th:if="${student.hasPrevious()}"
+                                           th:href="@{/admin/student(page = ${student.number - 1})}">
+                                            <i class="ti-angle-left">Trước</i>
+                                        </a>
+
+                                        <a class="page-item number btn btn-dark page-item"
+                                           th:classappend="${pageNumber == student.number + 1} ? 'active' : ''"
+                                           th:each="pageNumber : ${pageNumberList}"
+                                           th:href="@{/admin/student(page = ${pageNumber - 1})}"
+                                           th:text="${pageNumber}">
+                                        </a>
+
+                                        <a class="page-item btn btn-dark page-item" th:if="${student.hasNext()}"
+                                           th:href="@{/admin/student(page = ${student.number + 1})}">
+                                            <i class="ti-angle-right">Sau</i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

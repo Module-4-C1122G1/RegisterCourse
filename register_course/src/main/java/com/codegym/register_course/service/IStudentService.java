@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IStudentService {
-    Page<Student> findAllByName(String nameSearch, Pageable pageable);
 
     List<Student> findAllStudent();
 
@@ -22,5 +21,5 @@ public interface IStudentService {
     void delete(Integer studentID, Student student);
     Student getStudentByID(Integer studentID);
     void deleteAllStudent(Integer studentID);
-    Page<Student> findAll(Pageable pageable);
+    Page<Student> findAll(String name, PageRequest pageRequest);
 }
