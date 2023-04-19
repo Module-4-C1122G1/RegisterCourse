@@ -5,6 +5,7 @@ import com.codegym.register_course.repository.IEmployeeRepository;
 import com.codegym.register_course.service.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,8 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public Page<Employee> findAllByName(String nameSearch, Pageable pageable) {
-        return repository.findAllByEmployeeNameContaining(nameSearch,pageable);
+    public Page<Employee> findAll(String name, PageRequest pageRequest) {
+        return repository.findAllByEmployeeNameContaining(name,pageRequest);
     }
 
     @Override
@@ -47,12 +48,6 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public void delete(Integer employeeID, Employee employee) {
         repository.delete(employee);
-    }
-
-
-    @Override
-    public Page<Employee> findAll(Pageable pageable) {
-        return repository.findAll(pageable);
     }
 
     @Override

@@ -3,8 +3,8 @@ package com.codegym.register_course.controller;
 import com.codegym.register_course.model.Student;
 import com.codegym.register_course.service.IStudentService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/student")
@@ -25,22 +26,16 @@ public class StudentController {
     }
 
     @GetMapping("")
-    public String listStudent(Model model, @RequestParam(defaultValue = "", required = false) String searchName,
-                              @PageableDefault(size = 5) Pageable pageable) {
-        Page<Student> studentPage = null;
-        model.addAttribute("searchName", searchName);
+    public String listStudent(Model model, @PageableDefault(size = 5) Pageable pageable, @RequestParam(defaultValue = "") String name) {
+        Pageable sortedPage = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
+        Page<Student> studentPage = iStudentService.findAll(name, (PageRequest) sortedPage);
         model.addAttribute("total", iStudentService.findAllStudent());
-        Sort sort = Sort.by("student_id").descending();
-        if (searchName != null) {
-            studentPage = iStudentService.findAllByName(searchName, pageable);
-        } else {
-            studentPage = iStudentService.findAll(pageable);
-        }
         model.addAttribute("student", studentPage);
-        model.addAttribute("pageNumberList", IntStream.rangeClosed(1, studentPage.getTotalPages()).toArray());
-        model.addAttribute("pageNumber", pageable.getPageNumber());
-        model.addAttribute("nameSearch", searchName);
-        model.addAttribute("pageSize", pageable.getPageSize());
+        List<Integer> pageNumberList = new ArrayList<>();
+        for (int i = 1; i <= studentPage.getTotalPages(); i++) {
+            pageNumberList.add(i);
+        }
+        model.addAttribute("pageNumberList", pageNumberList);
         return "/admin/student/student";
     }
 

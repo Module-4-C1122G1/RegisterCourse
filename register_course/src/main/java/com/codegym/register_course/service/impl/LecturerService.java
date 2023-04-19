@@ -4,7 +4,7 @@ import com.codegym.register_course.model.Lecturer;
 import com.codegym.register_course.repository.ILecturerRepository;
 import com.codegym.register_course.service.ILecturerService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +19,8 @@ public class LecturerService implements ILecturerService {
     }
 
     @Override
-    public Page<Lecturer> findAllByName(String nameSearch, Pageable pageable) {
-        return iLecturerRepository.findAllByLecturerNameContaining(nameSearch, pageable);
+    public Page<Lecturer> findAll(String name, PageRequest pageRequest) {
+        return iLecturerRepository.findAllByLecturerNameContaining(name, pageRequest);
     }
 
     @Override
@@ -47,11 +47,4 @@ public class LecturerService implements ILecturerService {
     public void removeById(Integer lecturerID) {
         iLecturerRepository.deleteById(lecturerID);
     }
-
-
-    @Override
-    public Page<Lecturer> findAll(Pageable pageable) {
-        return iLecturerRepository.findAll(pageable);
-    }
-
 }
