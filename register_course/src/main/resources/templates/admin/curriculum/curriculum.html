@@ -18,6 +18,16 @@
         * {
             font-family: Roboto
         }
+        .table td{
+            font-size: 16px;
+            color: white;
+            text-align: center;
+        }
+        .table thead th{
+            font-size: 18px;
+            color: sandybrown;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -366,13 +376,6 @@
                                     <table class="table">
                                         <thead>
                                         <tr th:if="${!curriculum.isEmpty()}">
-                                            <th>
-                                                <div class="form-check form-check-muted m-0">
-                                                    <label class="form-check-label">
-                                                        <input type="checkbox" class="form-check-input">
-                                                    </label>
-                                                </div>
-                                            </th>
                                             <th>STT</th>
                                             <th>Tên Chương trình</th>
                                             <th>Mô tả</th>
@@ -389,13 +392,6 @@
                                             <strong>Quan Trọng!</strong> "Không tìm thấy dữ liệu bạn nhập trong kho dữ liệu của chúng tôi. Vui lòng thao tác lại."
                                         </div>
                                         <tr th:each="cur, count : ${curriculum}">
-                                            <td>
-                                                <div class="form-check form-check-muted m-0">
-                                                    <label class="form-check-label">
-                                                        <input type="checkbox" class="form-check-input">
-                                                    </label>
-                                                </div>
-                                            </td>
                                             <td th:text="${count.count}"></td>
                                             <td th:text="${cur.curriculumName}"></td>
                                             <td th:text="${cur.curriculumDescription}"></td>
@@ -416,7 +412,7 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <div class="text-center container">
+                                    <div class="text-center container" style="margin-top: 20px">
                                         <a class="page-item btn btn-dark page-item" th:if="${curriculum.hasPrevious()}"
                                            th:href="@{/admin/curriculum(page = ${curriculum.number - 1})}">
                                             <i class="ti-angle-left">Trước</i>
