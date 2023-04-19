@@ -389,6 +389,8 @@
                                             <th>Email</th>
                                             <th>Số điện thoại</th>
                                             <th>Địa chỉ</th>
+                                            <th>Tên khoá học</th>
+                                            <th>Địa chỉ khoá học</th>
                                             <th>Ảnh</th>
                                             <th>Tác vụ</th>
                                         </tr>
@@ -400,6 +402,8 @@
                                             <td th:text="${student1.studentEmail}"></td>
                                             <td th:text="${student1.studentPhone}"></td>
                                             <td th:text="${student1.studentAddress}"></td>
+                                            <td th:text="${student1.course.courseName}"></td>
+                                            <td th:text="${student1.course.courseLocation}"></td>
                                             <td>
                                                 <img th:src="${student1.studentImg}" alt="image"/>
                                             </td>

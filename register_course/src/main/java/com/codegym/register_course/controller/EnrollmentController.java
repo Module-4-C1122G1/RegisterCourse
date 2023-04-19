@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin/enrollment")
 public class EnrollmentController {
     private final IEnrollmentService service;
 
@@ -25,29 +24,23 @@ public class EnrollmentController {
         this.service = service;
     }
 
-    @GetMapping("")
+    @GetMapping("/admin/enrollment")
     public String showEnrollments(Model model) {
         model.addAttribute("enrollments", service.findAllEnrollment());
         return "/admin/enrollments/list";
     }
 
-    @GetMapping("/create")
-    public String showPageCreate(Model model) {
-        model.addAttribute("enrollment", new Enrollment());
-        return "/admin/enrollments/create";
-    }
-
-    @PostMapping("/create")
+    @PostMapping("enrollment/create")
     public String createStudent(@Valid @ModelAttribute("enrollment") Enrollment enrollment,
                                 BindingResult bindingResult,
                                 RedirectAttributes redirectAttributes,
                                 Model model) {
         if (bindingResult.hasErrors()) {
-            return "/admin/enrollments/create";
+            return "/index";
         } else {
             model.addAttribute("enrollment", service.save(enrollment));
-            redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
-            return "redirect:/admin/student";
+            redirectAttributes.addFlashAttribute("message", "Đăng ký thành công");
+            return "redirect:/index";
         }
     }
 

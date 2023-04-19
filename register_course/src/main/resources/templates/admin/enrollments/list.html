@@ -366,6 +366,7 @@
                                             <th>STT</th>
                                             <th>Tên học viên</th>
                                             <th>Email</th>
+                                            <th>Số điện thoại</th>
                                             <th>Trạng thái</th>
                                             <th>Ngày</th>
                                             <th>Khóa học</th>
@@ -373,7 +374,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="enrollments1 : ${enrollments}">
+                                        <tr th:each="enrollments1, er : ${enrollments}">
                                             <td>
                                                 <div class="form-check form-check-muted m-0">
                                                     <label class="form-check-label">
@@ -381,12 +382,13 @@
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td th:text="${enrollments1.enrollmentID}"></td>
-                                            <td th:text="${enrollments1.getStudent().getStudentName()}"></td>
-                                            <td th:text="${enrollments1.getStudent().getStudentEmail()}"></td>
+                                            <td th:text="${er.count}"></td>
+                                            <td th:text="${enrollments1.personName}"></td>
+                                            <td th:text="${enrollments1.personEmail}"></td>
+                                            <td th:text="${enrollments1.personPhone}"></td>
                                             <td th:text="${enrollments1.enrollmentStatus}"></td>
                                             <td th:text="${enrollments1.enrollmentDate}"></td>
-                                            <td th:text="${enrollments1.getCourse().getCourseName()}"></td>
+                                            <td th:text="${enrollments1.course.courseName}"></td>
                                             <td>
                                                 <a class="btn btn-danger"><i class="fa fa-pencil-square"
                                                                              style="margin: 0 auto"></i></a>
