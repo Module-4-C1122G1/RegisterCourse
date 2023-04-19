@@ -365,7 +365,7 @@
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
-                                        <tr>
+                                        <tr th:if="${!curriculum.isEmpty()}">
                                             <th>
                                                 <div class="form-check form-check-muted m-0">
                                                     <label class="form-check-label">
@@ -382,6 +382,12 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <h3 class="text-warning text-xxl-center" th:text="${errorFind}"></h3>
+                                        <p class="preview-subject ellipsis mb-1" th:text="${errorFind}"></p>
+                                        <div th:if="${curriculum.isEmpty()}" class="alert alert-info alert-dismissible">
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                            <strong>Quan Trọng!</strong> "Không tìm thấy dữ liệu bạn nhập trong kho dữ liệu của chúng tôi. Vui lòng thao tác lại."
+                                        </div>
                                         <tr th:each="cur, count : ${curriculum}">
                                             <td>
                                                 <div class="form-check form-check-muted m-0">
@@ -393,7 +399,7 @@
                                             <td th:text="${count.count}"></td>
                                             <td th:text="${cur.curriculumName}"></td>
                                             <td th:text="${cur.curriculumDescription}"></td>
-                                            <td th:text="${cur.curriculumStatus}"></td>
+                                            <td th:text="${cur.listStatus?.name}"></td>
                                             <td>
                                                 <img th:src="${cur.curriculumImg}" alt="image"/>
                                             </td>

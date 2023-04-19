@@ -1,12 +1,13 @@
 package com.codegym.register_course.controller;
 
 import com.codegym.register_course.model.Curriculum;
-import com.codegym.register_course.model.Student;
+import com.codegym.register_course.repository.ICurriculumStatusRepository;
 import com.codegym.register_course.service.ICurriculumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,10 +26,19 @@ public class CurriculumController {
     @Autowired
     private ICurriculumService curriculumService;
 
+    @Autowired
+    private ICurriculumStatusRepository curriculumStatusRepository;
+
     @GetMapping("/delete")
     public String deleteStudent(@RequestParam Integer curriculumID) {
         curriculumService.delete(curriculumID, curriculumService.getByID(curriculumID));
         return "redirect:/admin/curriculum";
+    }
+
+    @GetMapping("/status")
+    public String getStatus(Model model) {
+        model.addAttribute("listStatus", curriculumStatusRepository.findAll());
+        return "admin/curriculum/curriculum";
     }
 
     @GetMapping("")
@@ -44,13 +54,11 @@ public class CurriculumController {
         model.addAttribute("pageNumberList", pageNumberList);
         return "admin/curriculum/curriculum";
     }
+
     @GetMapping("/create")
-    public String showCreate(
-            Model model,
-            RedirectAttributes attributes
-    ){
+    public String showCreate(Model model) {
         model.addAttribute("curriculumCreate", new Curriculum());
-        attributes.addFlashAttribute("message", "Thêm mới thành công");
+        model.addAttribute("listStatus", curriculumStatusRepository.findAll());
         return "/admin/curriculum/create-curriculum";
     }
 
@@ -62,6 +70,7 @@ public class CurriculumController {
         if (bindingResult.hasErrors()) {
             return "/admin/curriculum/create-curriculum";
         } else {
+            model.addAttribute("listStatus", curriculumStatusRepository.findAll());
             model.addAttribute("curriculumCreate", curriculumService.save(curriculum));
             redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
             return "redirect:/admin/curriculum";
@@ -85,6 +94,7 @@ public class CurriculumController {
         if (bindingResult.hasErrors()) {
             return "/admin/curriculum/edit-curriculum";
         } else {
+            model.addAttribute("listStatus", curriculumStatusRepository.findAll());
             model.addAttribute("curriculumEdit", curriculumService.save(curriculum));
             redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
             return "redirect:/admin/curriculum";
