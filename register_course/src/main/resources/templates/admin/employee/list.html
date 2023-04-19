@@ -84,6 +84,7 @@
                         </a>
                     </div>
                 </div>
+                </div>
             </li>
             <li class="nav-item menu-items">
                 <a class="nav-link" href="../index.html">
@@ -141,6 +142,14 @@
                     <span class="menu-title">Chương trình giảng dạy</span>
                 </a>
             </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" onclick="location.href = '/admin/enrollment' ">
+              <span class="menu-icon">
+                <i class="mdi mdi-account-multiple"></i>
+              </span>
+                    <span class="menu-title">Đăng ký khóa học</span>
+                </a>
+            </li>
         </ul>
     </nav>
     <!-- partial -->
@@ -158,7 +167,7 @@
                 <ul class="navbar-nav w-100">
                     <li class="nav-item w-100">
                         <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                            <input type="text" class="form-control" name="searchName" placeholder="Tìm kiếm nhân viên"
+                            <input type="text" class="form-control" name="name" placeholder="Tìm kiếm nhân viên"
                                    style="color: white">
                         </form>
                     </li>
@@ -441,7 +450,7 @@
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Xác nhận xoá <span id="name"></span></p>
+                                                        <p>Xác nhận xoá <span id="name" class="text-reddit text-warning"></span>?</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <form action="/admin/employee/delete" method="get">
@@ -459,24 +468,24 @@
                                         </div>
                                         </tbody>
                                     </table>
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item btn btn-dark active1">
-                                                <a class="page-link" th:if="${employee.hasPrevious()}"
-                                                   th:href="@{/admin/employee(page=${employee.number -1},nameSearch=${nameSearch})}">Previous</a>
-                                            </li>
-                                            <li class="page-item btn btn-dark active1"><a class="page-link"
-                                                                                          th:href="@{/admin/employee(page=0,nameSearch=${nameSearch})}">1</a>
-                                            </li>
-                                            <li class="page-item btn btn-dark active1"><a class="page-link"
-                                                                                          th:href="@{/admin/employee(page=1,nameSearch=${nameSearch})}">2</a>
-                                            </li>
-                                            <li class="page-item btn btn-dark active1">
-                                                <a class="page-link" th:if="${employee.hasNext()}"
-                                                   th:href="@{/admin/employee(page=${employee.number +1},nameSearch=${nameSearch})}">Next</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+                                    <div class="text-center container">
+                                        <a class="page-item btn btn-dark page-item" th:if="${employee.hasPrevious()}"
+                                           th:href="@{/admin/employee(page = ${employee.number - 1})}">
+                                            <i class="ti-angle-left">Trước</i>
+                                        </a>
+
+                                        <a class="page-item number btn btn-dark page-item"
+                                           th:classappend="${pageNumber == employee.number + 1} ? 'active' : ''"
+                                           th:each="pageNumber : ${pageNumberList}"
+                                           th:href="@{/admin/employee(page = ${pageNumber - 1})}"
+                                           th:text="${pageNumber}">
+                                        </a>
+
+                                        <a class="page-item btn btn-dark page-item" th:if="${employee.hasNext()}"
+                                           th:href="@{/admin/employee(page = ${employee.number + 1})}">
+                                            <i class="ti-angle-right">Sau</i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

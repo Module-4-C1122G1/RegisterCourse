@@ -5,6 +5,7 @@ import com.codegym.register_course.repository.ICurriculumRepository;
 import com.codegym.register_course.service.ICurriculumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +18,13 @@ public class CurriculumService implements ICurriculumService {
     private ICurriculumRepository curriculumRepository;
 
     @Override
-    public Page<Curriculum> findAllByName(String nameSearch, Pageable pageable) {
-        return this.curriculumRepository.findAllByCurriculumNameContaining(nameSearch, pageable);
+    public Page<Curriculum> findAll(String name, PageRequest pageRequest) {
+        return this.curriculumRepository.findAllByCurriculumNameContaining(name, pageRequest);
     }
 
     @Override
-    public Page<Curriculum> findAllCurriculum(Pageable pageable) {
-        return this.curriculumRepository.findAll(pageable);
-    }
-
-    @Override
-    public List<Curriculum> findAll() {
-        return this.curriculumRepository.findAll();
+    public List<Curriculum> findAllCurriculum() {
+        return curriculumRepository.findAll();
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.codegym.register_course.repository.ICurriculumStatusRepository;
 import com.codegym.register_course.service.ICurriculumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -15,6 +16,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.IntStream;
 
 @Controller
@@ -39,28 +42,16 @@ public class CurriculumController {
     }
 
     @GetMapping("")
-    public String findAll(Model model, @RequestParam(defaultValue = "", required = false) String searchName,
-                          @PageableDefault(size = 5, sort = "curriculumID", direction = Sort.Direction.DESC) Pageable pageable,
-                          RedirectAttributes redirectAttributes) {
-        Page<Curriculum> curriculumPage = null;
-
-        model.addAttribute("searchName", searchName);
-        model.addAttribute("total", curriculumService.findAll());
-
-        if (searchName != null) {
-            curriculumPage = curriculumService.findAllByName(searchName, pageable);
-        } else {
-            curriculumPage = curriculumService.findAllCurriculum(pageable);
-        }
-
-        redirectAttributes.addFlashAttribute("errorFind",
-                "Không tìm thấy dữ liệu bạn nhập trong kho dữ liệu " +
-                "của chúng tôi. Vui lòng thao tác lại.");
+    public String findAll(Model model, @PageableDefault(size = 5) Pageable pageable, @RequestParam(defaultValue = "") String name) {
+        Pageable sortedPage = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
+        Page<Curriculum> curriculumPage = curriculumService.findAll(name, (PageRequest) sortedPage);
+        model.addAttribute("total", curriculumService.findAllCurriculum());
         model.addAttribute("curriculum", curriculumPage);
-        model.addAttribute("pageNumberList", IntStream.rangeClosed(1, curriculumPage.getTotalPages()).toArray());
-        model.addAttribute("pageNumber", pageable.getPageNumber());
-        model.addAttribute("nameSearch", searchName);
-        model.addAttribute("pageSize", pageable.getPageSize());
+        List<Integer> pageNumberList = new ArrayList<>();
+        for (int i = 1; i <= curriculumPage.getTotalPages(); i++) {
+            pageNumberList.add(i);
+        }
+        model.addAttribute("pageNumberList", pageNumberList);
         return "admin/curriculum/curriculum";
     }
 
