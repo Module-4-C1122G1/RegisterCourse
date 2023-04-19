@@ -433,7 +433,7 @@
                         <h1 class="m-0">Đăng ký ngay</h1>
                     </div>
                     <div class="card-body rounded-bottom bg-primary p-5">
-                        <form>
+                        <form action="/">
                             <div class="form-group">
                                 <input type="text" class="form-control border-0 p-4" placeholder="Vui lòng nhập tên"
                                        required="required"/>
@@ -445,9 +445,7 @@
                             <div class="form-group">
                                 <select class="custom-select border-0 px-4" style="height: 47px;">
                                     <option selected>Chọn khóa học mà bạn mong muốn</option>
-                                    <option value="1">Khóa học 1</option>
-                                    <option value="2">Khóa học 2</option>
-                                    <option value="3">Khóa học 3</option>
+                                    <option th:each="course1: ${courseList}" th:text="${course1.courseName}" th:value="${course1.courseID}"></option>
                                 </select>
                             </div>
                             <div>

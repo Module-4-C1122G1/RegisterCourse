@@ -28,7 +28,7 @@ public class LecturerController {
     @GetMapping("/lecturer")
     public String showListAdmin(
             Model model, @RequestParam(defaultValue = "", required = false) String searchName,
-            @PageableDefault(size = 5) Pageable pageable) {
+            @PageableDefault(size = 2) Pageable pageable) {
         Page<Lecturer> lecturerPage = null;
         model.addAttribute("searchName", searchName);
         model.addAttribute("total",service.findAllLecturer());

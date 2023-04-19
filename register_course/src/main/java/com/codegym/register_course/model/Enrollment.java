@@ -13,10 +13,10 @@ public class Enrollment {
     private String enrollmentDate;
     @Column(name = "enrollment_status", columnDefinition = "varchar(45)")
     private String enrollmentStatus;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "course_id")
     private Course course;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "student_id")
     private Student student;
 
