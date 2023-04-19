@@ -17,6 +17,16 @@
         * {
             font-family: Roboto;
         }
+        .table td{
+            font-size: 16px;
+            color: white;
+            text-align: center;
+        }
+        .table thead th{
+            font-size: 18px;
+            color: sandybrown;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -397,13 +407,6 @@
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <th>
-                                                <div class="form-check form-check-muted m-0">
-                                                    <label class="form-check-label">
-                                                        <input type="checkbox" class="form-check-input">
-                                                    </label>
-                                                </div>
-                                            </th>
                                             <th>STT</th>
                                             <th>Tên nhân viên</th>
                                             <th>Địa chỉ</th>
@@ -414,13 +417,6 @@
                                         </thead>
                                         <tbody>
                                         <tr th:each="employee1,ep1 : ${employee}">
-                                            <td>
-                                                <div class="form-check form-check-muted m-0">
-                                                    <label class="form-check-label">
-                                                        <input type="checkbox" class="form-check-input">
-                                                    </label>
-                                                </div>
-                                            </td>
                                             <td th:text="${ep1.count}"></td>
                                             <td th:text="${employee1.employeeName}"></td>
                                             <td th:text="${employee1.employeeAddress}"></td>
@@ -468,7 +464,7 @@
                                         </div>
                                         </tbody>
                                     </table>
-                                    <div class="text-center container">
+                                    <div class="text-center container" style="margin-top: 20px">
                                         <a class="page-item btn btn-dark page-item" th:if="${employee.hasPrevious()}"
                                            th:href="@{/admin/employee(page = ${employee.number - 1})}">
                                             <i class="ti-angle-left">Trước</i>

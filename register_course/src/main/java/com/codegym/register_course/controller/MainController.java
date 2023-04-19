@@ -5,6 +5,7 @@ import com.codegym.register_course.model.Course;
 import com.codegym.register_course.service.IContentService;
 import com.codegym.register_course.service.ICourseService;
 import com.codegym.register_course.service.ILecturerService;
+import com.codegym.register_course.service.IReviewService;
 import com.codegym.register_course.utils.WebUtils;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +23,16 @@ import java.security.Principal;
 
 @Controller
 public class MainController {
+    private final IReviewService reviewService;
     private final IContentService contentService;
     private final ICourseService courseService;
     private final ILecturerService service;
 
-    public MainController(ILecturerService service, ICourseService courseService, IContentService contentService) {
+    public MainController(ILecturerService service, ICourseService courseService, IContentService contentService, IReviewService reviewService) {
         this.service = service;
         this.courseService = courseService;
         this.contentService = contentService;
+        this.reviewService = reviewService;
     }
 
     @GetMapping("/login")
@@ -43,6 +46,7 @@ public class MainController {
         model.addAttribute("contentList", contentService.findAll());
         model.addAttribute("courseList", courseService.findAll());
         model.addAttribute("teacherList", service.findAllLecturer());
+        model.addAttribute("review", reviewService.fillAll());
         return "/index";
     }
 

@@ -112,9 +112,9 @@
                                 <div class="user-info d-flex align-items-center" th:if="${#request.userPrincipal != null}">
                                     <img class="img-xs rounded-circle"
                                          src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
-                                         width="100px" alt="">
+                                         width="35px" alt="">
                                     <span class="mb-0 font-weight-normal m-2" th:if="${#request.userPrincipal != null}"
-                                          th:text="${#request.userPrincipal.getName()}"></span>
+                                          th:text="${#request.userPrincipal.getName()}" style="font-size: 18px"></span>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" data-toggle="modal" data-target="#staticBackdrop">
                                         Đăng xuất
@@ -334,41 +334,14 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="owl-carousel testimonial-carousel">
-                    <div class="text-center">
+                    <div class="text-center" th:each="review1 : ${review}">
                         <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                        <h4 class="font-weight-normal mb-4">OneTeam không chỉ đào tạo kiến thức chuyên môn, mà còn giúp
-                            mình nâng cao kỹ năng làm việc. Qua các hoạt động seminar, teambuilding, techtalk… khả năng
-                            giao tiếp của mình đã cải thiện, tự tin hơn, đây là một yếu tố rất quan trọng để mình trở
-                            thành Sub-Leader như hiện tại.</h4>
+                        <h4 class="font-weight-normal mb-4" th:text="${review1.reviewContent}"></h4>
                         <img class="img-fluid mx-auto mb-3"
-                             src="https://andy.codegym.vn/storage/images/avatars/c20efd8f8714c05a6ae3eff1064d6814.jpg"
+                             th:src="${review1.getStudent().getStudentImg()}"
                              alt="">
-                        <h5 class="m-0">Lê Văn Chính</h5>
+                        <h5 class="m-0" th:text="${review1.getStudent().getStudentName()}"></h5>
                         <span>Sub Leader, Misumi Group VietNam</span>
-                    </div>
-                    <div class="text-center">
-                        <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                        <h4 class="font-weight-normal mb-4">Trước khi đến OneTeam, mình từng học đại học và bỏ ngang,
-                            sau đó cũng trải qua nhiều ngành nghề khác nhau nhưng cuối cùng vẫn quyết định bắt đầu lại
-                            với ngành lập trình tại OneTeam. Tập trung rèn luyện sau 6 tháng, mình tốt nghiệp và đi làm.
-                            Sau gần 2 năm, mình đang là PO/Team Leader tại BiPlus.</h4>
-                        <img class="img-fluid mx-auto mb-3"
-                             src="https://andy.codegym.vn/storage/images/avatars/b0a5602dcc1704dceea096c2e6c0fcd8.jpg"
-                             alt="">
-                        <h5 class="m-0">Nguyễn Quốc Anh</h5>
-                        <span>PO/Technical Leader, BiPlus</span>
-                    </div>
-                    <div class="text-center">
-                        <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                        <h4 class="font-weight-normal mb-4">Tính kỷ luật là thứ mà mình đã được trui rèn trong suốt 6
-                            tháng học tại OneTeam. Để phát triển trong ngành IT với những vị trí quản lý như Leader,
-                            Manager, bạn cần có năng lực cả về chuyên môn, ngoại ngữ, kỹ năng quản lý, ngoại ngữ… Chính
-                            sự kỷ luật đã giúp mình bám đuổi kế hoạch học tập và đạt được mục tiêu.</h4>
-                        <img class="img-fluid mx-auto mb-3"
-                             src="https://andy.codegym.vn/storage/images/avatars/b1ce25698feb386d70c5ebe3c29439ee.jpg"
-                             alt="">
-                        <h5 class="m-0">Nguyễn Văn Minh</h5>
-                        <span>Team Leader , NTT Data VDS</span>
                     </div>
                 </div>
             </div>
