@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,9 +44,13 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee/create")
-    public String create(Employee employee) {
-        service.save(employee);
-        return "redirect:/admin/employee";
+    public String create(Employee employee, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "/admin/employee/create";
+        }else {
+            service.save(employee);
+            return "redirect:/admin/employee";
+        }
     }
 
     @GetMapping("/employee/edit/{id}")
