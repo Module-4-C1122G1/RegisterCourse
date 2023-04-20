@@ -9,8 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("courseUser")
+@RequestMapping("/admin/course")
 public class CourseController {
+    private final ICourseService courseService;
 
+    public CourseController(ICourseService courseService) {
+        this.courseService = courseService;
+    }
+
+    @GetMapping("")
+    public String showList(Model model){
+        model.addAttribute("courseAdmin", courseService.findAll());
+        return "admin/course/list";
+    }
 
 }
