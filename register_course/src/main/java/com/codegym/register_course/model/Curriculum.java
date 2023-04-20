@@ -25,7 +25,7 @@ public class Curriculum {
     @NotBlank(message = "Vui lòng không để trống Nội dung")
     private String curriculumDescription;
     @JoinColumn(name = "curriculum_status_id")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
     private CurriculumStatus listStatus;
     @Column(name = "curriculum_img", columnDefinition = "varchar(255)")
     @NotBlank(message = "Vui lòng không để trống ảnh")

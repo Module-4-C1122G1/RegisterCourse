@@ -23,6 +23,11 @@ public class CurriculumService implements ICurriculumService {
     }
 
     @Override
+    public Page<Curriculum> findAllByNameAndStatus(String name, Integer statusId, PageRequest pageRequest) {
+        return this.curriculumRepository.findAllByNameContainingAndStatus(name, statusId, pageRequest);
+    }
+
+    @Override
     public List<Curriculum> findAllCurriculum() {
         return curriculumRepository.findAll();
     }
