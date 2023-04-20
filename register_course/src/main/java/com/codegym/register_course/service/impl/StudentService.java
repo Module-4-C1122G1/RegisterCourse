@@ -21,7 +21,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public List<Student> findAllStudent() {
-        return iStudentRepository.findAll();
+        return iStudentRepository.findAllStudent();
     }
 
     @Override
@@ -51,10 +51,20 @@ public class StudentService implements IStudentService {
 
     @Override
     public void deleteAllStudent(Integer studentID) {
-        this.iStudentRepository.deleteAllByStudentID(studentID);
+        this.iStudentRepository.deleteStudentByStudentID(studentID);
     }
     @Override
     public Page<Student> findAll(String name, PageRequest pageRequest) {
         return iStudentRepository.findAllByStudentNameContaining(name, pageRequest);
+    }
+
+    @Override
+    public boolean existsByStudentEmail(String studentEmail) {
+        return iStudentRepository.existsByStudentEmail(studentEmail);
+    }
+
+    @Override
+    public boolean existsByStudentPhone(String studentPhone) {
+        return iStudentRepository.existsByStudentPhone(studentPhone);
     }
 }

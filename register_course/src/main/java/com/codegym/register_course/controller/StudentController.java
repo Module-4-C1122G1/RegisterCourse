@@ -14,7 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/student")
@@ -52,7 +54,14 @@ public class StudentController {
                                 Model model) {
         if (bindingResult.hasErrors()) {
             return "/admin/student/create-student";
-        } else {
+        }else if (iStudentService.existsByStudentEmail(student.getStudentEmail())) {
+            model.addAttribute("message1", "Email đã tồn tại, vui lòng nhập email khác");
+            return "/admin/student/create-student";
+        } else if (iStudentService.existsByStudentPhone(student.getStudentPhone())) {
+            model.addAttribute("message2", "Số điện thoại đã tồn tại, vui lòng nhập số điện thoại khác");
+            return "/admin/student/create-student";
+        }else {
+            student.setFlag(0);
             model.addAttribute("student", iStudentService.save(student));
             redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
             return "redirect:/admin/student";
@@ -79,8 +88,15 @@ public class StudentController {
     }
 
     @GetMapping("/delete")
-    public String deleteStudent(@RequestParam Integer studentID) {
-        iStudentService.delete(studentID, iStudentService.getStudentByID(studentID));
+    public String deleteStudent(@RequestParam Integer studentID, Student student1) {
+        student1 = iStudentService.getStudentByID(studentID);
+        student1.setFlag(1);
+        iStudentService.save(student1);
+        return "redirect:/admin/student";
+    }
+    @GetMapping("/detail")
+    public String detailStudent(Model model, @RequestParam Integer studentID){
+        model.addAttribute("student", iStudentService.getStudentByID(studentID));
         return "redirect:/admin/student";
     }
 }

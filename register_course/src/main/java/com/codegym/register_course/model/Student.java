@@ -30,6 +30,8 @@ public class Student {
     private String studentAddress;
     @Column(name = "student_img", columnDefinition = "varchar(255)")
     private String studentImg;
+    @Column(name = "flag", columnDefinition = "tinyint")
+    private Integer flag;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private Course course;
@@ -37,13 +39,14 @@ public class Student {
     public Student() {
     }
 
-    public Student(Integer studentID, String studentName, String studentEmail, String studentPhone, String studentAddress, String studentImg, Course course) {
+    public Student(Integer studentID, String studentName, String studentEmail, String studentPhone, String studentAddress, String studentImg, Integer flag, Course course) {
         this.studentID = studentID;
         this.studentName = studentName;
         this.studentEmail = studentEmail;
         this.studentPhone = studentPhone;
         this.studentAddress = studentAddress;
         this.studentImg = studentImg;
+        this.flag = flag;
         this.course = course;
     }
 
@@ -93,6 +96,14 @@ public class Student {
 
     public void setStudentImg(String studentImg) {
         this.studentImg = studentImg;
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 
     public Course getCourse() {

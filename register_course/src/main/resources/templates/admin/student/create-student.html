@@ -512,6 +512,7 @@
                                                     placeholder="Vui lòng nhập email" th:field="*{studentEmail}">
                                 <p th:if="${#fields.hasErrors('studentEmail')}" th:errors="*{studentEmail}"
                                    style="color: red"></p>
+                                <p th:text="${message1}"></p>
                             </div>
                         </div>
                         <div class="col-12"><p>Số điện thoại</p>
@@ -520,6 +521,7 @@
                                                     th:field="*{studentPhone}">
                                 <p th:if="${#fields.hasErrors('studentPhone')}" th:errors="*{studentPhone}"
                                    style="color: red"></p>
+                                <p th:text="${message2}"></p>
                             </div>
                             <p class="bar2 mt-4"></p>
                         </div>
@@ -528,6 +530,12 @@
                                                     placeholder="Vui lòng nhập địa chỉ" th:field="*{studentAddress}">
                                 <p th:if="${#fields.hasErrors('studentAddress')}" th:errors="*{studentAddress}"
                                    style="color: red"></p>
+                            </div>
+                            <p class="bar2 mt-4"></p>
+                        </div>
+                        <div class="col-12"><p>Tên khoá học</p>
+                            <div class="box"><input class="form-control" type="text"
+                                                    placeholder="Vui lòng nhập khoá học" th:field="*{course.courseName}">
                             </div>
                             <p class="bar2 mt-4"></p>
                         </div>

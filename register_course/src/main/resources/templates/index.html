@@ -279,8 +279,10 @@
                             </div>
                             <div class="form-group">
                                 <select class="custom-select border-0 px-4" style="height: 47px;" name="courseName">
-                                    <option selected>Chọn khóa học mà bạn mong muốn</option>
-                                    <option th:each="course1: ${courseList}" th:text="${course1.courseName}" th:value="${course1.courseID}"></option>
+<!--                                    <option selected>Chọn khóa học mà bạn mong muốn</option>-->
+                                    <option value="Lập trình viên chuyên nghiệp">Lập trình viên chuyên nghiệp</option>
+                                    <option value="Lập trình Java từ A-Z">Lập trình Java từ A-Z</option>
+                                    <option value="Kiểm thử phần mềm">Kiểm thử phần mềm</option>
                                 </select>
                             </div>
                             <div>
