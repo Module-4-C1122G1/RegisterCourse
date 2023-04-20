@@ -28,6 +28,75 @@
             color: sandybrown;
             text-align: center;
         }
+
+
+        /*Đổi màu paging + css*/
+        .btn,
+        .btn:link,
+        .btn:visited {
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 7px 15px;
+            display: inline-block;
+            border-radius: 50px;
+            font-size: 13px;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px green;
+        }
+
+        .active {
+            outline: none;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px whitesmoke;
+        }
+
+        .profile-name {
+            box-shadow: 0 5px 20px green;
+            background-color: darkgreen;
+            font-family: cursive;
+            border-radius: 50%;
+        }
+        .preview-item-content {
+            transition: transform 0.2s ease-in-out;
+        }
+
+
+        /*Đổi màu paging + css*/
+        .btn,
+        .btn:link,
+        .btn:visited {
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 7px 15px;
+            display: inline-block;
+            border-radius: 50px;
+            font-size: 13px;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px green;
+        }
+
+        .active {
+            outline: none;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px whitesmoke;
+        }
+
+        .profile-name {
+            box-shadow: 0 5px 20px green;
+            background-color: darkgreen;
+            font-family: cursive;
+            border-radius: 50%;
+        }
+        .preview-item-content {
+            transition: transform 0.2s ease-in-out;
+        }
+
     </style>
 </head>
 <body>
@@ -51,11 +120,9 @@
                             <span class="count bg-success"></span>
                         </div>
                         <div class="profile-name">
-                            <div class="profile-name">
-                                <h2 class="mb-0 text-white text-xxl-center font-weight-semi-bold m-2"
-                                    th:if="${#request.userPrincipal != null}"
-                                    th:text="${#request.userPrincipal.getName()}"></h2>
-                            </div>
+                            <h3 class="mb-0 text-white m-2"
+                                th:if="${#request.userPrincipal != null}"
+                                th:text="${#request.userPrincipal.getName()}"></h3>
                         </div>
                         <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
                                 class="mdi mdi-dots-vertical"></i></a>
@@ -98,7 +165,7 @@
                 </div>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" onclick="location.href = '/admin/course' ">
+                <a class="nav-link" href="../index.html">
               <span class="menu-icon">
                 <i class="mdi mdi-book-open"></i>
               </span>
@@ -179,7 +246,7 @@
                     <li class="nav-item w-100">
                         <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
                             <input type="text" class="form-control" name="name"
-                                   placeholder="Tìm kiếm chương trình học" style="color: white">
+                                   placeholder="Tìm kiếm chương trình học" th:value="${name}" style="color: white">
                         </form>
                     </li>
                 </ul>
@@ -195,28 +262,23 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown border-left">
-                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
-                           data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="mdi mdi-email"></i>
                             <span class="count bg-success"></span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                             aria-labelledby="messageDropdown">
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" th:classappend="${message} ? 'show' : ''" aria-labelledby="messageDropdown">
                             <h6 class="p-3 mb-0">Messages</h6>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
                                     <img src="https://phunugioi.com/wp-content/uploads/2020/03/anh-hot-girl-trung-quoc-cuc-tinh-y-451x600.jpg"
-                                         alt="image"
-                                         class="rounded-circle profile-pic">
+                                         alt="image" class="rounded-circle profile-pic">
                                 </div>
-                                <div class="preview-item-content">
+                                <div th:class="${message} ? 'preview-item-content message-visible' : 'preview-item-content'">
                                     <p class="preview-subject ellipsis mb-1" th:text="${message}"></p>
                                     <p class="text-muted mb-0" id="currentTime"></p>
                                 </div>
                             </a>
-                            <div class="dropdown-divider"></div>
-                            <p class="p-3 mb-0 text-center">4 new messages</p>
                         </div>
                     </li>
                     <li class="nav-item dropdown border-left">
@@ -374,14 +436,42 @@
                                 <h4 class="card-title">Chương trình khoá học</h4>
                                 <div class="table-responsive">
                                     <table class="table">
+                                        <form th:action="@{/admin/curriculum}" method="get" class="d-flex"
+                                              role="search">
+                                            <div class="form-group mb-3 m-2">
+                                                <label>Khu vực tìm kiếm chi tiết </label>
+                                                <input class="form-control me-2" type="search"
+                                                       placeholder="Tên chương trình học" aria-label="Search"
+                                                       name="name" th:value="${name}"
+                                                       style="color: white">
+                                                <label class="m-2">Trạng thái</label>
+                                                <select name="statusId" class="form-select"
+                                                        aria-label="Default select example">
+                                                    <option value="0">Tất cả</option>
+                                                    <option th:each="st : ${listStatus}" th:value="${st.getId()}"
+                                                            th:text="${st.getName()}"
+                                                            th:selected="${statusId == st.getId()}">
+                                                    </option>
+                                                </select>
+                                                <button class="btn btn-outline-success m-2" type="submit">Tìm kiếm
+                                                </button>
+                                            </div>
+                                        </form>
                                         <thead>
                                         <tr th:if="${!curriculum.isEmpty()}">
+                                            <th>
+                                                <div class="form-check form-check-muted m-0">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input">
+                                                    </label>
+                                                </div>
+                                            </th>
                                             <th>STT</th>
                                             <th>Tên Chương trình</th>
                                             <th>Mô tả</th>
                                             <th>Trạng thái</th>
-                                            <th>Ảnh mô tả</th>
-                                            <th>Hành động</th>
+                                            <th>Ảnh</th>
+                                            <th>Tuỳ chọn</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -389,9 +479,17 @@
                                         <p class="preview-subject ellipsis mb-1" th:text="${errorFind}"></p>
                                         <div th:if="${curriculum.isEmpty()}" class="alert alert-info alert-dismissible">
                                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                            <strong>Quan Trọng!</strong> "Không tìm thấy dữ liệu bạn nhập trong kho dữ liệu của chúng tôi. Vui lòng thao tác lại."
+                                            <strong>Quan Trọng!</strong> "Không tìm thấy dữ liệu bạn nhập trong kho dữ
+                                            liệu của chúng tôi. Vui lòng thao tác lại."
                                         </div>
                                         <tr th:each="cur, count : ${curriculum}">
+                                            <td>
+                                                <div class="form-check form-check-muted m-0">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input">
+                                                    </label>
+                                                </div>
+                                            </td>
                                             <td th:text="${count.count}"></td>
                                             <td th:text="${cur.curriculumName}"></td>
                                             <td th:text="${cur.curriculumDescription}"></td>
@@ -412,21 +510,22 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <div class="text-center container" style="margin-top: 20px">
-                                        <a class="page-item btn btn-dark page-item" th:if="${curriculum.hasPrevious()}"
-                                           th:href="@{/admin/curriculum(page = ${curriculum.number - 1})}">
+                                    <div class="text-center container">
+                                        <a class="page-item btn btn-dark page-item m-2"
+                                           th:if="${curriculum.hasPrevious()}"
+                                           th:href="@{/admin/curriculum(page = ${curriculum.number - 1}, name=${name}, statusId=${statusId})}">
                                             <i class="ti-angle-left">Trước</i>
                                         </a>
 
-                                        <a class="page-item number btn btn-dark page-item"
+                                        <a class="page-item number btn btn-dark page-item m-1"
                                            th:classappend="${pageNumber == curriculum.number + 1} ? 'active' : ''"
                                            th:each="pageNumber : ${pageNumberList}"
-                                           th:href="@{/admin/curriculum(page = ${pageNumber - 1})}"
+                                           th:href="@{/admin/curriculum(page = ${pageNumber - 1}, name=${name}, statusId=${statusId})}"
                                            th:text="${pageNumber}">
                                         </a>
 
-                                        <a class="page-item btn btn-dark page-item" th:if="${curriculum.hasNext()}"
-                                           th:href="@{/admin/curriculum(page = ${curriculum.number + 1})}">
+                                        <a class="page-item btn btn-dark page-item m-2" th:if="${curriculum.hasNext()}"
+                                           th:href="@{/admin/curriculum(page = ${curriculum.number + 1}, name=${name}, statusId=${statusId})}">
                                             <i class="ti-angle-right">Sau</i>
                                         </a>
                                     </div>
@@ -437,11 +536,6 @@
                 </div>
             </div>
 
-            <footer class="footer">
-                <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © oneteam 2023</span>
-                </div>
-            </footer>
         </div>
     </div>
 </div>
@@ -451,8 +545,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Hộp thoại xác nhận hành động </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                        aria-label="Close">&times;
+                </button>
             </div>
             <div class="modal-body">
                 <p>Bạn chắc chắn muốn xoá <span id="name" class="text-reddit text-warning"></span> không?</p>
@@ -484,8 +579,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Hôp thoại đăng xuất</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                        aria-label="Close">&times;
                 </button>
             </div>
             <div class="modal-body">
@@ -494,7 +589,9 @@
             </div>
             <div class="modal-footer">
                 <form action="/logout" method="get">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Huỷ
+                    </button>
                     <button type="submit" class="btn btn-primary">Đăng xuất</button>
                 </form>
             </div>
@@ -521,11 +618,22 @@
         document.getElementById("name").innerHTML = name;
         document.getElementById("id").value = id;
     }
-</script>
-<script>
+
     var currentTime = new Date();
     var formattedTime = currentTime.toLocaleString('vi-VN', {hour12: false});
     document.getElementById('currentTime').innerHTML = formattedTime;
+
+    $(document).ready(function() {
+        $('body').on('mouseup', function (e) {
+            if (!$(e.target).hasClass("dropdown-menu")) {
+                $(".dropdown-menu").each(function () {
+                    $(this).removeClass("show");
+                });
+            }
+        });
+    });
 </script>
+
+
 </body>
 </html>

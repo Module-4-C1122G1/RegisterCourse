@@ -194,6 +194,70 @@
         ::placeholder {
             font-size: 14px
         }
+
+
+        /* Hiệu ứng làm mờ background */
+        #loader-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: none;
+        }
+
+        /* Vòng tròn xoay bảy sắc cầu vòng đổi màu */
+        #loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            display: none;
+        }
+
+        #loader:before {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            margin: 6px;
+            border: 4px solid #ccc;
+            border-top-color: #333;
+            border-radius: 50%;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Dòng chữ "Xin bạn chờ trong giây lát" */
+        #loading-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10001;
+            font-size: 24px;
+            color: #fff;
+            text-align: center;
+            display: none;
+        }
+
+        .profile-name {
+            box-shadow: 0 5px 20px green;
+            background-color: darkgreen;
+            font-family: cursive;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
@@ -216,7 +280,9 @@
                             <span class="count bg-success"></span>
                         </div>
                         <div class="profile-name">
-                            <h5 class="mb-0 font-weight-normal">Đạt Nguyễn</h5>
+                            <h3 class="mb-0 text-white m-2"
+                                th:if="${#request.userPrincipal != null}"
+                                th:text="${#request.userPrincipal.getName()}"></h3>
                         </div>
                     </div>
                     <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
@@ -259,7 +325,7 @@
                 </div>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" onclick="location.href = '/admin/course' ">
+                <a class="nav-link" href="../index.html">
               <span class="menu-icon">
                 <i class="mdi mdi-book-open"></i>
               </span>
@@ -339,11 +405,14 @@
                 <ul class="navbar-nav w-100">
                     <li class="nav-item w-100">
                         <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm chương trình học">
+                            <input type="text" class="form-control" name="name"
+                                   placeholder="Tìm kiếm chương trình học" th:value="${name}" style="color: white">
                         </form>
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item dropdown d-none d-lg-block">
+                    </li>
                     <li class="nav-item nav-settings d-none d-lg-block">
                         <a class="nav-link" href="#">
                             <i class="mdi mdi-view-grid"></i>
@@ -448,11 +517,19 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                             <div class="navbar-profile">
-                                <img class="img-xs rounded-circle"
-                                     src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
-                                     alt="">
-                                <p class="mb-0 d-none d-sm-block navbar-profile-name">Đạt Nguyễn</p>
-                                <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                                <form class="d-flex" role="search">
+                                    <div class="user-info">
+                                        <img class="img-xs rounded-circle"
+                                             src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
+                                             alt="">
+                                        <span class="mb-0 font-weight-normal text-light m-2"
+                                              th:utext="${#request.userPrincipal.getName()}"></span>
+                                    </div>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-outline-success">
+                                        Đăng xuất
+                                    </button>
+                                </form>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
@@ -477,7 +554,8 @@
                                     </div>
                                 </div>
                                 <div class="preview-item-content">
-                                    <p class="preview-subject mb-1">Đăng xuất</p>
+                                    <p class="preview-subject mb-1" data-bs-toggle="modal"
+                                       data-bs-target="#logoutModal">Đăng xuất</p>
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
@@ -497,7 +575,7 @@
                 <div class="card"><p class="h-1">Cập nhập chương trình học</p>
                     <div class="bar mb-3"></div>
                     <div class="row">
-                        <div class="col-12"><p>ID</p>
+                        <div class="col-12" type="hidden">
                             <div class="box"><input class="form-control" type="hidden"
                                                     placeholder="" th:field="*{curriculumID}">
                             </div>
@@ -518,7 +596,7 @@
                             <p th:if="${#fields.hasErrors('curriculumDescription')}"
                                th:errors="*{curriculumDescription}" style="color: red"></p>
                         </div>
-                        <div class="col-12"><p>Trạng thái</p>
+                        <div class="col-12 m-2"><p>Trạng thái</p>
                             <select th:field="*{listStatus}"  class="form-select" aria-label="Default select example">-->
                                 <option th:each="list: ${listStatus}" th:text="${list.getName()}" th:value="${list.getId()}">Trạng thái Chương trình học: </option>
                             </select>
@@ -551,49 +629,105 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <input class="form-control" type="submit" value="Xác nhận chỉnh sửa chương trình học"
+                        <input class="form-control" id="upload-btn" type="submit" value="Xác nhận chỉnh sửa chương trình học"
                                style="border: 1px solid #00bb00; border-radius: 15px;margin-top: 20px ">
                     </div>
                 </div>
             </div>
+        </form>
     </div>
-    </form>
 </div>
+<footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © oneteam 2023</span>
+    </div>
+</footer>
+<div id="loader-bg"></div>
+<div id="loader"></div>
+<div id="loading-text">Xin bạn chờ trong giây lát</div>
+<!-- Modal -->
+<div class="modal fade" id="logoutModal" data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Hôp thoại đăng xuất</h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                        aria-label="Close">&times;
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn <span class="mb-0 text-danger font-weight-medium m-2" th:if="${#request.userPrincipal != null}"
+                          th:text="${#request.userPrincipal.getName()}"></span> có chắc chắn muốn đăng xuất?
+            </div>
+            <div class="modal-footer">
+                <form action="/logout" method="get">
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Huỷ
+                    </button>
+                    <button type="submit" class="btn btn-primary">Đăng xuất</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     const button = document.getElementById("upload-btn");
     const fileInput = document.getElementById("file-input");
     const imageUrlInput = document.getElementById("image-url");
-    let clicked = false; // Cờ để chặn hành vi auto
+    function showLoader() {
+        document.getElementById("loader-bg").style.display = "block";
+        document.getElementById("loader").style.display = "block";
+        document.getElementById("loading-text").style.display = "block";
+    }
 
-    button.addEventListener("click", function(event) {
-        event.preventDefault(); // Ngăn chặn form đăng ký bị tự động submit
+    function hideLoader() {
+        document.getElementById("loader-bg").style.display = "none";
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("loading-text").style.display = "none";
+    }
+
+
+    let clicked = false;
+
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
 
         if (!clicked) {
             clicked = true;
             const apiUrl = "https://api.imgbb.com/1/upload";
-            const apiKey = "9ef525f231d4403642c7a187f6843de0";
+            const apiKey = "43e37c08bd9fd35d4dd7043f05e23a85";
             const imgFile = fileInput.files[0];
+            const imgUrl = imageUrlInput.value.trim();
 
-            const formData = new FormData();
-            formData.append("image", imgFile);
-            formData.append("key", apiKey);
+            if (!imgUrl && !imgFile) {
+                alert("Yêu cầu người dùng nhập ảnh");
+                clicked = false;
+            } else if (!imgUrl && imgFile) {
+                const formData = new FormData();
+                formData.append("image", imgFile);
+                formData.append("key", apiKey);
 
-            setTimeout(function() { // Thêm setTimeout để chờ 1s trước khi chạy API
-                fetch(apiUrl, {
-                    method: "POST",
-                    body: formData
-                })
-                    .then(function(response) {
-                        return response.json();
+                showLoader();
+                setTimeout(function () {
+                    fetch(apiUrl, {
+                        method: "POST",
+                        body: formData
                     })
-                    .then(function(data) {
-                        const imgUrl = data.data.url;
-                        imageUrlInput.value = imgUrl; // Gán URL của ảnh đã tải lên vào giá trị của thẻ input
-                        clicked = false;
-                        document.getElementById("my-form").submit(); // Submit form sau khi tải ảnh lên thành công
-                    });
-            }, 1000);
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (data) {
+                            const imgUrl = data.data.url;
+                            imageUrlInput.value = imgUrl;
+                            clicked = false;
+                            hideLoader();
+                            document.getElementById("my-form").submit();
+                        });
+                }, 6000);
+            } else {
+                document.getElementById("my-form").submit();
+            }
         }
     });
 </script>
@@ -610,5 +744,6 @@
 <script th:src="@{/admin/assets/js/settings.js}"></script>
 <script th:src="@{/admin/assets/js/todolist.js}"></script>
 <script th:src="@{/admin/assets/js/dashboard.js}"></script>
+<script src="https://api.imgbb.com/js/imageupload.js"></script>
 </body>
 </html>
