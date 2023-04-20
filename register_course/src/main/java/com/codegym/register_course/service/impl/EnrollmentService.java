@@ -53,4 +53,14 @@ public class EnrollmentService implements IEnrollmentService {
     public Enrollment getEnrollmentByID(Integer enrollmentID) {
         return repository.findById(enrollmentID).get();
     }
+
+    @Override
+    public boolean existsByPersonEmail(String personEmail) {
+        return repository.existsByPersonEmail(personEmail);
+    }
+
+    @Override
+    public boolean existsByPersonPhone(String personPhone) {
+        return repository.existsByPersonPhone(personPhone);
+    }
 }

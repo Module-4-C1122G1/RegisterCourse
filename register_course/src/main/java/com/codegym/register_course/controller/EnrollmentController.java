@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 
 
 @Controller
@@ -35,7 +35,13 @@ public class EnrollmentController {
                                 RedirectAttributes redirectAttributes,
                                 Model model) {
         if (bindingResult.hasErrors()) {
-            return "/index";
+            return "redirect:/index";
+        } else if (service.existsByPersonPhone(enrollmentDTO.getPersonPhone())) {
+            redirectAttributes.addFlashAttribute("message1", "Số điện thoại đã đăng ký, vui lòng nhập số khác");
+            return "redirect:/index";
+        } else if (service.existsByPersonEmail(enrollmentDTO.getPersonEmail())) {
+            redirectAttributes.addFlashAttribute("message2","Email đã tồn tại, vui lòng nhập email khác");
+            return "redirect:/index";
         } else {
             Enrollment enrollment = new Enrollment();
             BeanUtils.copyProperties(enrollmentDTO, enrollment);
