@@ -15,4 +15,7 @@ public interface IEnrollmentRepository extends JpaRepository<Enrollment, Integer
     Page<Enrollment> findAllByEnrollmentIDContaining(String name, PageRequest pageRequest);
 
     Page<Enrollment> findAll(Pageable pageable);
+
+    boolean existsByPersonEmail(String personEmail);
+    boolean existsByPersonPhone(String personPhone);
 }

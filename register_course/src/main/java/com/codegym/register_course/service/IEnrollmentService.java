@@ -21,4 +21,6 @@ public interface IEnrollmentService {
 
     void delete (Integer enrollmentID, Enrollment enrollment);
     Enrollment getEnrollmentByID(Integer enrollmentID);
+    boolean existsByPersonEmail(String personEmail);
+    boolean existsByPersonPhone(String personPhone);
 }

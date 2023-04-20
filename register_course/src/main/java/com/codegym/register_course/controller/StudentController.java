@@ -53,13 +53,13 @@ public class StudentController {
                                 RedirectAttributes redirectAttributes,
                                 Model model) {
         if (bindingResult.hasErrors()) {
-            return "/admin/student/create-student";
+            return "redirect:/admin/student/create-student";
         }else if (iStudentService.existsByStudentEmail(student.getStudentEmail())) {
-            model.addAttribute("message1", "Email đã tồn tại, vui lòng nhập email khác");
-            return "/admin/student/create-student";
+            redirectAttributes.addFlashAttribute("message1", "Email đã tồn tại, vui lòng nhập email khác");
+            return "redirect:/admin/student/create-student";
         } else if (iStudentService.existsByStudentPhone(student.getStudentPhone())) {
-            model.addAttribute("message2", "Số điện thoại đã tồn tại, vui lòng nhập số điện thoại khác");
-            return "/admin/student/create-student";
+           redirectAttributes.addFlashAttribute("message2", "Số điện thoại đã tồn tại, vui lòng nhập số điện thoại khác");
+            return "redirect:/admin/student/create-student";
         }else {
             student.setFlag(0);
             model.addAttribute("student", iStudentService.save(student));
