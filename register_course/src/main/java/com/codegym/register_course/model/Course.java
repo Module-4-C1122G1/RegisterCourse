@@ -27,6 +27,10 @@ public class Course {
     private String courseStatus;
     @Column(name = "course_img", columnDefinition = "varchar(255)")
     private String courseImg;
+
+    @Column(name = "duration",columnDefinition = "varchar(45)")
+    private String duration;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "lecturer_id")
     private Lecturer lecturer;
@@ -37,7 +41,15 @@ public class Course {
     public Course() {
     }
 
-    public Course(Integer courseID, String courseName, String courseDescription, String startDate, String endDate, String courseLocation, String coursePrice, Integer studentMax, String courseStatus, String courseImg, Lecturer lecturer, Employee employee) {
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public Course(Integer courseID, String courseName, String courseDescription, String startDate, String endDate, String courseLocation, String coursePrice, Integer studentMax, String courseStatus, String courseImg, String duration, Lecturer lecturer, Employee employee) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.courseDescription = courseDescription;
@@ -48,6 +60,7 @@ public class Course {
         this.studentMax = studentMax;
         this.courseStatus = courseStatus;
         this.courseImg = courseImg;
+        this.duration = duration;
         this.lecturer = lecturer;
         this.employee = employee;
     }
