@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Danh sách giảng viên</title>
+    <title>Danh sách khóa học</title>
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/mdi/css/materialdesignicons.min.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/css/vendor.bundle.base.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/jvectormap/jquery-jvectormap.css}">
@@ -17,12 +17,14 @@
         * {
             font-family: Roboto;
         }
-        .table td{
+
+        .table td {
             font-size: 16px;
             color: white;
             text-align: center;
         }
-        .table thead th{
+
+        .table thead th {
             font-size: 18px;
             color: sandybrown;
             text-align: center;
@@ -268,6 +270,7 @@
                             <p class="p-3 mb-0 text-center">See all notifications</p>
                         </div>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                             <div class="navbar-profile">
@@ -321,11 +324,11 @@
                     <div class="col-sm-4 grid-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Số lượng giảng viên</h5>
+                                <h5>Số lượng khóa học</h5>
                                 <div class="row">
                                     <div class="col-8 col-sm-12 col-xl-8 my-auto">
                                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                                            <h2 class="mb-0" th:text="${total.size()}"></h2>
+                                            <h2 class="mb-0" th:text="${courseAdmin.size()}"></h2>
                                             <p class="text-success ms-2 mb-0 font-weight-medium"></p>
                                         </div>
                                         <h6 class="text-muted font-weight-normal">Được cập nhập vào năm 2023</h6>
@@ -357,101 +360,133 @@
                         </div>
                     </div>
                 </div>
-                <div class="row ">
-                    <div class="col-12 grid-margin">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Khóa học</h4>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>STT</th>
-                                            <th>Tên khóa học</th>
-                                            <th>Mô tả khóa học</th>
-                                            <th>Ngày bắt đầu</th>
-                                            <th>Ngày kết thúc</th>
-                                            <th>Địa điểm tổ chức khóa học</th>
-                                            <th>Gía khóa học</th>
-                                            <th>Số lượng học viên tối đa</th>
-                                            <th>Thời lượng khoá học</th>
-                                            <th>Ảnh</th>
-                                            <th>Trạng thái</th>
-                                            <th>Nhân viên</th>
-                                            <th>Giảng viên</th>
-                                            <th>Tác vụ</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="lecturer1 : ${lecturer}">
-                                            <td th:text="${lecturer1.lecturerID}"></td>
-                                            <td th:text="${lecturer1.lecturerName}"></td>
-                                            <td th:text="${lecturer1.lecturerEmail}"></td>
-                                            <td th:text="${lecturer1.lecturerPhone}"></td>
-                                            <td th:text="${lecturer1.lecturerPosition}"></td>
-                                            <td>
-                                                <img th:src="${lecturer1.lecturerImg}" alt="image"/>
-                                            </td>
-                                            <td>
-                                                <a th:href="@{/admin/lecturer/edit/{lecturerID}(lecturerID=${lecturer1.getLecturerID()})}"
-                                                   class="btn btn-danger"><i class="fa fa-pencil-square"
-                                                                             style="margin: 0 auto"></i></a>
-                                                <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                        data-target="#modelId"
-                                                        th:attr="onclick=|upload('${lecturer1.lecturerID}', '${lecturer1.lecturerName}')|">
-                                                    <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="text-center container" style="margin-top: 20px">
-                                        <a class="page-item btn btn-dark page-item" th:if="${lecturer.hasPrevious()}"
-                                           th:href="@{/admin/lecturer(page = ${lecturer.number - 1})}">
-                                            <i class="ti-angle-left">Trước</i>
-                                        </a>
+            </div>
+            <div class="row ">
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Khóa học</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên khóa học</th>
+                                        <th>Gía khóa học</th>
+                                        <th>Ảnh</th>
+                                        <th>Trạng thái</th>
+                                        <th>Tác vụ</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="courseAdmin1: ${courseAdmin}">
+                                        <td th:text="${courseAdmin1.courseID}"></td>
+                                        <td th:text="${courseAdmin1.courseName}"></td>
+<!--                                        <td th:text="${courseAdmin1.courseLocation}"></td>-->
+                                        <td th:text="${courseAdmin1.coursePrice}"></td>
+                                        <td>
+                                            <img th:src="${courseAdmin1.courseImg}" alt="image"/>
+                                        </td>
+                                        <td th:text="${courseAdmin1.courseStatus}"></td>
+                                        <td>
+                                            <button type="button"
+                                                    th:attr="onclick=|information2('${courseAdmin1.getCourseName()}','${courseAdmin1.getCourseDescription()}','${courseAdmin1.getCourseLocation()}','${courseAdmin1.getStudentMax()}','${courseAdmin1.getStartDate()}','${courseAdmin1.getEndDate()}','${courseAdmin1.getDuration()}','${courseAdmin1.getEmployee().getEmployeeName()}','${courseAdmin1.getLecturer().getLecturerName()}',)|"
+                                                    class="btn btn-danger"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModal1" style="width: 38.46px;height: 28.6px">
+                                                <i class="fa fa-user-md" style="margin: 0 auto"></i>
+                                            </button>
+                                            <div class="modal fade" id="exampleModal1" tabindex="-1"
+                                                 aria-labelledby="exampleModalLabel"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title text-primary"
+                                                                id="exampleModalLabel1">
+                                                                Thông tin chi
+                                                                tiết</h3>
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body" style="text-align: left">
 
-                                        <a class="page-item number btn btn-dark page-item"
-                                           th:classappend="${pageNumber == lecturer.number + 1} ? 'active' : ''"
-                                           th:each="pageNumber : ${pageNumberList}"
-                                           th:href="@{/admin/lecturer(page = ${pageNumber - 1})}"
-                                           th:text="${pageNumber}">
-                                        </a>
+                                                            <span class="text-dark fs-4">Tên khóa học: </span>
+                                                            <span id="nameCourse"
+                                                                  class="text-success fs-4">.text-success</span></br>
+                                                            <span class="text-dark fs-4">Mô tả khóa học: </span>
+                                                            <span id="description"
+                                                                  class="text-success fs-4"></span></br>
+                                                            <span class="text-dark fs-4">Địa điểm tổ chức khóa học: </span>
+                                                            <span id="courseLocation"
+                                                                  class="text-success fs-4"></span></br>
+                                                            <span class="text-dark fs-4">Số lượng học viên tối đa: </span>
+                                                            <span id="studentMax"
+                                                                  class="text-success fs-4"></span></br>
+                                                            <span class="text-dark fs-4">Ngày bắt đầu: </span>
+                                                            <span id="start" class="text-success fs-4"></span></br>
+                                                            <span class="text-dark fs-4">Ngày kết thúc: </span>
+                                                            <span id="end" class="text-success fs-4"></span></br>
+                                                            <span class="text-dark fs-4">Thời lượng khóa học: </span>
+                                                            <span id="duration" class="text-success fs-4"></span></br>
+                                                            <span class="text-dark fs-4">Nhân viên: </span>
+                                                            <span id="employee"
+                                                                  class="text-success fs-4"></span></br>
+                                                            <span class="text-dark fs-4">Giảng viên: </span>
+                                                            <span id="lecturer" class="text-success fs-4"></span></br>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Đóng
+                                                                </button>
 
-                                        <a class="page-item btn btn-dark page-item" th:if="${lecturer.hasNext()}"
-                                           th:href="@{/admin/lecturer(page = ${lecturer.number + 1})}">
-                                            <i class="ti-angle-right">Sau</i>
-                                        </a>
-                                    </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a
+                                                    class="btn btn-danger"><i class="fa fa-pencil-square"
+                                                                              style="margin: 0 auto"></i></a>
+                                            <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                    data-target="#modelId">
+                                                <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title"> Xác nhận xoá </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/admin/lecturer/delete" method="get">
+                                <div class="modal-body">
+                                    <input type="hidden" name="lecturerID" id="id">
+                                    <span>Bạn có chắc muốn xóa </span> <span id="name"
+                                                                                  class="text-reddit text-warning"></span>?
                                 </div>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title"> Xác nhận xoá </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="/admin/lecturer/delete" method="get">
-                            <div class="modal-body">
-                                <input type="hidden" name="lecturerID" id="id">
-                                <span>Bạn có chắc muốn xóa </span> <span id="name" class="text-reddit text-warning"></span>?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
             <footer class="footer">
                 <div class="d-sm-flex justify-content-center justify-content-sm-between">
                     <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © oneteam 2023</span>
@@ -485,6 +520,30 @@
     var currentTime = new Date();
     var formattedTime = currentTime.toLocaleString('vi-VN', {hour12: false});
     document.getElementById('currentTime').innerHTML = formattedTime;
+</script>
+<script>
+    window.addEventListener("load", (event) => {
+        console.log("page is fully loaded");
+        let myToastEl = document.getElementById('message_toast')
+        myToastEl.classList.add('show');
+        setTimeout(() => {
+            myToastEl.classList.remove('show');
+        }, 3000)
+    });
+</script>
+<script>
+    function information2(nameCourse, description,courseLocation,studentMax, start,
+                          end, duration, employee, lecturer) {
+        document.getElementById("nameCourse").innerText = nameCourse;
+        document.getElementById("description").innerText = description;
+        document.getElementById("courseLocation").innerText = courseLocation;
+        document.getElementById("studentMax").innerText = studentMax;
+        document.getElementById("start").innerText = start;
+        document.getElementById("end").innerText = end;
+        document.getElementById("duration").innerText = duration;
+        document.getElementById("employee").innerText = employee;
+        document.getElementById("lecturer").innerText = lecturer;
+    }
 </script>
 </body>
 </html>
