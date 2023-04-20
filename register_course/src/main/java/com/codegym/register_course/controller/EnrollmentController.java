@@ -1,23 +1,20 @@
 package com.codegym.register_course.controller;
 
+import com.codegym.register_course.DTO.EnrollmentDTO;
 import com.codegym.register_course.model.Enrollment;
 import com.codegym.register_course.service.IEnrollmentService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 @Controller
-@RequestMapping("/admin/enrollment")
 public class EnrollmentController {
     private final IEnrollmentService service;
 
@@ -25,39 +22,41 @@ public class EnrollmentController {
         this.service = service;
     }
 
-    @GetMapping("")
+    @GetMapping("/admin/enrollment")
     public String showEnrollments(Model model) {
         model.addAttribute("enrollments", service.findAllEnrollment());
         return "/admin/enrollments/list";
     }
 
-    @GetMapping("/create")
-    public String showPageCreate(Model model) {
-        model.addAttribute("enrollment", new Enrollment());
-        return "/admin/enrollments/create";
-    }
-
-    @PostMapping("/create")
-    public String createStudent(@Valid @ModelAttribute("enrollment") Enrollment enrollment,
+    @PostMapping("enrollment/create")
+    public String createStudent(@Valid @ModelAttribute("enrollmentDTO") EnrollmentDTO enrollmentDTO,
+                                @RequestParam(name = "courseName") String courseName,
                                 BindingResult bindingResult,
                                 RedirectAttributes redirectAttributes,
                                 Model model) {
         if (bindingResult.hasErrors()) {
-            return "/admin/enrollments/create";
+            return "/index";
         } else {
+            Enrollment enrollment = new Enrollment();
+            BeanUtils.copyProperties(enrollmentDTO, enrollment);
             model.addAttribute("enrollment", service.save(enrollment));
-            redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
-            return "redirect:/admin/student";
+            enrollment.setEnrollmentStatus("Đang chờ");
+            enrollment.setCourseName(courseName);
+            String date = String.valueOf(LocalDate.now());
+            enrollment.setEnrollmentDate(date);
+            service.save(enrollment);
+            redirectAttributes.addFlashAttribute("message", "Đăng ký thành công");
+            return "redirect:/index";
         }
     }
 
-    @GetMapping("update/{enrollmentID}")
+    @GetMapping("/admin/enrollment/update/{enrollmentID}")
     public String showPageUpdate(@PathVariable Integer enrollmentID, Model model) {
         model.addAttribute("enrollment", service.findById(enrollmentID));
         return "/admin/enrollments/update";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/admin/enrollment/update")
     public String updateStudent(@Valid @ModelAttribute("enrollment") Enrollment enrollment, BindingResult bindingResult,
                                 Model model,
                                 RedirectAttributes redirectAttributes) {
@@ -70,7 +69,7 @@ public class EnrollmentController {
         }
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/admin/enrollment/delete")
     public String deleteStudent(@RequestParam Integer enrollmentID) {
         service.delete(enrollmentID, service.getEnrollmentByID(enrollmentID));
         return "redirect:/admin/enrollment";

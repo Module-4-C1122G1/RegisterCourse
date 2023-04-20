@@ -1,41 +1,29 @@
-package com.codegym.register_course.model;
+package com.codegym.register_course.DTO;
+
+import com.codegym.register_course.model.Course;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "enrollment")
-public class Enrollment {
-    @Id
-    @Column(name = "enrollment_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EnrollmentDTO {
     private Integer enrollmentID;
-    @Column(name = "person_name")
     private String personName;
-    @Column(name = "person_email")
     private String personEmail;
-    @Column(name = "person_phone")
     private String personPhone;
-    @Column(name = "enrollment_date", columnDefinition = "varchar(45)")
     private String enrollmentDate;
-    @Column(name = "enrollment_status", columnDefinition = "varchar(45)")
     private String enrollmentStatus;
-    @Column(name = "course_name")
-    private String courseName;
-//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "course_id")
-//    private Course course;
+    private Course course;
 
-    public Enrollment() {
+    public EnrollmentDTO() {
     }
 
-    public Enrollment(Integer enrollmentID, String personName, String personEmail, String personPhone, String enrollmentDate, String enrollmentStatus, String courseName) {
+    public EnrollmentDTO(Integer enrollmentID, String personName, String personEmail, String personPhone, String enrollmentDate, String enrollmentStatus, Course course) {
         this.enrollmentID = enrollmentID;
         this.personName = personName;
         this.personEmail = personEmail;
         this.personPhone = personPhone;
         this.enrollmentDate = enrollmentDate;
         this.enrollmentStatus = enrollmentStatus;
-        this.courseName = courseName;
+        this.course = course;
     }
 
     public Integer getEnrollmentID() {
@@ -86,11 +74,11 @@ public class Enrollment {
         this.enrollmentStatus = enrollmentStatus;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

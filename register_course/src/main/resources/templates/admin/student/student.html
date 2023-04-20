@@ -17,6 +17,18 @@
         * {
             font-family: Roboto;
         }
+
+        .table td {
+            font-size: 16px;
+            color: white;
+            text-align: center;
+        }
+
+        .table thead th {
+            font-size: 18px;
+            color: sandybrown;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -26,8 +38,9 @@
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
             <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo4.png}"
                                                                           style="height: 58px" alt="logo"/></a>
-            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img th:src="@{/admin/assets/images/logo4.png}"
-                                                                               alt="logo"/></a>
+            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img
+                    th:src="@{/admin/assets/images/logo4.png}"
+                    alt="logo"/></a>
         </div>
         <ul class="nav">
             <li class="nav-item profile">
@@ -41,48 +54,49 @@
                         </div>
                         <div class="profile-name">
                             <div class="profile-name">
-                                <h2 class="mb-0 text-white text-xxl-center font-weight-semi-bold m-2" th:if="${#request.userPrincipal != null}"
+                                <h2 class="mb-0 text-white text-xxl-center font-weight-semi-bold m-2"
+                                    th:if="${#request.userPrincipal != null}"
                                     th:text="${#request.userPrincipal.getName()}"></h2>
                             </div>
+                        </div>
+                        <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
+                                class="mdi mdi-dots-vertical"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
+                             aria-labelledby="profile-dropdown">
+                            <a href="#" class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-settings text-primary"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1 text-small">Thông tin tài khoản</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-onepassword  text-info"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1 text-small">Đặt lại mật khẩu</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-calendar-today text-success"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1 text-small">Lịch lên lớp</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
-                            class="mdi mdi-dots-vertical"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
-                         aria-labelledby="profile-dropdown">
-                        <a href="#" class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-dark rounded-circle">
-                                    <i class="mdi mdi-settings text-primary"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <p class="preview-subject ellipsis mb-1 text-small">Thông tin tài khoản</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-dark rounded-circle">
-                                    <i class="mdi mdi-onepassword  text-info"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <p class="preview-subject ellipsis mb-1 text-small">Đặt lại mật khẩu</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-dark rounded-circle">
-                                    <i class="mdi mdi-calendar-today text-success"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <p class="preview-subject ellipsis mb-1 text-small">Lịch lên lớp</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
                 </div>
             </li>
             <li class="nav-item menu-items">
@@ -233,7 +247,8 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="https://phunugioi.com/wp-content/uploads/2020/03/anh-hot-girl-trung-quoc-cuc-tinh-y-451x600.jpg" alt="image"
+                                    <img src="https://phunugioi.com/wp-content/uploads/2020/03/anh-hot-girl-trung-quoc-cuc-tinh-y-451x600.jpg"
+                                         alt="image"
                                          class="rounded-circle profile-pic">
                                 </div>
                                 <div class="preview-item-content">
@@ -374,40 +389,33 @@
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <th>
-                                                <div class="form-check form-check-muted m-0">
-                                                    <label class="form-check-label">
-                                                        <input type="checkbox" class="form-check-input">
-                                                    </label>
-                                                </div>
-                                            </th>
                                             <th>STT</th>
                                             <th>Tên học viên</th>
                                             <th>Email</th>
                                             <th>Số điện thoại</th>
-                                            <th>Địa chỉ</th>
+                                            <th>Tên khoá học</th>
                                             <th>Ảnh</th>
                                             <th>Tác vụ</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr th:each="student1,st1 : ${student}">
-                                            <td>
-                                                <div class="form-check form-check-muted m-0">
-                                                    <label class="form-check-label">
-                                                        <input type="checkbox" class="form-check-input">
-                                                    </label>
-                                                </div>
-                                            </td>
                                             <td th:text="${st1.count}"></td>
                                             <td th:text="${student1.studentName}"></td>
                                             <td th:text="${student1.studentEmail}"></td>
                                             <td th:text="${student1.studentPhone}"></td>
-                                            <td th:text="${student1.studentAddress}"></td>
+                                            <td th:text="${student1.course.courseName}"></td>
                                             <td>
                                                 <img th:src="${student1.studentImg}" alt="image"/>
                                             </td>
                                             <td>
+                                                <button type="button"
+                                                        th:attr="onclick=|detail('${student1.getStudentName}','${student1.getStudentEmail}','${student1.studentPhone}','${student1.studentAddress}','${student1.course.courseName}','${student1.course.courseLocation}')|"
+                                                        class="btn btn-primary btn-rounded btn-icon"
+                                                        style="margin-bottom: 0px"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                                    <i class="fa fa-info-circle" style="margin: 0 auto; font-size: 36px"></i>
+                                                </button>
                                                 <a th:href="@{/admin/student/update/{studentID}(studentID=${student1.getStudentID()})}"
                                                    class="btn btn-danger"><i class="fa fa-pencil-square"
                                                                              style="margin: 0 auto"></i></a>
@@ -420,6 +428,45 @@
                                             </td>
                                         </tr>
 
+                                        <div class="modal fade" id="exampleModal1" tabindex="-1"
+                                             aria-labelledby="exampleModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title text-primary" id="exampleModalLabel1">
+                                                            Thông tin chi
+                                                            tiết</h3>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body" style="text-align: left">
+
+                                                        <span class="text-white fs-4">Tên học viên: </span>
+                                                        <span id="studentName"
+                                                              class="text-primary fs-4"></span></br>
+                                                        <span class="text-white fs-4">Email: </span>
+                                                        <span id="studentEmail" class="text-primary fs-4"></span></br>
+                                                        <span class="text-white fs-4">Số điện thoại: </span>
+                                                        <span id="studentPhone" class="text-primary fs-4"></span></br>
+                                                        <span class="text-white fs-4">Địa chỉ: </span>
+                                                        <span id="studentAddress" class="text-primary fs-4"></span></br>
+                                                        <span class="text-white fs-4">Tên khoá học: </span>
+                                                        <span id="courseName" class="text-primary fs-4"></span></br>
+                                                        <span class="text-white fs-4">Địa chỉ khoá học: </span>
+                                                        <span id="courseLocation" class="text-primary fs-4"></span></br>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Đóng
+                                                            </button>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
 
                                         <div class="modal fade" id="exampleModal" tabindex="-1"
                                              aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -431,7 +478,9 @@
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Xác nhận xoá <span id="name" class="text-reddit text-warning" ></span>?</p>
+                                                        <p>Xác nhận xoá <span id="name"
+                                                                              class="text-reddit text-warning"></span>?
+                                                        </p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <form action="/admin/student/delete" method="get">
@@ -449,7 +498,7 @@
                                         </div>
                                         </tbody>
                                     </table>
-                                    <div class="text-center container">
+                                    <div class="text-center container" style="margin-top: 20px">
                                         <a class="page-item btn btn-dark page-item" th:if="${student.hasPrevious()}"
                                            th:href="@{/admin/student(page = ${student.number - 1})}">
                                             <i class="ti-angle-left">Trước</i>
@@ -497,6 +546,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 <script>
+    function detail(studentName, studentEmail, studentPhone, studentAddress, courseName, courseLocation) {
+        document.getElementById("studentName").innerText = studentName;
+        document.getElementById("studentEmail").innerText = studentEmail;
+        document.getElementById("studentPhone").innerText = studentPhone;
+        document.getElementById("courseName").innerText = courseName;
+        document.getElementById("studentAddress").innerText = studentAddress;
+        document.getElementById("courseLocation").innerText = courseLocation;
+    }
+
     function upload(id, name) {
         document.getElementById("name").innerHTML = name;
         document.getElementById("id").value = id;
@@ -504,7 +562,7 @@
 </script>
 <script>
     var currentTime = new Date();
-    var formattedTime = currentTime.toLocaleString('vi-VN', {hour12:false});
+    var formattedTime = currentTime.toLocaleString('vi-VN', {hour12: false});
     document.getElementById('currentTime').innerHTML = formattedTime;
 </script>
 </body>

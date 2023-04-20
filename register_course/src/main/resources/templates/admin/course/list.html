@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Quản lý học viên</title>
+    <title>Danh sách giảng viên</title>
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/mdi/css/materialdesignicons.min.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/css/vendor.bundle.base.css}">
     <link rel="stylesheet" th:href="@{/admin/assets/vendors/jvectormap/jquery-jvectormap.css}">
@@ -31,13 +31,12 @@
 </head>
 <body>
 <div class="container-scroller">
-
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo3.png}"
-                                                                          style="height: 75px" alt="logo"/></a>
+            <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo4.png}"
+                                                                          style="height: 58px" alt="logo"/></a>
             <a class="sidebar-brand brand-logo-mini" href="../index.html"><img
-                    th:src="@{/admin/assets/images/logo3.png}"
+                    th:src="@{/admin/assets/images/logo4.png}"
                     alt="logo"/></a>
         </div>
         <ul class="nav">
@@ -52,7 +51,8 @@
                         </div>
                         <div class="profile-name">
                             <div class="profile-name">
-                                <h2 class="mb-0 text-white text-xxl-center font-weight-semi-bold m-2" th:if="${#request.userPrincipal != null}"
+                                <h2 class="mb-0 text-white text-xxl-center font-weight-semi-bold m-2"
+                                    th:if="${#request.userPrincipal != null}"
                                     th:text="${#request.userPrincipal.getName()}"></h2>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                 </div>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="../index.html">
+                <a class="nav-link" onclick="location.href = '/admin/course' ">
               <span class="menu-icon">
                 <i class="mdi mdi-book-open"></i>
               </span>
@@ -177,7 +177,7 @@
                 <ul class="navbar-nav w-100">
                     <li class="nav-item w-100">
                         <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                            <input type="text" class="form-control" name="name" placeholder="Tìm kiếm nhân viên"
+                            <input name="name" type="text" class="form-control" placeholder="Tìm kiếm giảng viên"
                                    style="color: white">
                         </form>
                     </li>
@@ -186,46 +186,7 @@
                     <li class="nav-item dropdown d-none d-lg-block">
                         <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown"
                            data-bs-toggle="dropdown" aria-expanded="false"
-                           onclick="location.href = '/admin/employee/create'">+ Thêm mới nhân viên</a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                             aria-labelledby="createbuttonDropdown">
-                            <h6 class="p-3 mb-0">Projects</h6>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-file-outline text-primary"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Software Development</p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-web text-info"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">UI Development</p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-layers text-danger"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Software Testing</p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <p class="p-3 mb-0 text-center">See all projects</p>
-                        </div>
+                           onclick="location.href = '/admin/lecturer/create'">+ Thêm mới giảng viên</a>
                     </li>
                     <li class="nav-item nav-settings d-none d-lg-block">
                         <a class="nav-link" href="#">
@@ -244,34 +205,13 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face4.jpg" alt="image"
+                                    <img src="https://phunugioi.com/wp-content/uploads/2020/03/anh-hot-girl-trung-quoc-cuc-tinh-y-451x600.jpg"
+                                         alt="image"
                                          class="rounded-circle profile-pic">
                                 </div>
                                 <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
-                                    <p class="text-muted mb-0"> 1 Minutes ago </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face2.jpg" alt="image"
-                                         class="rounded-circle profile-pic">
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
-                                    <p class="text-muted mb-0"> 15 Minutes ago </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face3.jpg" alt="image"
-                                         class="rounded-circle profile-pic">
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
-                                    <p class="text-muted mb-0"> 18 Minutes ago </p>
+                                    <p class="preview-subject ellipsis mb-1" th:text="${msg}"></p>
+                                    <p class="text-muted mb-0" id="currentTime"></p>
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
@@ -385,7 +325,7 @@
                                 <div class="row">
                                     <div class="col-8 col-sm-12 col-xl-8 my-auto">
                                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                                            <h2 class="mb-0" th:text="${enrollments.size()}"></h2>
+                                            <h2 class="mb-0" th:text="${total.size()}"></h2>
                                             <p class="text-success ms-2 mb-0 font-weight-medium"></p>
                                         </div>
                                         <h6 class="text-muted font-weight-normal">Được cập nhập vào năm 2023</h6>
@@ -397,98 +337,118 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-4 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Số lượng khóa học đang đứng lớp</h5>
+                                <div class="row">
+                                    <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                                        <div class="d-flex d-sm-block d-md-flex align-items-center">
+                                            <h2 class="mb-0">100</h2>
+                                            <p class="text-success ms-2 mb-0 font-weight-medium"></p>
+                                        </div>
+                                        <h6 class="text-muted font-weight-normal">Được cập nhập vào năm 2023</h6>
+                                    </div>
+                                    <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                                        <i class="icon-lg mdi mdi-wallet-travel text-danger ms-auto"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row ">
                     <div class="col-12 grid-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Đăng ký khoá học</h4>
+                                <h4 class="card-title">Khóa học</h4>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                         <tr>
                                             <th>STT</th>
-                                            <th>Tên học viên</th>
-                                            <th>Email</th>
-                                            <th>Số điện thoại</th>
+                                            <th>Tên khóa học</th>
+                                            <th>Mô tả khóa học</th>
+                                            <th>Ngày bắt đầu</th>
+                                            <th>Ngày kết thúc</th>
+                                            <th>Địa điểm tổ chức khóa học</th>
+                                            <th>Gía khóa học</th>
+                                            <th>Số lượng học viên tối đa</th>
+                                            <th>Thời lượng khoá học</th>
+                                            <th>Ảnh</th>
                                             <th>Trạng thái</th>
-                                            <th>Ngày</th>
-                                            <th>Khóa học</th>
+                                            <th>Nhân viên</th>
+                                            <th>Giảng viên</th>
                                             <th>Tác vụ</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="enrollments1, er : ${enrollments}">
-                                            <td th:text="${er.count}"></td>
-                                            <td th:text="${enrollments1.personName}"></td>
-                                            <td th:text="${enrollments1.personEmail}"></td>
-                                            <td th:text="${enrollments1.personPhone}"></td>
-                                            <td th:text="${enrollments1.enrollmentStatus}"></td>
-                                            <td th:text="${enrollments1.enrollmentDate}"></td>
-                                            <td th:text="${enrollments1.courseName}"></td>
+                                        <tr th:each="lecturer1 : ${lecturer}">
+                                            <td th:text="${lecturer1.lecturerID}"></td>
+                                            <td th:text="${lecturer1.lecturerName}"></td>
+                                            <td th:text="${lecturer1.lecturerEmail}"></td>
+                                            <td th:text="${lecturer1.lecturerPhone}"></td>
+                                            <td th:text="${lecturer1.lecturerPosition}"></td>
                                             <td>
-                                                <a th:href="@{/admin/enrollment/update/{enrollmentID}(enrollmentID=${enrollments1.getEnrollmentID()})}"
+                                                <img th:src="${lecturer1.lecturerImg}" alt="image"/>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/admin/lecturer/edit/{lecturerID}(lecturerID=${lecturer1.getLecturerID()})}"
                                                    class="btn btn-danger"><i class="fa fa-pencil-square"
                                                                              style="margin: 0 auto"></i></a>
                                                 <button type="button" class="btn btn-warning" data-toggle="modal"
                                                         data-target="#modelId"
-                                                        th:attr="onclick=|upload('${enrollments1.enrollmentID}', '${enrollments1.personName}')|"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                        th:attr="onclick=|upload('${lecturer1.lecturerID}', '${lecturer1.lecturerName}')|">
                                                     <i class=" fa fa-trash-o" style="margin: 0 auto"></i>
                                                 </button>
                                             </td>
                                         </tr>
-
-
-                                        <div class="modal fade" id="exampleModal" tabindex="-1"
-                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Xác nhận xoá <span id="name" class="text-reddit text-warning"></span>?</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <form action="/admin/enrollment/delete" method="get">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close
-                                                            </button>
-                                                            <input type="hidden" id="id" name="enrollmentID"
-                                                                   class="btn btn-secondary">
-                                                            <input type="submit" class="btn btn-secondary" value="Xoá"
-                                                                   style="background: red">
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         </tbody>
                                     </table>
-<!--                                    <div class="text-center container" style="margin-top: 20px">-->
-<!--                                        <a class="page-item btn btn-dark page-item" th:if="${employee.hasPrevious()}"-->
-<!--                                           th:href="@{/admin/employee(page = ${employee.number - 1})}">-->
-<!--                                            <i class="ti-angle-left">Trước</i>-->
-<!--                                        </a>-->
+                                    <div class="text-center container" style="margin-top: 20px">
+                                        <a class="page-item btn btn-dark page-item" th:if="${lecturer.hasPrevious()}"
+                                           th:href="@{/admin/lecturer(page = ${lecturer.number - 1})}">
+                                            <i class="ti-angle-left">Trước</i>
+                                        </a>
 
-<!--                                        <a class="page-item number btn btn-dark page-item"-->
-<!--                                           th:classappend="${pageNumber == employee.number + 1} ? 'active' : ''"-->
-<!--                                           th:each="pageNumber : ${pageNumberList}"-->
-<!--                                           th:href="@{/admin/employee(page = ${pageNumber - 1})}"-->
-<!--                                           th:text="${pageNumber}">-->
-<!--                                        </a>-->
+                                        <a class="page-item number btn btn-dark page-item"
+                                           th:classappend="${pageNumber == lecturer.number + 1} ? 'active' : ''"
+                                           th:each="pageNumber : ${pageNumberList}"
+                                           th:href="@{/admin/lecturer(page = ${pageNumber - 1})}"
+                                           th:text="${pageNumber}">
+                                        </a>
 
-<!--                                        <a class="page-item btn btn-dark page-item" th:if="${employee.hasNext()}"-->
-<!--                                           th:href="@{/admin/employee(page = ${employee.number + 1})}">-->
-<!--                                            <i class="ti-angle-right">Sau</i>-->
-<!--                                        </a>-->
-<!--                                    </div>-->
+                                        <a class="page-item btn btn-dark page-item" th:if="${lecturer.hasNext()}"
+                                           th:href="@{/admin/lecturer(page = ${lecturer.number + 1})}">
+                                            <i class="ti-angle-right">Sau</i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"> Xác nhận xoá </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="/admin/lecturer/delete" method="get">
+                            <div class="modal-body">
+                                <input type="hidden" name="lecturerID" id="id">
+                                <span>Bạn có chắc muốn xóa </span> <span id="name" class="text-reddit text-warning"></span>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -513,14 +473,18 @@
 <script th:src="@{/admin/assets/js/settings.js}"></script>
 <script th:src="@{/admin/assets/js/todolist.js}"></script>
 <script th:src="@{/admin/assets/js/dashboard.js}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 <script>
     function upload(id, name) {
         document.getElementById("name").innerHTML = name;
         document.getElementById("id").value = id;
     }
+</script>
+<script>
+    var currentTime = new Date();
+    var formattedTime = currentTime.toLocaleString('vi-VN', {hour12: false});
+    document.getElementById('currentTime').innerHTML = formattedTime;
 </script>
 </body>
 </html>

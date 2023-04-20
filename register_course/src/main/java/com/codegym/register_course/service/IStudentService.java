@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IStudentService {
-
     List<Student> findAllStudent();
 
     Student save(Student student);

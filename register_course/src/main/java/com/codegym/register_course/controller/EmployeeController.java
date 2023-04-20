@@ -44,9 +44,9 @@ public class EmployeeController {
 
     @PostMapping("/employee/create")
     public String create(Employee employee) {
-        service.save(employee);
-        return "redirect:/admin/employee";
-    }
+            service.save(employee);
+            return "redirect:/admin/employee";
+        }
 
     @GetMapping("/employee/edit/{id}")
     public String showEdit(

@@ -52,7 +52,7 @@ public class StudentController {
                                 Model model) {
         if (bindingResult.hasErrors()) {
             return "/admin/student/create-student";
-        } else {
+        }else {
             model.addAttribute("student", iStudentService.save(student));
             redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
             return "redirect:/admin/student";

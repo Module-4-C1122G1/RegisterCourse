@@ -6,10 +6,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IStudentRepository extends JpaRepository<Student,Integer> {
+public interface IStudentRepository extends JpaRepository<Student, Integer> {
     void deleteStudentByStudentID(Integer studentID);
     Page<Student> findAllByStudentNameContaining(String name, PageRequest pageRequest);
     Page<Student> findAll(Pageable pageable);
+
     void deleteAllByStudentID(Integer studentID);
 
 }
