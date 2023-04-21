@@ -17,7 +17,36 @@
             font-family: Roboto;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        /*Đổi màu paging + css*/
+        .btn,
+        .btn:link,
+        .btn:visited {
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 7px 15px;
+            display: inline-block;
+            border-radius: 50px;
+            font-size: 13px;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px green;
+        }
+
+        .active {
+            outline: none;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px whitesmoke;
+        }
+
+        .profile-name {
+            box-shadow: 0 5px 20px green;
+            background-color: darkgreen;
+            font-family: cursive;
+            border-radius: 50%;
+        }
+        /*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');*/
 
         * {
             margin: 0;
@@ -25,9 +54,9 @@
             box-sizing: border-box;
         }
 
-        .container {
-            background-color: rgba(24, 23, 23, 0)
-        }
+        /*!*.container {*!*/
+        /*!*    background-color: rgba(24, 23, 23, 0)*!*/
+        /*!*}*!*/
 
         .card {
             max-width: 1000px;
@@ -59,60 +88,6 @@
             padding-left: 10px
         }
 
-        .box {
-            position: relative
-        }
-
-        .btn {
-            position: absolute;
-            top: 50%;
-            right: 4px;
-            transform: translateY(-50%);
-            height: 32px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            background-color: #2e2e2e;
-            color: #fff
-        }
-
-        .fas.fa-plus {
-            font-size: 12px
-        }
-
-        .add.btn {
-            position: absolute;
-            top: 50%;
-            right: 0px;
-            height: 100%;
-            transform: translateY(-50%);
-            border-radius: 5px
-        }
-
-        span.fas.fa-stopwatch,
-        span.fas.fa-calendar-alt,
-        .arrow {
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            color: #8f8d8d
-        }
-
-        .fas.fa-check-circle {
-            color: green
-        }
-
-        .dis {
-            font-size: 12px
-        }
-
-        .pic {
-            position: relative;
-            margin-right: 8px
-        }
 
         img {
             width: 50px;
@@ -121,79 +96,6 @@
             object-fit: cover
         }
 
-        .pic .fas.fa-times {
-            position: absolute;
-            top: 0px;
-            right: 3px;
-            font-size: 10px;
-            height: 18px;
-            width: 18px;
-            border: 2px solid black;
-            background-color: #8f8d8d;
-            color: black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%
-        }
-
-        .rounded-circle {
-            height: 30px;
-            width: 30px;
-            background-color: #252525;
-            color: #8f8d8d;
-            display: flex;
-            align-items: center;
-            justify-content: center
-        }
-
-        .rounded-circle .fas {
-            font-size: 10px
-        }
-
-        .rounded-circle .number {
-            font-size: 14px;
-            font-weight: 800
-        }
-
-        .Radio.form-control {
-            padding: 3px;
-            width: 140px
-        }
-
-        label.radio {
-            cursor: pointer
-        }
-
-        label.radio input {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            visibility: hidden;
-            pointer-events: none
-        }
-
-        label.radio span {
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 64px;
-            height: 34px;
-            color: #fff;
-            font-size: 14px;
-            border-radius: 3px;
-            text-transform: uppercase
-        }
-
-        label.radio input:checked + span {
-            background-color: #2e2e2e
-        }
-
-        ::placeholder {
-            font-size: 14px
-        }
 
         /* Hiệu ứng làm mờ background */
         #loader-bg {
@@ -419,49 +321,23 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown border-left">
-                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
-                           data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="mdi mdi-email"></i>
                             <span class="count bg-success"></span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                             aria-labelledby="messageDropdown">
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" th:classappend="${message} ? 'show' : ''" aria-labelledby="messageDropdown">
                             <h6 class="p-3 mb-0">Messages</h6>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face4.jpg" alt="image"
-                                         class="rounded-circle profile-pic">
+                                    <img src="https://phunugioi.com/wp-content/uploads/2020/03/anh-hot-girl-trung-quoc-cuc-tinh-y-451x600.jpg"
+                                         alt="image" class="rounded-circle profile-pic">
                                 </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
-                                    <p class="text-muted mb-0"> 1 Minutes ago </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face2.jpg" alt="image"
-                                         class="rounded-circle profile-pic">
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
-                                    <p class="text-muted mb-0"> 15 Minutes ago </p>
+                                <div th:class="${message} ? 'preview-item-content message-visible' : 'preview-item-content'">
+                                    <p class="preview-subject ellipsis mb-1" th:text="${message}"></p>
+                                    <p class="text-muted mb-0" id="currentTime"></p>
                                 </div>
                             </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face3.jpg" alt="image"
-                                         class="rounded-circle profile-pic">
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
-                                    <p class="text-muted mb-0"> 18 Minutes ago </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <p class="p-3 mb-0 text-center">4 new messages</p>
                         </div>
                     </li>
                     <li class="nav-item dropdown border-left">

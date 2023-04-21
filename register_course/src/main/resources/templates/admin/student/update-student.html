@@ -17,16 +17,41 @@
             font-family: Roboto;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        /*Đổi màu paging + css*/
+        .btn,
+        .btn:link,
+        .btn:visited {
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 7px 15px;
+            display: inline-block;
+            border-radius: 50px;
+            font-size: 13px;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px green;
+        }
+
+        .active {
+            outline: none;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px whitesmoke;
+        }
+
+        .profile-name {
+            box-shadow: 0 5px 20px green;
+            background-color: darkgreen;
+            font-family: cursive;
+            border-radius: 50%;
+        }
+        /*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');*/
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        .container {
-            background-color: rgba(24, 23, 23, 0)
         }
 
         .card {
@@ -59,60 +84,6 @@
             padding-left: 10px
         }
 
-        .box {
-            position: relative
-        }
-
-        .btn {
-            position: absolute;
-            top: 50%;
-            right: 4px;
-            transform: translateY(-50%);
-            height: 32px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            background-color: #2e2e2e;
-            color: #fff
-        }
-
-        .fas.fa-plus {
-            font-size: 12px
-        }
-
-        .add.btn {
-            position: absolute;
-            top: 50%;
-            right: 0px;
-            height: 100%;
-            transform: translateY(-50%);
-            border-radius: 5px
-        }
-
-        span.fas.fa-stopwatch,
-        span.fas.fa-calendar-alt,
-        .arrow {
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            color: #8f8d8d
-        }
-
-        .fas.fa-check-circle {
-            color: green
-        }
-
-        .dis {
-            font-size: 12px
-        }
-
-        .pic {
-            position: relative;
-            margin-right: 8px
-        }
 
         img {
             width: 50px;
@@ -121,78 +92,68 @@
             object-fit: cover
         }
 
-        .pic .fas.fa-times {
-            position: absolute;
-            top: 0px;
-            right: 3px;
-            font-size: 10px;
-            height: 18px;
-            width: 18px;
-            border: 2px solid black;
-            background-color: #8f8d8d;
-            color: black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%
-        }
 
-        .rounded-circle {
-            height: 30px;
-            width: 30px;
-            background-color: #252525;
-            color: #8f8d8d;
-            display: flex;
-            align-items: center;
-            justify-content: center
-        }
-
-        .rounded-circle .fas {
-            font-size: 10px
-        }
-
-        .rounded-circle .number {
-            font-size: 14px;
-            font-weight: 800
-        }
-
-        .Radio.form-control {
-            padding: 3px;
-            width: 140px
-        }
-
-        label.radio {
-            cursor: pointer
-        }
-
-        label.radio input {
-            position: absolute;
-            top: 50%;
+        /* Hiệu ứng làm mờ background */
+        #loader-bg {
+            position: fixed;
+            top: 0;
             left: 0;
-            transform: translateY(-50%);
-            visibility: hidden;
-            pointer-events: none
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: none;
         }
 
-        label.radio span {
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 64px;
-            height: 34px;
+        /* Vòng tròn xoay bảy sắc cầu vòng đổi màu */
+        #loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            display: none;
+        }
+
+        #loader:before {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            margin: 6px;
+            border: 4px solid #ccc;
+            border-top-color: #333;
+            border-radius: 50%;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Dòng chữ "Xin bạn chờ trong giây lát" */
+        #loading-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10001;
+            font-size: 24px;
             color: #fff;
-            font-size: 14px;
-            border-radius: 3px;
-            text-transform: uppercase
+            text-align: center;
+            display: none;
         }
 
-        label.radio input:checked + span {
-            background-color: #2e2e2e
-        }
-
-        ::placeholder {
-            font-size: 14px
+        .profile-name {
+            box-shadow: 0 5px 20px green;
+            background-color: darkgreen;
+            font-family: cursive;
+            border-radius: 50%;
         }
     </style>
 </head>
@@ -202,8 +163,9 @@
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
             <a class="sidebar-brand brand-logo" href="../index.html"><img th:src="@{/admin/assets/images/logo4.png}"
                                                                           style="height: 58px" alt="logo"/></a>
-            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img th:src="@{/admin/assets/images/logo4.png}"
-                                                                               alt="logo"/></a>
+            <a class="sidebar-brand brand-logo-mini" href="../index.html"><img
+                    th:src="@{/admin/assets/images/logo4.png}"
+                    alt="logo"/></a>
         </div>
         <ul class="nav">
             <li class="nav-item profile">
@@ -216,49 +178,48 @@
                             <span class="count bg-success"></span>
                         </div>
                         <div class="profile-name">
-                            <div class="profile-name">
-                                <h2 class="mb-0 text-white text-xxl-center font-weight-semi-bold m-2" th:if="${#request.userPrincipal != null}"
-                                    th:text="${#request.userPrincipal.getName()}"></h2>
-                            </div>
+                            <h3 class="mb-0 text-white m-2"
+                                th:if="${#request.userPrincipal != null}"
+                                th:text="${#request.userPrincipal.getName()}"></h3>
+                        </div>
+                        <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
+                                class="mdi mdi-dots-vertical"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
+                             aria-labelledby="profile-dropdown">
+                            <a href="#" class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-settings text-primary"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1 text-small">Thông tin tài khoản</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-onepassword  text-info"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1 text-small">Đặt lại mật khẩu</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-calendar-today text-success"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1 text-small">Lịch lên lớp</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
-                            class="mdi mdi-dots-vertical"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
-                         aria-labelledby="profile-dropdown">
-                        <a href="#" class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-dark rounded-circle">
-                                    <i class="mdi mdi-settings text-primary"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <p class="preview-subject ellipsis mb-1 text-small">Thông tin tài khoản</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-dark rounded-circle">
-                                    <i class="mdi mdi-onepassword  text-info"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <p class="preview-subject ellipsis mb-1 text-small">Đặt lại mật khẩu</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-dark rounded-circle">
-                                    <i class="mdi mdi-calendar-today text-success"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <p class="preview-subject ellipsis mb-1 text-small">Lịch lên lớp</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
                 </div>
             </li>
             <li class="nav-item menu-items">
@@ -451,11 +412,19 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                             <div class="navbar-profile">
-                                <img class="img-xs rounded-circle"
-                                     src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
-                                     alt="">
-                                <p class="mb-0 d-none d-sm-block navbar-profile-name">Khải Nguyễn</p>
-                                <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                                <form class="d-flex" role="search">
+                                    <div class="user-info">
+                                        <img class="img-xs rounded-circle"
+                                             src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
+                                             alt="">
+                                        <span class="mb-0 font-weight-normal text-light m-2"
+                                              th:utext="${#request.userPrincipal.getName()}"></span>
+                                    </div>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-outline-success">
+                                        Đăng xuất
+                                    </button>
+                                </form>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
@@ -480,7 +449,8 @@
                                     </div>
                                 </div>
                                 <div class="preview-item-content">
-                                    <p class="preview-subject mb-1">Đăng xuất</p>
+                                    <p class="preview-subject mb-1" data-bs-toggle="modal"
+                                       data-bs-target="#logoutModal">Đăng xuất</p>
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
@@ -494,12 +464,13 @@
                 </button>
             </div>
         </nav>
-        <form style="margin: 0 auto;margin-top: 60px;" action="/admin/student/update" method="post" th:object="${student}">
+        <form style="margin: 0 auto;margin-top: 60px;" action="/admin/student/update" method="post"
+              th:object="${student}">
             <div class="container">
                 <div class="card"><p class="h-1">Cập nhập học viên</p>
                     <div class="bar mb-3"></div>
                     <div class="row">
-                        <div class="col-12"><p>ID</p>
+                        <div class="col-12" hidden="hidden"><p>ID</p>
                             <div class="box"><input class="form-control" type="hidden"
                                                     placeholder="Vui lòng nhập id" th:field="*{studentID}">
                             </div>
@@ -534,6 +505,11 @@
                                    style="color: red"></p>
                             </div>
                             <p class="bar2 mt-4"></p></div>
+                        <div class="col-12" hidden="hidden" ><p>Cờ</p>
+                            <div class="box"><input class="form-control" type="number"
+                                                    placeholder="Vui lòng nhập cờ" th:field="*{flag}">
+                            </div>
+                            <p class="bar2 mt-4"></p></div>
                         <div class="col-12"><p>Thêm ảnh</p>
                             <div class="box"><input class="form-control" type="text" placeholder="Thêm ảnh"
                                                     th:field="*{studentImg}">
@@ -566,6 +542,32 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="logoutModal" data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Hôp thoại đăng xuất</h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                        aria-label="Close">&times;
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn <span class="mb-0 text-danger font-weight-medium m-2" th:if="${#request.userPrincipal != null}"
+                          th:text="${#request.userPrincipal.getName()}"></span> có chắc chắn muốn đăng xuất?
+            </div>
+            <div class="modal-footer">
+                <form action="/logout" method="get">
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Huỷ
+                    </button>
+                    <button type="submit" class="btn btn-primary">Đăng xuất</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 <script th:src="@{/admin/assets/vendors/js/vendor.bundle.base.js}"></script>

@@ -323,9 +323,19 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                             <div class="navbar-profile">
-                                <img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
-                                <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
-                                <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                                <form class="d-flex" role="search">
+                                    <div class="user-info">
+                                        <img class="img-xs rounded-circle"
+                                             src="https://andy.codegym.vn/storage/images/avatars/eaf3a049a40db2776e366e2d3a464464.jpg"
+                                             alt="">
+                                        <span class="mb-0 font-weight-normal text-light m-2"
+                                              th:utext="${#request.userPrincipal.getName()}"></span>
+                                    </div>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-outline-success">
+                                        Đăng xuất
+                                    </button>
+                                </form>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
@@ -350,7 +360,8 @@
                                     </div>
                                 </div>
                                 <div class="preview-item-content">
-                                    <p class="preview-subject mb-1">Log out</p>
+                                    <p class="preview-subject mb-1" data-bs-toggle="modal"
+                                       data-bs-target="#logoutModal">Đăng xuất</p>
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>

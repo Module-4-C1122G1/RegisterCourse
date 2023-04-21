@@ -5,7 +5,6 @@ import com.codegym.register_course.repository.IStudentRepository;
 import com.codegym.register_course.service.IStudentService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,4 +66,5 @@ public class StudentService implements IStudentService {
     public boolean existsByStudentPhone(String studentPhone) {
         return iStudentRepository.existsByStudentPhone(studentPhone);
     }
+
 }

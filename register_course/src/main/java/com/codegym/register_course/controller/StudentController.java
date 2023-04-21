@@ -1,5 +1,6 @@
 package com.codegym.register_course.controller;
 
+import com.codegym.register_course.model.Course;
 import com.codegym.register_course.model.Student;
 import com.codegym.register_course.service.IStudentService;
 import org.springframework.data.domain.Page;
@@ -37,6 +38,7 @@ public class StudentController {
         for (int i = 1; i <= studentPage.getTotalPages(); i++) {
             pageNumberList.add(i);
         }
+        model.addAttribute("nameValue", name);
         model.addAttribute("pageNumberList", pageNumberList);
         return "/admin/student/student";
     }
@@ -53,13 +55,13 @@ public class StudentController {
                                 RedirectAttributes redirectAttributes,
                                 Model model) {
         if (bindingResult.hasErrors()) {
-            return "redirect:/admin/student/create-student";
+            return "/admin/student/create-student";
         }else if (iStudentService.existsByStudentEmail(student.getStudentEmail())) {
-            redirectAttributes.addFlashAttribute("message1", "Email đã tồn tại, vui lòng nhập email khác");
-            return "redirect:/admin/student/create-student";
+            model.addAttribute("message1", "Email đã tồn tại, vui lòng nhập email khác");
+            return "/admin/student/create-student";
         } else if (iStudentService.existsByStudentPhone(student.getStudentPhone())) {
-           redirectAttributes.addFlashAttribute("message2", "Số điện thoại đã tồn tại, vui lòng nhập số điện thoại khác");
-            return "redirect:/admin/student/create-student";
+           model.addAttribute("message2", "Số điện thoại đã tồn tại, vui lòng nhập số điện thoại khác");
+            return "/admin/student/create-student";
         }else {
             student.setFlag(0);
             model.addAttribute("student", iStudentService.save(student));
