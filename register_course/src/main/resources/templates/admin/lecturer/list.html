@@ -27,6 +27,38 @@
             color: sandybrown;
             text-align: center;
         }
+
+        .btn1,
+        .btn1:link,
+        .btn1:visited {
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 7px 15px;
+            display: inline-block;
+            border-radius: 50px;
+            font-size: 13px;
+        }
+
+        .btn1:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px green;
+        }
+
+        .active {
+            outline: none;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px whitesmoke;
+        }
+
+        .profile-name1 {
+            box-shadow: 0 5px 20px green;
+            background-color: darkgreen;
+            font-family: cursive;
+            border-radius: 50%;
+        }
+        .preview-item-content1 {
+            transition: transform 0.2s ease-in-out;
+        }
     </style>
 </head>
 <body>
@@ -406,19 +438,19 @@
                                         </tbody>
                                     </table>
                                     <div class="text-center container" style="margin-top: 20px">
-                                        <a class="page-item btn btn-dark page-item" th:if="${lecturer.hasPrevious()}"
+                                        <a class="page-item btn1 btn-dark page-item m-2" th:if="${lecturer.hasPrevious()}"
                                            th:href="@{/admin/lecturer(page = ${lecturer.number - 1})}">
                                             <i class="ti-angle-left">Trước</i>
                                         </a>
 
-                                        <a class="page-item number btn btn-dark page-item"
+                                        <a class="page-item number btn1 btn-dark page-item m-1"
                                            th:classappend="${pageNumber == lecturer.number + 1} ? 'active' : ''"
                                            th:each="pageNumber : ${pageNumberList}"
                                            th:href="@{/admin/lecturer(page = ${pageNumber - 1})}"
                                            th:text="${pageNumber}">
                                         </a>
 
-                                        <a class="page-item btn btn-dark page-item" th:if="${lecturer.hasNext()}"
+                                        <a class="page-item btn1 btn-dark page-item m-2" th:if="${lecturer.hasNext()}"
                                            th:href="@{/admin/lecturer(page = ${lecturer.number + 1})}">
                                             <i class="ti-angle-right">Sau</i>
                                         </a>

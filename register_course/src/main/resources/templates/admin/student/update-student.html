@@ -494,12 +494,13 @@
                 </button>
             </div>
         </nav>
-        <form style="margin: 0 auto;margin-top: 60px;" action="/admin/student/update" method="post" th:object="${student}">
+        <form style="margin: 0 auto;margin-top: 60px;" action="/admin/student/update" method="post"
+              th:object="${student}">
             <div class="container">
                 <div class="card"><p class="h-1">Cập nhập học viên</p>
                     <div class="bar mb-3"></div>
                     <div class="row">
-                        <div class="col-12"><p>ID</p>
+                        <div class="col-12" hidden="hidden"><p>ID</p>
                             <div class="box"><input class="form-control" type="hidden"
                                                     placeholder="Vui lòng nhập id" th:field="*{studentID}">
                             </div>
@@ -532,6 +533,11 @@
                                                     placeholder="Vui lòng nhập địa chỉ" th:field="*{studentAddress}">
                                 <p th:if="${#fields.hasErrors('studentAddress')}" th:errors="*{studentAddress}"
                                    style="color: red"></p>
+                            </div>
+                            <p class="bar2 mt-4"></p></div>
+                        <div class="col-12" hidden="hidden" ><p>Cờ</p>
+                            <div class="box"><input class="form-control" type="number"
+                                                    placeholder="Vui lòng nhập cờ" th:field="*{flag}">
                             </div>
                             <p class="bar2 mt-4"></p></div>
                         <div class="col-12"><p>Thêm ảnh</p>
