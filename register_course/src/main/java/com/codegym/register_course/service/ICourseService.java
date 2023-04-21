@@ -2,6 +2,7 @@ package com.codegym.register_course.service;
 
 import com.codegym.register_course.model.Course;
 import com.codegym.register_course.model.Curriculum;
+import com.codegym.register_course.model.Lecturer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,7 +20,7 @@ public interface ICourseService {
 
     void delete(Integer courseID, Course course);
 
-    Course save(Course course);
+    void save(Course course);
 
     Optional<Course> findById(Integer courseID);
 
