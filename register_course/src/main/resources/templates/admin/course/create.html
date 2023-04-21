@@ -502,68 +502,77 @@
                 <div class="card"><p class="h-1">Thêm mới khóa học</p>
                     <div class="bar mb-3"></div>
                     <div class="row">
-                        <div class="col-12"><p class="mb-2">Tên khóa học</p>
+                        <div class="col-12"><p class="mb-2">Tên khóa học<span style="color: red;">(*)</span></p>
                             <div class=" box mb-3"><input type="text" class="form-control"
                                                           placeholder="Vui lòng nhập tên khóa học"
                                                           th:field="*{courseName}">
                             </div>
+                            <p th:if="${#fields.hasErrors('courseName')}" th:errors="*{courseName}" style="color: red"></p>
                         </div>
-                        <div class="col-12"><p>Mô tả khóa học</p>
+                        <div class="col-12"><p>Mô tả khóa học<span style="color: red;">(*)</span></p>
                             <div class="box"><input class="form-control" type="text"
                                                     placeholder="Vui lòng nhập mô tả" th:field="*{courseDescription}">
                             </div>
+                            <p th:if="${#fields.hasErrors('courseDescription')}" th:errors="*{courseDescription}" style="color: red"></p>
                         </div>
-                        <div class="col-12"><p>Vị trí</p>
+                        <div class="col-12"><p>Vị trí<span style="color: red;">(*)</span></p>
                             <div class="box"><input class="form-control" type="text"
                                                     placeholder="Vui lòng nhập vị trí" th:field="*{courseLocation}">
                             </div>
+                            <p th:if="${#fields.hasErrors('courseLocation')}" th:errors="*{courseLocation}" style="color: red"></p>
                         </div>
-                        <div class="col-12"><p>Giá</p>
+                        <div class="col-12"><p>Giá<span style="color: red;">(*)</span></p>
                             <div class="box"><input class="form-control" type="number"
                                                     placeholder="Vui lòng nhập giá" th:field="*{coursePrice}">
                             </div>
+                            <p th:if="${#fields.hasErrors('coursePrice')}" th:errors="*{coursePrice}" style="color: red"></p>
                         </div>
-                        <div class="col-12"><p>Trạng thái</p>
+                        <div class="col-12"><p>Trạng thái<span style="color: red;">(*)</span></p>
                             <div class="box"><input class="form-control" type="text"
                                                     placeholder="Vui lòng nhập trạng thái" th:field="*{courseStatus}">
                             </div>
+                            <p th:if="${#fields.hasErrors('courseStatus')}" th:errors="*{courseStatus}" style="color: red"></p>
                         </div>
-                        <div class="col-12"><p>Ngày bắt đầu</p>
+                        <div class="col-12"><p>Ngày bắt đầu<span style="color: red;">(*)</span></p>
                             <div class="box"><input class="form-control" type="date"
                                                     placeholder="Vui lòng nhập ngày bắt đầu" th:field="*{startDate}">
                             </div>
+                            <p th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" style="color: red"></p>
                         </div>
-                        <div class="col-12"><p>Ngày kết thúc</p>
+                        <div class="col-12"><p>Ngày kết thúc<span style="color: red;">(*)</span></p>
                             <div class="box"><input class="form-control" type="date"
                                                     placeholder="Vui lòng nhập ngày kết thúc" th:field="*{endDate}">
                             </div>
+                            <p th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" style="color: red"></p>
                         </div>
-                        <div class="col-12"><p>Số lượng học viên</p>
+                        <div class="col-12"><p>Số lượng học viên<span style="color: red;">(*)</span></p>
                             <div class="box"><input class="form-control" type="number"
                                                     placeholder="Vui lòng nhập số lượng học viên"
                                                     th:field="*{studentMax}">
                             </div>
+                            <p th:if="${#fields.hasErrors('studentMax')}" th:errors="*{studentMax}" style="color: red"></p>
                         </div>
-                        <div class="col-12"><p>Thời lượng khóa học</p>
+                        <div class="col-12"><p>Thời lượng khóa học<span style="color: red;">(*)</span></p>
                             <div class="box"><input class="form-control" type="text"
                                                     placeholder="Vui lòng nhập thời lượng khóa học"
                                                     th:field="*{duration}">
                             </div>
+                            <p th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}" style="color: red"></p>
                         </div>
-                        <div class="col-12"><p>Nhân viên</p>
+                        <div class="col-12"><p>Nhân viên<span style="color: red;">(*)</span></p>
                             <div class="box"><input class="form-control" type="text"
                                                     placeholder="Vui lòng nhập nhân viên"
                                                     th:field="*{employee.employeeID}">
                             </div>
                         </div>
-                        <div class="col-12"><p>Giảng viên</p>
+                        <div class="col-12"><p>Giảng viên<span style="color: red;">(*)</span></p>
                             <div class="box"><input class="form-control" type="text"
                                                     placeholder="Vui lòng nhập nhân viên"
                                                     th:field="*{lecturer.lecturerID}">
                             </div>
                         </div>
                         <p class="bar2 mt-4"></p></div>
-                        <div class="col-12"><p>Thêm ảnh</p>
+                        <div class="col-12"><p>Thêm ảnh<span style="color: red;">(*)</span></p>
                             <div class="box"><input class="form-control" type="text" placeholder="Thêm ảnh" th:field="*{courseImg}">
                                 <div class="add btn btn-outline-secondary">Thêm ảnh</div>
                             </div>
