@@ -1,6 +1,8 @@
 package com.codegym.register_course.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "course")
@@ -10,25 +12,35 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer courseID;
     @Column(name = "course_name", columnDefinition = "varchar(45)")
+    @NotBlank(message = "Vui lòng không để trống tên khóa học")
     private String courseName;
     @Column(name = "course_description", columnDefinition = "text")
+    @NotBlank(message = "Vui lòng không để trống mô tả")
     private String courseDescription;
     @Column(name = "start_date", columnDefinition = "varchar(45)")
+    @NotBlank(message = "Vui lòng không để trống ngày bắt đầu")
     private String startDate;
     @Column(name = "end_date", columnDefinition = "varchar(45)")
+    @NotBlank(message = "Vui lòng không để trống ngày kết thúc")
     private String endDate;
     @Column(name = "course_location", columnDefinition = "varchar(255)")
+    @NotBlank(message = "Vui lòng không để trống vị trí")
     private String courseLocation;
     @Column(name = "course_price", columnDefinition = "varchar(45)")
+    @NotBlank(message = "Vui lòng không để trống giá")
     private String coursePrice;
     @Column(name = "student_max")
+    @NotNull(message = "Vui lòng không để trống số lượng học viên")
     private Integer studentMax;
     @Column(name = "course_status", columnDefinition = "varchar(45)")
+    @NotBlank(message = "Vui lòng không để trống trạng thái")
     private String courseStatus;
     @Column(name = "course_img", columnDefinition = "varchar(255)")
+    @NotBlank(message = "Vui lòng không để trống ảnh")
     private String courseImg;
 
     @Column(name = "duration",columnDefinition = "varchar(45)")
+    @NotBlank(message = "Vui lòng không để trống thời lượng")
     private String duration;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
