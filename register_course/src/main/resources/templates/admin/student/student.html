@@ -435,7 +435,6 @@
                                         </thead>
                                         <tbody>
                                         <tr th:each="student1,st1 : ${student}">
-                                            <td th:if="${student.size == 0}"><p>Không có học viên nào cả</p></td>
                                             <td th:text="${st1.count}"></td>
                                             <td th:text="${student1.studentName}"></td>
                                             <td th:text="${student1.studentEmail}"></td>

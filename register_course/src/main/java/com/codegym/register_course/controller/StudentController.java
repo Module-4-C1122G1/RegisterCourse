@@ -83,7 +83,9 @@ public class StudentController {
         if (bindingResult.hasErrors()) {
             return "/admin/student/update-student";
         } else {
-            model.addAttribute("student", iStudentService.save(student));
+            Student student1 = iStudentService.findById(student.getStudentID()).get();
+            student1.getCourse().setCourseID(1);
+            model.addAttribute("student", iStudentService.save(student1));
             redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
             return "redirect:/admin/student";
         }
