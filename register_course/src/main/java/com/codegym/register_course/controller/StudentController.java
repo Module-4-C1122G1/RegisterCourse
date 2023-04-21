@@ -65,7 +65,8 @@ public class StudentController {
             return "/admin/student/create-student";
         }
             student.setFlag(0);
-            iStudentService.update(student);
+        student.setCourse(courseService.getByID(1));
+            iStudentService.save(student);
             redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
             return "redirect:/admin/student";
     }
