@@ -36,7 +36,6 @@ public class LecturerController {
         for (int i = 1; i <= lecturerPage.getTotalPages(); i++) {
             pageNumberList.add(i);
         }
-        model.addAttribute("nameValue", name);
         model.addAttribute("pageNumberList", pageNumberList);
         return "/admin/lecturer/list";
     }
@@ -88,8 +87,9 @@ public class LecturerController {
     }
 
     @GetMapping("/lecturer/delete")
-    public String delete (@RequestParam Integer lecturerID) {
+    public String delete (@RequestParam Integer lecturerID,RedirectAttributes redirectAttributes) {
         service.removeById(lecturerID);
+        redirectAttributes.addFlashAttribute("msg","Xóa thành công");
         return "redirect:/admin/lecturer";
     }
 
