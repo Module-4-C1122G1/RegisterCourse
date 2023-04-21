@@ -36,6 +36,7 @@ public class LecturerController {
         for (int i = 1; i <= lecturerPage.getTotalPages(); i++) {
             pageNumberList.add(i);
         }
+        model.addAttribute("nameValue", name);
         model.addAttribute("pageNumberList", pageNumberList);
         return "/admin/lecturer/list";
     }
