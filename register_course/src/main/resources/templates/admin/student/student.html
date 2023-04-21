@@ -54,7 +54,7 @@
                         </div>
                         <div class="profile-name">
                             <div class="profile-name">
-                                <h2 class="mb-0 text-white text-xxl-center font-weight-semi-bold m-2"
+                                <h2 class="mb-0 text-white text-xxl-center font-weight-semi-bold m-2" style="font-size: 20px"
                                     th:if="${#request.userPrincipal != null}"
                                     th:text="${#request.userPrincipal.getName()}"></h2>
                             </div>
@@ -411,10 +411,9 @@
                                             <td>
                                                 <button type="button"
                                                         th:attr="onclick=|detail('${student1.getStudentName}','${student1.getStudentEmail}','${student1.studentPhone}','${student1.studentAddress}','${student1.course.courseName}','${student1.course.courseLocation}')|"
-                                                        class="btn btn-primary btn-rounded btn-icon"
-                                                        style="margin-bottom: 0px"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                                                    <i class="fa fa-info-circle" style="margin: 0 auto; font-size: 36px"></i>
+                                                        class="btn btn-danger"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal1" style="width: 38.46px;height: 28.6px">
+                                                    <i class="fa fa-user-md" style="margin: 0 auto"></i>
                                                 </button>
                                                 <a th:href="@{/admin/student/update/{studentID}(studentID=${student1.getStudentID()})}"
                                                    class="btn btn-danger"><i class="fa fa-pencil-square"

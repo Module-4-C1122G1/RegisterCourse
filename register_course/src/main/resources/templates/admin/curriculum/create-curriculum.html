@@ -194,69 +194,6 @@
         ::placeholder {
             font-size: 14px
         }
-
-        /* Hiệu ứng làm mờ background */
-        #loader-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-            display: none;
-        }
-
-        /* Vòng tròn xoay bảy sắc cầu vòng đổi màu */
-        #loader {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10000;
-            display: none;
-        }
-
-        #loader:before {
-            content: "";
-            box-sizing: border-box;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 40px;
-            height: 40px;
-            margin: 6px;
-            border: 4px solid #ccc;
-            border-top-color: #333;
-            border-radius: 50%;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Dòng chữ "Xin bạn chờ trong giây lát" */
-        #loading-text {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10001;
-            font-size: 24px;
-            color: #fff;
-            text-align: center;
-            display: none;
-        }
-
-        .profile-name {
-            box-shadow: 0 5px 20px green;
-            background-color: darkgreen;
-            font-family: cursive;
-            border-radius: 50%;
-        }
     </style>
 </head>
 <body>
@@ -280,9 +217,10 @@
                             <span class="count bg-success"></span>
                         </div>
                         <div class="profile-name">
-                            <h3 class="mb-0 text-white m-2"
-                                th:if="${#request.userPrincipal != null}"
-                                th:text="${#request.userPrincipal.getName()}"></h3>
+                            <div class="profile-name">
+                                <h2 class="mb-0 text-white text-xxl-center font-weight-semi-bold m-2" th:if="${#request.userPrincipal != null}" style="font-size: 20px"
+                                    th:text="${#request.userPrincipal.getName()}"></h2>
+                            </div>
                         </div>
                         <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
                                 class="mdi mdi-dots-vertical"></i></a>
@@ -325,7 +263,7 @@
                 </div>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="../index.html">
+                <a class="nav-link" onclick="location.href = '/admin/course' ">
               <span class="menu-icon">
                 <i class="mdi mdi-book-open"></i>
               </span>

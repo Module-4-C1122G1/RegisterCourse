@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
     <style>
         * {
-            font-family: Roboto
+            font-family: Roboto;
         }
         .table td{
             font-size: 16px;
@@ -27,74 +27,6 @@
             font-size: 18px;
             color: sandybrown;
             text-align: center;
-        }
-
-
-        /*Đổi màu paging + css*/
-        .btn,
-        .btn:link,
-        .btn:visited {
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 7px 15px;
-            display: inline-block;
-            border-radius: 50px;
-            font-size: 13px;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px green;
-        }
-
-        .active {
-            outline: none;
-            transform: translateY(-1px);
-            box-shadow: 0 5px 10px whitesmoke;
-        }
-
-        .profile-name {
-            box-shadow: 0 5px 20px green;
-            background-color: darkgreen;
-            font-family: cursive;
-            border-radius: 50%;
-        }
-        .preview-item-content {
-            transition: transform 0.2s ease-in-out;
-        }
-
-
-        /*Đổi màu paging + css*/
-        .btn,
-        .btn:link,
-        .btn:visited {
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 7px 15px;
-            display: inline-block;
-            border-radius: 50px;
-            font-size: 13px;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px green;
-        }
-
-        .active {
-            outline: none;
-            transform: translateY(-1px);
-            box-shadow: 0 5px 10px whitesmoke;
-        }
-
-        .profile-name {
-            box-shadow: 0 5px 20px green;
-            background-color: darkgreen;
-            font-family: cursive;
-            border-radius: 50%;
-        }
-        .preview-item-content {
-            transition: transform 0.2s ease-in-out;
         }
 
     </style>
@@ -120,16 +52,17 @@
                             <span class="count bg-success"></span>
                         </div>
                         <div class="profile-name">
-                            <h3 class="mb-0 text-white m-2"
-                                th:if="${#request.userPrincipal != null}"
-                                th:text="${#request.userPrincipal.getName()}"></h3>
+                            <div class="profile-name">
+                                <h2 class="mb-0 text-white text-xxl-center font-weight-semi-bold m-2" th:if="${#request.userPrincipal != null}" style="font-size: 20px"
+                                    th:text="${#request.userPrincipal.getName()}"></h2>
+                            </div>
                         </div>
                         <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
                                 class="mdi mdi-dots-vertical"></i></a>
                         <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
                              aria-labelledby="profile-dropdown">
                             <a href="#" class="dropdown-item preview-item">
-                                <div class="preview-thumbnail   ">
+                                <div class="preview-thumbnail">
                                     <div class="preview-icon bg-dark rounded-circle">
                                         <i class="mdi mdi-settings text-primary"></i>
                                     </div>
@@ -165,7 +98,7 @@
                 </div>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="../index.html">
+                <a class="nav-link" onclick="location.href = '/admin/course' ">
               <span class="menu-icon">
                 <i class="mdi mdi-book-open"></i>
               </span>
